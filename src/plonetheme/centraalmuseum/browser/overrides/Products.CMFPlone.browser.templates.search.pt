@@ -336,7 +336,7 @@
                             
                               <div class="search-item row"
                                 tal:define="item_type item/PortalType;
-                                            leadmedia python: view.getImageObject(item) if item_type not in ['Object'] else view.getImageObject(item, 'large');
+                                            leadmedia python: context.restrictedTraverse('@@context_tools').getImageObject(item, 'mini') if item_type not in ['Object'] else context.restrictedTraverse('@@context_tools').getImageObject(item, 'large');
                                             item_on_display item/object_on_display|nothing;
                                             item_is_event python: item_type in ['Event', 'Exhibition'];">
 

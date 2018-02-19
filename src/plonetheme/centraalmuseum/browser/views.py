@@ -8,6 +8,7 @@ from plone.app.multilingual.interfaces import ITranslationManager
 
 from plone.app.contenttypes.browser.collection import CollectionView
 from plone.app.uuid.utils import uuidToCatalogBrain
+from plone.event.interfaces import IEvent
 
 from datetime import date
 from DateTime import DateTime
@@ -17,6 +18,24 @@ from plone.app.event.browser.event_listing import EventEventListing, EventListin
 import plone.api
 
 class ContextToolsView(BrowserView):
+
+    def getImageObject(self, item, scale="large"):
+        if item.portal_type == "Image":
+            return item.getURL()+"/@@images/image/%s" %(scale)
+        if item.leadMedia != None:
+            uuid = item.leadMedia
+            media_object = uuidToCatalogBrain(uuid)
+            if media_object:
+                return media_object.getURL()+"/@@images/image/%s" %(scale)
+            else:
+                return None
+        else:
+            return None
+
+    def is_event(self, obj):
+        if getattr(obj, 'getObject', False):
+            obj = obj.getObject()
+        return IEvent.providedBy(obj)
 
     def isAnonymous(self):
         annon = True
