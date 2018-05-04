@@ -29,6 +29,7 @@
                 item_id item/getId;
                 item_title item/Title;
                 item_description item/Description;
+                item_objects_count item/objects_count|nothing;
                 item_type item/PortalType;
                 item_on_display item/object_on_display|nothing;
                 item_modified item/ModificationDate;
@@ -49,7 +50,7 @@
                 <article class="entry">
                 
                      <div class="thumb-wrapper">         
-                            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: item_link+'?collection_id='+collection_id+'&b_start='+str(b_start+item_index) if context_portal_type == 'Collection' and item_type == 'Object' else item_link;"
+                            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: item_link"
                               tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(item, 'mini')">
                               
                               <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.centraalmuseum">
@@ -87,10 +88,19 @@
                             
                             
                           </metal:block>
-                            <p class="item-description" tal:content="item_description"></p>
-                          </div>
+                            <tal:is_person tal:condition="python: item_type in ['Person'] and item_objects_count not in ['', None, '0', 0]" on-error="nothing">
+                              <p class="item-description" tal:condition="python: int(str(item_objects_count)) == 1" on-error="nothing">
+                                <span tal:content="item_objects_count"></span> <span i18n:domain="plonetheme.centraalmuseum" i18n:translate="object_work">item</span>
+                              </p>
+                              <p class="item-description" tal:condition="python: int(str(item_objects_count)) > 1" >
+                                <span tal:content="item_objects_count"></span> <span i18n:domain="plonetheme.centraalmuseum" i18n:translate="object_works">items</span>
+                              </p>
+                            </tal:is_person>
 
-                      
+                            <tal:notperson tal:condition="python: item_type not in ['Person']">
+                              <p class="item-description" tal:content="item_description"></p>
+                            </tal:notperson>
+                          </div>    
                 </article>
               </metal:block>
             </div>

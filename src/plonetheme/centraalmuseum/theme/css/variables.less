@@ -1,77 +1,41 @@
-/* Variables */
-/*@font-face {
-    font-family: 'UniversCn';
-    src: url('++resource++plonetheme.centraalmuseum/UniversLTStd-Cn.eot?#iefix'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-Cn.woff') format('woff'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-Cn.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}*/
-
 @font-face {
-    font-family: 'UniversCn';
-    src: url('++resource++plonetheme.centraalmuseum/Univers-Condensed.eot?#iefix'),
-         url('++resource++plonetheme.centraalmuseum/Univers-Condensed.woff') format('woff'),
-         url('++resource++plonetheme.centraalmuseum/Univers-Condensed.otf') format('opentype');
+    font-family: 'FranklinBook';
+    src: url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Book.eot?#iefix'),
+         url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Book.woff') format('woff'),
+         url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Book.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'UniversLight';
-    src: url('++resource++plonetheme.centraalmuseum/UniversLTStd-Light.eot?#iefix'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-Light.woff') format('woff'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-Light.otf') format('opentype');
+    font-family: 'FranklinDmCp';
+    src: url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-DmCp.eot?#iefix'),
+         url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-DmCp.woff') format('woff'),
+         url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-DmCp.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'UniversLightCn';
-    src: url('++resource++plonetheme.centraalmuseum/UniversLTStd-LightCn.eot?#iefix'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-LightCn.woff') format('woff'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-LightCn.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'UniversObl';
-    src: url('++resource++plonetheme.centraalmuseum/UniversLTStd-Obl.eot?#iefix'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-Obl.woff') format('woff'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd-Obl.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'UniversRoman';
-    src: url('++resource++plonetheme.centraalmuseum/UniversLTStd.eot?#iefix'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd.woff') format('woff'),
-         url('++resource++plonetheme.centraalmuseum/UniversLTStd.otf') format('opentype');
+    font-family: 'FranklinMed';
+    src: url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Med.eot?#iefix'),
+         url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Med.woff') format('woff'),
+         url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Med.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 
-.universCn() {
-    font-family: 'UniversCn', Arial, sans-serif;
+.FranklinBook() {
+    font-family: 'FranklinBook', Arial, sans-serif;
 }
 
-.universLight() {
-    font-family: 'UniversLight', Arial, sans-serif;
+.FranklinDmCp() {
+    font-family: 'FranklinDmCp', Arial, sans-serif;
 }
 
-.universLightCn() {
-    font-family: 'UniversLightCn', Arial, sans-serif;
-}
-
-.universObl() {
-    font-family: 'UniversObl', Arial, sans-serif;
-}
-
-.universRoman() {
-    font-family: 'UniversRoman', Arial, sans-serif;
+.FranklinMed() {
+    font-family: 'FranklinMed', Arial, sans-serif;
 }
 
 .backendFont() {
@@ -80,7 +44,11 @@
     line-height: 1.42857143;
 }
 
-@brand-primary: #000000;
+@brand-primary: #282931;
+@brand-primary-titles: #282931;
+@brand-primary-text: #494A51;
+@brand-primary-lines: #EAEAEA;
+
 @gray-dark: lighten(black, 25%);
 @gray: lighten(black, 50%);
 @white-faded: fade(white, 80%);

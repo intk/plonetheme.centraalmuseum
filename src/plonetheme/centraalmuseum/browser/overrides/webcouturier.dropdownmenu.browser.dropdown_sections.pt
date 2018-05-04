@@ -20,7 +20,7 @@
         <a class="navbar-brand" href="/">
           CENTRAAL MUSEUM
         </a>
-        <img src="++resource++plonetheme.centraalmuseum/icon-search-blue.svg" style="display: none;"/>
+        <img src="/nl/intk/images/icon-search-blue.svg" style="display: none;"/>
       </div>
 
       <div class="plone-collapse collapse navbar-collapse" id="portal-globalnav-collapse">

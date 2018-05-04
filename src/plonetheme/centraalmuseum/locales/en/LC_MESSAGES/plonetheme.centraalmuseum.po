@@ -79,3 +79,94 @@ msgstr "path"
 msgid 'object_on_display'
 msgstr "Now on display"
 
+#: ../object.py
+msgid "creator_name"
+msgstr "Artist"
+
+#: ../object.py
+msgid "label_text"
+msgstr "Text"
+
+#: ../object.py
+msgid "object_name"
+msgstr "Object name"
+
+#: ../object.py
+msgid "technique"
+msgstr "Technique"
+
+#: ../object.py
+msgid "association_subject"
+msgstr "Associated subject"
+
+#: ../object.py
+msgid "acquisition_method"
+msgstr "Acquisition method"
+
+#: ../object.py
+msgid "acquisition_date"
+msgstr "Acquisition date"
+
+#: ../object.py
+msgid "association_person"
+msgstr "Associated person"
+
+#: ../object.py
+msgid "creator_role"
+msgstr "Role"
+
+#: ../object.py
+msgid "documentation_title"
+msgstr "Documentation"
+
+#: ../object.py
+msgid "exhibition_title"
+msgstr "Exhibition"
+
+#: ../object.py
+msgid "inscription_content"
+msgstr "Inscription content"
+
+#: ../object.py
+msgid "inscription_type"
+msgstr "Inscription type"
+
+#: ../object.py
+msgid "inscription_description"
+msgstr "Inscription description"
+
+#: ../object.py
+msgid "object_notes"
+msgstr "Notes"
+
+#: ../object.py
+msgid "physical_description"
+msgstr "Physical description"
+
+#: ../object.py
+msgid "production_date_start"
+msgstr "Production start"
+
+#: ../object.py
+msgid "production_date_end"
+msgstr "Production end"
+
+#: ../object.py
+msgid "sort_on"
+msgstr "Sort on"
+
+#: ../object.py
+msgid "sortable_title"
+msgstr "Title"
+
+#: ../object.py
+msgid "sortable_object_number"
+msgstr "Object number"
+
+#: ../object.py
+msgid "sortable_creator_name"
+msgstr "Creator"
+
+#: ../object.py
+msgid "sortable_production_date"
+msgstr "Production date"

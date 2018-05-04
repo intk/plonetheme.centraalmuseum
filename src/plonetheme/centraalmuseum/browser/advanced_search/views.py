@@ -29,6 +29,8 @@ class AdvancedSearchView(BrowserView, Search):
         if searchFiltersRecord:
             advancedfields = list(searchFiltersRecord)
             advancedfields.append("SearchableText")
+            """advancedfields.append("sort_on")"""
+            
             q = "&".join(["%s=%s" %(param,value.decode('utf-8').encode('ascii', 'ignore')) for param,value in params if param in advancedfields and value])
 
         return q
@@ -63,9 +65,7 @@ class AdvancedSearchView(BrowserView, Search):
         extra_filters = []
 
         # Needs fix
-        widget_fields = ['identification_identification_collection', 'physicalCharacteristics_materials',
-                         'physicalCharacteristics_techniques', 'identification_objectName_objectname_type', 'associations_associatedSubjects_subject',
-                         'identification_taxonomy_commonName', 'identification_taxonomy_scientificName']
+        widget_fields = ['object_name', 'association_subject', 'acquisition_method', 'creator_role']
 
 
         new_params = []
@@ -87,6 +87,7 @@ class AdvancedSearchView(BrowserView, Search):
         if searchFiltersRecord:
             advancedfields = list(searchFiltersRecord)
             advancedfields.append('path')
+            """advancedfields.append('sort_on')"""
 
             for param, value in params:
                 if param in advancedfields:
@@ -110,48 +111,38 @@ class AdvancedSearchView(BrowserView, Search):
                                 else:
                                     search_filter["param"] = param
                                 search_filter["value"] = field
-                                search_filter["link"] = self.context.absolute_url()+"/@@search?%s" %(q)
+                                search_filter["link"] = self.context.absolute_url()+"/%s/@@search?%s" %(getattr(self.context, 'language', ''), q)
                                 extra_filters.append(search_filter)
                         else:
                             q = "&".join(["%s=%s" %(p, v) for p, v in params if p != param and p not in ['created']])
                             search_filter = {}
                             search_filter["param"] = param
                             search_filter["value"] = value
-                            search_filter["link"] = self.context.absolute_url()+"/@@search?%s" %(q)
-                            extra_filters.append(search_filter)
-                            
+                            search_filter["link"] = self.context.absolute_url()+"/%s/@@search?%s" %(getattr(self.context, 'language', ''), q)
+                            extra_filters.append(search_filter) 
         return extra_filters
+
+    def getSortFields(self):
+        sort_filters = [{"name":"sort_on", "options": ['sortable_creator_name', 'sortable_object_number', 'sortable_production_date', 'sortable_title']}]
+        return sort_filters
 
     def getAdvancedFields(self):
 
         context_url = self.context.absolute_url()
 
         advanced_widgets = {
-            'identification_identification_collection': {
-                'data': '{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.collection&field=identification_identification_collections", "initialValues": {}, "separator": "_"}' % (context_url)
+            'object_name': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.objectname", "initialValues": {}, "separator": "_"}' % (context_url)
             },
-            'physicalCharacteristics_materials': {
-                'data': '{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.materials&field=material", "initialValues": {}, "separator": "_"}' % (context_url)
+            'association_subject': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.associationsubject", "initialValues": {}, "separator": "_"}' % (context_url)
             },
-            'physicalCharacteristics_techniques': {
-                'data': '{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.techniques&field=technique", "initialValues": {}, "separator": "_"}' % (context_url)
+            'acquisition_method': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.acquisitionmethod", "initialValues": {}, "separator": "_"}' % (context_url)
             },
-            'identification_objectName_objectname_type': {
-                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.objectname_type&field=types", "initialValues": {}, "separator": "_"}' % (context_url)
+            'creator_role': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.creatorrole", "initialValues": {}, "separator": "_"}' % (context_url)
             },
-            'identification_objectName_objectname': {
-                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.objectname&field=types", "initialValues": {}, "separator": "_"}' % (context_url)
-            },
-            'associations_associatedSubjects_subject': {
-                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.associatedsubjects&field=subject", "initialValues": {}, "separator": "_"}' % (context_url)
-            },
-            'identification_taxonomy_commonName': {
-                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.commonname&field=common_name", "initialValues": {}, "separator": "_"}' % (context_url)
-            
-            },
-            'identification_taxonomy_scientificName': {
-                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.scientificname&field=scientific_name", "initialValues": {}, "separator": "_"}' % (context_url)
-            }
         }
         
         searchFilters = []

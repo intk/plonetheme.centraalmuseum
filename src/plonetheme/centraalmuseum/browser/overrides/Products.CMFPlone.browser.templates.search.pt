@@ -66,7 +66,7 @@
         </div>
         
         <div class="visualClear div-advanced-search">
-          <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query) if advanced_query else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
+          <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query()) if advanced_query() else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
         </div>
         
         <dl class="actionMenu"
@@ -127,12 +127,12 @@
                       </tal:nl>
                     </div>
 
-                    <div class="onview-only-filter">
+                    <!--<div class="onview-only-filter">
                             <input type="checkbox" name="object_on_display:boolean" value="False" class="noborder" id="onview-only-filter"
                               tal:attributes="checked python: (request.get('object_on_display', None) == True) and 'checked' or '';"/>
                             <label for="onview-only-filter" tal:condition="python: getattr(context, 'language', 'en') == 'en'">Now on display</label>
                             <label for="onview-only-filter" tal:condition="python: getattr(context, 'language', 'en') == 'nl'">Nu te zien</label>
-                    </div>
+                    </div>-->
                     
                     <div class="search-type-options" style="display:none;">
                       <tal:div tal:define="typeLists python:context.createMultiColumnList(types_list, numCols=2, sort_on='self');"
@@ -293,7 +293,7 @@
                         tal:define="extra_filters python: extra_filters">
                         <p tal:condition="extra_filters" tal:content="python: 'Verfijnen: ' if getattr(context, 'language', None) == 'nl' else 'Refine: '"></p>
                         <tal:items repeat="extra_filter extra_filters">
-                          <p i18n:translate=""><tal:hasparam tal:condition="python: extra_filter['param'] != ''"><span i18n:translate="" tal:content="python: extra_filter['param']"></span>: </tal:hasparam><span tal:content="python: extra_filter['value']"></span><span> <a tal:attributes="href python: extra_filter['link']" class="glyphicon glyphicon-remove extra-filter-remove"></a></span></p>
+                          <p i18n:translate=""><tal:hasparam tal:condition="python: extra_filter['param'] != ''"><span i18n:translate="" tal:content="python: extra_filter['param']"></span>: </tal:hasparam><span tal:content="python: extra_filter['value']" i18n:translate=""></span><span> <a tal:attributes="href python: extra_filter['link']" class="glyphicon glyphicon-remove extra-filter-remove"></a></span></p>
                           <input type="hidden" tal:attributes="value python: extra_filter['value']; name python: extra_filter['param']"/>
                         </tal:items>
                       </tal:define_extra>

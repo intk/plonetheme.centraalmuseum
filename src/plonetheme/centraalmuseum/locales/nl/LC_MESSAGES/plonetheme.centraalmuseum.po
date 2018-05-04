@@ -98,3 +98,107 @@ msgstr "Standplaats"
 msgid 'object_on_display'
 msgstr "Nu te zien"
 
+#: ../object.py
+msgid "creator_name"
+msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "label_text"
+msgstr "Tekst"
+
+#: ../object.py
+msgid "object_name"
+msgstr "Objectnaam"
+
+#: ../object.py
+msgid "technique"
+msgstr "Techniek"
+
+#: ../object.py
+msgid "association_subject"
+msgstr "Geassocieerd onderwerp"
+
+#: ../object.py
+msgid "acquisition_method"
+msgstr "Verwervingsmethode"
+
+#: ../object.py
+msgid "acquisition_date"
+msgstr "Verwervingswijze datum"
+
+#: ../object.py
+msgid "association_person"
+msgstr "Geassocieerde persoon"
+
+#: ../object.py
+msgid "creator_role"
+msgstr "Rol"
+
+#: ../object.py
+msgid "documentation_title"
+msgstr "Documentatie"
+
+#: ../object.py
+msgid "exhibition_title"
+msgstr "Tentoonstellingen"
+
+
+#: ../object.py
+msgid "inscription_content"
+msgstr "Opschriften inhoud"
+
+#: ../object.py
+msgid "inscription_type"
+msgstr "Opschriften soort"
+
+#: ../object.py
+msgid "inscription_description"
+msgstr "Opschriften beschrijving"
+
+#: ../object.py
+msgid "object_notes"
+msgstr "Opmerkingen"
+
+#: ../object.py
+msgid "physical_description"
+msgstr "Fysieke beschrijving"
+
+#: ../object.py
+msgid "production_date_start"
+msgstr "Vervaardiging begindatum"
+
+#: ../object.py
+msgid "production_date_end"
+msgstr "Vervaardiging einddatum"
+
+
+#: ../object.py
+msgid "object_work"
+msgstr "werk"
+
+#: ../object.py
+msgid "object_works"
+msgstr "werken"
+
+#: ../object.py
+msgid "sort_on"
+msgstr "Sorteer op"
+
+#: ../object.py
+msgid "sortable_title"
+msgstr "Titel"
+
+#: ../object.py
+msgid "sortable_object_number"
+msgstr "Objectnummer"
+
+#: ../object.py
+msgid "sortable_creator_name"
+msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "sortable_production_date"
+msgstr "Datering"
+
+
+

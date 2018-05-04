@@ -19,7 +19,7 @@
 
   <div class="container-fluid" id="row-items">
     <tal:events tal:repeat="obj python: view.results()"
-                tal:define="portlet_class python: 'col-lg-4 col-md-4 col-sm-6 col-xs-12' if context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12'">
+                tal:define="portlet_class python: 'col-lg-4 col-md-4 col-sm-6 col-xs-12' if context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence', 'Object'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12'">
 
     <div tal:attributes="class portlet_class" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
         tal:define="plone_view python:context.restrictedTraverse('@@plone');
@@ -35,7 +35,7 @@
                     number repeat/obj/number;"
         >
         <div class="thumb-wrapper">         
-          <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl+'?collection_id='+collection_id+'&b_start='+str(item_index) if collection_item != None and item_type == 'Object' else itemUrl"
+          <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl"
             tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'mini')">
 
             <div class="on-display-wrapper" tal:condition="python:item_on_display" i18n:domain="plonetheme.centraalmuseum">
@@ -79,13 +79,13 @@
 
     </div>
     
-    <tal:notportletpage tal:condition="python: context.portal_type not in ['Portlet Page', 'Event', 'Document', 'Occurrence']">
+    <tal:notportletpage tal:condition="python: context.portal_type not in ['Portlet Page', 'Event', 'Document', 'Occurrence', 'Object']">
       <tal:clearfix condition="python: number % 2 == 0" tal:define="number repeat/obj/number">
         <div class="clearfix visible-lg visible-md"></div>
       </tal:clearfix> 
     </tal:notportletpage>
     
-    <tal:portletpage tal:condition="python: context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence']">
+    <tal:portletpage tal:condition="python: context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence', 'Object']">
       <tal:clearfix condition="python: number % 3 == 0" tal:define="number repeat/obj/number">
         <div class="clearfix visible-lg visible-md"></div>
       </tal:clearfix> 

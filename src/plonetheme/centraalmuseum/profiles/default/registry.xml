@@ -68,5 +68,17 @@
       </value>
       <value key="group">Metadata</value>
     </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.object_person_priref">
+      <value key="title">object_person_priref</value>
+      <value key="description">Person priref</value>
+      <value key="enabled">True</value>
+      <value key="sortable">True</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.string.is</element>
+      </value>
+      <value key="group">Metadata</value>
+    </records>
     
 </registry>

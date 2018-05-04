@@ -85,6 +85,29 @@
               </tal:field>
             </tal:extra_fields>
 
+            <!--<tal:sort_fields tal:repeat="sort_field sort_fields" i18n:domain="plonetheme.centraalmuseum">
+
+            <tal:field 
+                tal:define="field_label python:sort_field['name'];">
+
+                  <div class="form-group field">
+                    <label class="col-sm-3 control-label" i18n:translate="" tal:attributes="for field_label;" tal:content="field_label">Title</label>
+                    <div class="col-sm-9">
+
+                      <tal:notwidget>
+                        <select class="pat-select2 sort_filters" tal:attributes="name field_label">
+                          <tal:options tal:repeat="option python: sort_field['options']">
+                            <option tal:content="option" i18n:translate="" 
+                                    tal:attributes="selected python: 'selected' if request.get(field_label, '') == option else ''; value python: option"></option>
+                          </tal:options>
+                        </select>
+                      </tal:notwidget>
+
+                    </div>
+                  </div>
+              </tal:field>
+            </tal:sort_fields>-->
+
             <div class="col-sm-12 no-padding search-btn-wrapper" i18n:domain="plone">
               <input class="searchPage searchButton btn btn-default search-btn"
                             type="submit"
