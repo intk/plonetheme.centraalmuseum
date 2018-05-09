@@ -2301,7 +2301,7 @@ body.frontend, body#tinymce {
             padding-bottom: 0px;
             padding-right: 0px;
             padding-left: 0px;
-            top: 104px;
+            top: 89px;
             left: 0px;
             width: 45px;
             border: 0px;
@@ -4411,7 +4411,7 @@ body.frontend {
 	    	@media (min-width: 769px) {
 	    		border-bottom: 0px solid #e7e7e7;
 	    		padding-bottom: 45px;
-	    		margin-top: 50px;
+	    		margin-top: 35px;
 	    	}
 
 	    	@media (max-width: 768px) {
@@ -7647,6 +7647,126 @@ body.frontend.userrole-authenticated .portlet-rrssb {
     }
 }
 
+@media (max-width: 991px) {
+	#slickcarousel #title-carousel-wrapper {
+		display: none !important;
+	}
+
+	.main-container .title-container {
+		display: block !important;
+	}
+}
+
+@media (min-width: 992px) {
+	#slickcarousel:not(.empty) #title-carousel-wrapper {
+		display: block !important;
+	}
+
+	body:not(.slideshow-empty) .main-container .title-container {
+		display: none !important;
+	}
+
+	body.slideshow-empty .main-container .title-container {
+		display: block !important;
+	}
+}
+
+#slickcarousel.empty {
+	#title-carousel-wrapper {
+		display: none !important;
+	}
+}
+
+@media(max-width: 768px) {
+	.title-container {
+		padding-left: 0px;
+		padding-right: 0px;
+
+		h1.brand-name {
+			max-width: 100% !important;
+
+		}
+
+		.subheading {
+			max-width: 100% !important;
+		}
+	}
+}
+
+body.frontend ul.event.dates {
+	margin-top: 0px;
+    max-width: 100%;
+    clear: both;
+    float: none;
+    width: 100%;
+    list-style-type: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-left: 0;
+    letter-spacing: 0.05em;
+    padding-bottom: 0px;
+}
+
+body.frontend #slickcarousel .carousel-item.portrait {
+	@media(min-width: 992px) {
+		#title-carousel-wrapper {
+
+			background: #fbf9f2 !important;
+			pointer-events: all;
+			width: 50%;
+			height: 100%;
+
+			float: left;
+			
+			
+			h1.brand-name, li.event-date  {
+				color: @brand-primary-titles !important;
+			}
+
+			.subheading {
+				color: @brand-primary-text !important;
+				margin-top: 15px;
+				max-width: 100%;
+			}
 
 
+			.title-container {
+				width: 100% !important;
+				position: absolute;
+				top: 50%;
+				
+				padding-top: 0px !important;
+				padding-left: 90px;
+				padding-right: 90px;
 
+				-ms-transform: translateY(-50%);
+				-moz-transform: translateY(-50%);
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+		}
+
+		.carousel-image-wrapper {
+			width: 50%;
+			float: right;
+		}
+	}
+
+	@media(min-width: 992px) and (max-width: 1300px) {
+		#title-carousel-wrapper {
+			h1.brand-name {
+				font-size: 6.2vw !important;
+				line-height: 0.8em;
+			}
+
+			li.event-date {
+				font-size: 1.3vw !important;
+			}
+
+			.subheading {
+				font-size: 1.5vw !important;
+			}
+		}
+	}
+}

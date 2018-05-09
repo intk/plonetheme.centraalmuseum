@@ -101,8 +101,8 @@
         css:content-children="#portal-searchbox"
         />
 
-      <drop css:theme="#title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
-      <drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>
+      <drop css:content="#title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
+      <!--<drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>-->
 
       <!-- viewlet-above-content -->
       <replace
@@ -125,7 +125,7 @@
       />
 
       <replace
-        css:theme=".event.summary"
+        css:theme="#event-summary"
         css:content=".event.summary"
         method="raw"
       />
