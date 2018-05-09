@@ -66,7 +66,7 @@
                           <div class="entry-wrapper">
                               <h3 class="item-title">
                                 <a href="#"
-                                 tal:attributes="href python: item_link+'?collection_id='+collection_id+'&b_start='+str(b_start+item_index) if context_portal_type == 'Collection' and item_type == 'Object' else item_link;"
+                                 tal:attributes="href python: item_link;"
                                  tal:content="item_title"
                                  >
                                 Title
@@ -79,7 +79,7 @@
                             <tal:event condition="item_is_event"
                              tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
                               <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-                              <tal:date tal:replace="structure python:view.formatted_date(item)"/>
+                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())"/>
                               <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
                                 <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
                               </span>

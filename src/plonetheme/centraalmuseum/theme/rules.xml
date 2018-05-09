@@ -101,11 +101,8 @@
         css:content-children="#portal-searchbox"
         />
 
-      <!--<replace
-        css:theme-children="#social-content"
-        css:content="#viewlet-social-like"
-        method="raw"
-        />-->
+      <drop css:theme="#title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
+      <drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>
 
       <!-- viewlet-above-content -->
       <replace
