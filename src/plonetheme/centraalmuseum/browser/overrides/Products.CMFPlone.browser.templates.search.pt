@@ -91,7 +91,7 @@
                   <div class="field"
                        tal:define="portal_types portal/portal_types;
                                    types_list view/types_list;
-                                   all_checked python:(len(search_filters) == len(request.get('path', [])));
+                                   all_checked python:(len(search_filters) == len(request.get('path', [])) and len(search_filters) > 0);
                                    toggle_select_state python:all_checked and 'true' or 'false';">
 
               

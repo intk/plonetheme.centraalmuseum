@@ -9,7 +9,9 @@
     <theme href="backend.html" css:if-content="body.template-cart"/>
     <theme href="backend.html" css:if-content="body.template-mollie_payment_success"/>
     <theme href="backend.html" css:if-not-content="body.frontend"/>
+    <theme href="index_empty.html" css:if-content="#slickcarousel.empty"/>
     <theme href="index.html" css:if-content="body.frontend"/>
+
 
     <notheme css:if-not-content="#visual-portal-wrapper" />
       <rules css:if-content="#portal-top">
@@ -27,10 +29,15 @@
         <after css:theme-children="head" css:content="head link" />
         <!-- Script -->
         <after css:theme-children="head" css:content="head script" />
+
+        
       </rules>
 
       <!-- Copy over the id/class attributes on the body tag.
            This is important for per-section styling -->
+
+      
+
       <copy attributes="*" css:content="body" css:theme="body" />
 
       <!-- toolbar -->
@@ -56,9 +63,13 @@
         css:theme-children=".navbar-nav"
         css:content-children=".plone-navbar-nav" />-->
 
-      <replace
+      <!--<replace
         css:theme-children="#website-nav"
-        css:content-children="#portal-globalnav-wrapper" />
+        css:content-children="#portal-globalnav-wrapper" />-->
+
+      <replace
+        css:theme-children=".cd-primary-nav"
+        css:content-children=".plone-navbar-nav" />
 
       <!-- Title and description -->
       <replace
@@ -101,8 +112,11 @@
         css:content-children="#portal-searchbox"
         />
 
+      
+
       <drop css:content="#title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
       <!--<drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>-->
+
 
       <!-- viewlet-above-content -->
       <replace
@@ -266,13 +280,13 @@
         
       </replace>
 
-      <replace css:content="#parent-fieldname-text iframe">
+      <!--<replace css:content="#parent-fieldname-text iframe">
         <div class="iframe-wrapper">
           <xsl:copy-of select="."/>
         </div>
-      </replace>
+      </replace>-->
 
-      <replace css:content="#parent-fieldname-text img.image-inline">
+      <replace css:content="#parent-fieldname-text img.image-left">
         <div class="img-wrapper">
           <xsl:copy-of select="."/>
         </div>

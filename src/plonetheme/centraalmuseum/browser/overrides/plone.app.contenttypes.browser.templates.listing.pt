@@ -64,30 +64,17 @@
                           </div>
 
                           <div class="entry-wrapper">
-                              <h3 class="item-title">
+                              <h4 class="item-title">
                                 <a href="#"
                                  tal:attributes="href python: item_link;"
                                  tal:content="item_title"
                                  >
                                 Title
                                 </a>
-                            </h3>
+                            </h4>
                           </div>
                           <div>
-                            <metal:block metal:define-macro="document_byline">
                             
-                            <tal:event condition="item_is_event"
-                             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
-                              <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())"/>
-                              <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
-                                <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
-                              </span>
-                              </p>
-                            </tal:event>
-                            
-                            
-                          </metal:block>
                             <tal:is_person tal:condition="python: item_type in ['Person'] and item_objects_count not in ['', None, '0', 0]" on-error="nothing">
                               <p class="item-description" tal:condition="python: int(str(item_objects_count)) == 1" on-error="nothing">
                                 <span tal:content="item_objects_count"></span> <span i18n:domain="plonetheme.centraalmuseum" i18n:translate="object_work">item</span>
@@ -100,6 +87,20 @@
                             <tal:notperson tal:condition="python: item_type not in ['Person']">
                               <p class="item-description" tal:content="item_description"></p>
                             </tal:notperson>
+                            <metal:block metal:define-macro="document_byline">
+                            
+                            <tal:event condition="item_is_event"
+                             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
+                              <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
+                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())"/>
+                              <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
+                                <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
+                              </span>
+                              </p>
+                            </tal:event>
+                            
+          
+                          </metal:block>
                           </div>    
                 </article>
               </metal:block>

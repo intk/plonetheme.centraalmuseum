@@ -3,6 +3,11 @@
 xnugget info 
 
 -------------------------------- */
+
+body {
+  overflow-y: hidden;
+}
+
 .cd-nugget-info {
   text-align: center;
   position: absolute;
@@ -15,7 +20,7 @@ xnugget info
 .cd-nugget-info a {
   position: relative;
   font-size: 14px;
-  color: #0095da;
+  color: @brand-primary-text;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s;
@@ -31,18 +36,18 @@ xnugget info
   display: block;
 }
 .cd-nugget-info .cd-nugget-info-arrow {
-  fill: #0095da;
+  fill: @brand-primary-text;
 }
 
 .cd-nav-trigger {
   position: fixed;
   z-index: 3;
-  left: 0px;
-  top: 0px;
-  height: 90px;
-  width: 90px;
+  right: 40px;
+  top: 20px;
+  height: 50px;
+  width: 50px;
   background-color: #ffffff;
-  border-radius: 0;
+  border-radius: 50%;
   /* image replacement */
   overflow: hidden;
   text-indent: 100%;
@@ -52,19 +57,15 @@ xnugget info
   transition: transform 0.5s;
 
   @media (max-width: 768px) {
-    height: 70px;
-    width: 70px;
-    rect {
-      stroke-dasharray: 280 280;
-      stroke-dashoffset: 280;
-      width: 70px;
-      height: 70px;
-    }
+    height: 50px;
+    width: 50px;
+    right: 20px;
+    top: 10px;
   }
 }
 
 .plone-toolbar-expanded .cd-nav-trigger {
-  left: 120px;
+  left: auto;
 }
 
 .cd-nav-trigger .cd-nav-icon {
@@ -81,7 +82,7 @@ xnugget info
   transform: translateX(-50%) translateY(-50%);
   width: 22px;
   height: 2px;
-  background-color: #0095da;
+  background-color: @brand-primary-text;
 }
 .cd-nav-trigger .cd-nav-icon::before, .cd-nav-trigger .cd-nav-icon:after {
   /* upper and lower lines of the menu icon */
@@ -149,11 +150,11 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
 }
 .navigation-is-open .cd-nav-trigger {
   /* rotate trigger when navigation becomes visible */
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
 }
 
 .navigation-is-open .cd-nav-trigger .cd-nav-icon::after,
@@ -189,7 +190,7 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
 }
 @media only screen and (min-width: 1170px) {
   .cd-nav-trigger {
-    top: 0px;
+    top: 25px;
   }
 }
 
@@ -237,6 +238,12 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
 .cd-nav .cd-navigation-wrapper {
   padding: 20px;
   padding-top: 0px;
+
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
 }
 
 .main-block {
@@ -250,18 +257,19 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
   transition: visibility 0s 0s;
 }
 .navigation-is-open .cd-nav .cd-navigation-wrapper {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
   -webkit-transition: -webkit-transform 0.5s;
   -moz-transition: -moz-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
   -moz-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
   transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
 }
+
 .cd-nav h2 {
   position: relative;
   margin-bottom: 1.7em;
@@ -285,21 +293,21 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
 }
 .cd-nav .cd-primary-nav .line-wrapper > li {
   margin: 0;
-  border-top: 3px solid rgba(0, 149, 218, 0.3);
+  border-top: 3px solid @brand-primary-titles;
 }
 .cd-nav .cd-primary-nav a {
   .FranklinBook();
   font-size: 22px;
   letter-spacing: 0.05em;
-  color: #0095da;
+  color: @brand-primary-text;
   display: inline-block;
   margin-top: 35px;
 }
 .cd-nav .cd-primary-nav a.selected {
-  color: rgba(0, 149, 218, 0.5);
+  color: @brand-primary-titles;
 }
 .no-touch .cd-nav .cd-primary-nav a:hover {
-  color: rgba(0, 149, 218, 1.0);
+  color: @brand-primary-titles;
 }
 .cd-nav .cd-contact-info {
   margin-top: 80px;
@@ -308,10 +316,10 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
   .FranklinBook();
   margin-bottom: 1.5em;
   line-height: 1.2;
-  color: #0095da;
+  color: @brand-primary-text;
 }
 .cd-nav .cd-contact-info a {
-  color: #0095da;
+  color: @brand-primary-text;
 }
 .cd-nav .cd-contact-info span {
   display: block;
@@ -351,7 +359,7 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
   .cd-nav .cd-primary-nav a {
     .FranklinBook();
     font-size: 22px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.0em;
   }
   .cd-nav .cd-contact-info {
     margin-top: 120px;
@@ -366,23 +374,23 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
 }
 
 
-.website-wrapper {
-  /*position: relative;
+#website-wrapper {
+  position: relative;
   z-index: 2;
   background: #ffffff;
   height: 100%;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;*/
-  /* Force Hardware Acceleration in WebKit */
-  /*-webkit-transition: -webkit-transform 0.7s;
+  -webkit-overflow-scrolling: touch;
+  /*Force Hardware Acceleration in WebKit */
+  -webkit-transition: -webkit-transform 0.7s;
   -moz-transition: -moz-transform 0.7s;
-  transition: transform 0.7s;
+  transition: transform 0.3s;
   -webkit-transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
   -moz-transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
-  transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);*/
+  transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
 }
 
-/*body:not(.template-online_experience) {
+body:not(.template-online_experience) {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
@@ -390,15 +398,15 @@ body:not(.navigation-is-open) .cd-nav-trigger:hover .cd-nav-icon::before {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-}*/
+}
 
-/*.navigation-is-open .website-wrapper {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  transform: translateX(100%);
-}*/
+.navigation-is-open #website-wrapper {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
 
 .no-js .cd-nav {
   position: static;
@@ -436,18 +444,18 @@ ul.cd-primary-nav {
 }
 
 .cd-nav .cd-primary-nav .line-wrapper > li > a {
-  .FranklinBook();
+  .FranklinMed();
   font-size: 26px;
   margin-bottom: 35px;
 
   &:hover {
-    color: #0095da;
+    color: @brand-primary-text;
     text-decoration: none;
   }
 
   &:active,
   &:focus {
-    color: #0095da;
+    color: @brand-primary-text;
   }
 
 }
@@ -463,15 +471,15 @@ ul.cd-primary-nav {
 .cd-nav .cd-primary-nav ul li a {
   margin-top: 0px;
   margin-bottom: 20px;
-  color: rgba(0, 149, 218, 0.8);
+  color: @brand-primary-text;
 
   &:hover {
-    color: #0095da;
+    color: @brand-primary-titles;
   }
 
   &:active,
   &:focus {
-    color: #0095da;
+    color: @brand-primary-titles;
   }
 }
 
@@ -487,16 +495,16 @@ ul.cd-primary-nav {
 }
 
 #nav-logo {
-  width: 230px;
+  width: auto;
   height: auto;
   display: block;
   cursor: pointer;
   margin: 0 auto;
+  margin-top: 20px;
 
-  /*@media (max-width: 768px) {
-    width: 70px;
-    height: 70px;
-  }*/
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 }
 
 .plone-toolbar-expanded .cd-navigation-wrapper {

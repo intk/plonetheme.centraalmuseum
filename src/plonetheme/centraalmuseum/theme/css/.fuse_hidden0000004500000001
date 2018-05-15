@@ -1537,7 +1537,7 @@ body.frontend, body#tinymce {
 			}
 		}
 
-		h3.item-title {
+		h4.item-title {
 			margin-top: 0px;
 			clear:both;
 			a {
@@ -2822,7 +2822,7 @@ body.frontend.template-advancedsearch {
 		display: block;*/
 	}
 
-	h3.item-title {
+	h4.item-title {
 		margin-top: 20px;
 		a {
 			border-bottom: 0px !important;

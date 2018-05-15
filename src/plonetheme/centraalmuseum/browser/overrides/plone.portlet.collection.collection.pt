@@ -51,14 +51,14 @@
         
         <div class="entry-wrapper">
         
-            <h3 class="item-title">
+            <h4 class="item-title">
               <a href="#"
                tal:attributes="href itemUrl;"
                tal:content="obj/Title"
                >
               Title
               </a>
-          </h3>
+          </h4>
         </div>
         <div>
           <metal:block metal:define-macro="document_byline">

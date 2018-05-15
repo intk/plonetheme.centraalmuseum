@@ -1610,7 +1610,7 @@ body.frontend, body#tinymce {
 			}
 		}
 
-		h3.item-title {
+		h4.item-title {
 			margin-top: 0px;
 			margin-bottom: 0px;
 
@@ -3034,7 +3034,7 @@ body.frontend.template-advancedsearch {
 		display: block;*/
 	}
 
-	h3.item-title {
+	h4.item-title {
 		margin-top: 20px;
 		a {
 			border-bottom: 0px !important;
@@ -4317,7 +4317,7 @@ body.frontend {
 				margin-bottom: 14px;
 			}
 
-			h3.item-title {
+			h4.item-title {
 				margin-bottom: 0px;
 			}
 
@@ -5823,7 +5823,7 @@ body.frontend #below-content .portlet-rrssb {
 
 
 
-body.frontend h3.item-title a.hover {
+body.frontend h4.item-title a.hover {
 	color: @brand-primary !important;
 }
 

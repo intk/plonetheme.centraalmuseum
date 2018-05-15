@@ -40,51 +40,6 @@
 
     <div class="website-wrapper">
     
-    <div id="bdajax-overlays">
-      <div id="ajax-spinner">
-        <img src="/++resource++bdajax/loading-spokes.svg" width="64" height="64" alt="" />
-      </div>
-
-      <div class="ajax-overlay" id="ajax-form">
-        <div class="overlay_content">
-          <!--
-            need a container for further overlay DOM manipulation without loosing
-            close button.
-          -->
-        </div>
-      </div>
-
-      <div class="ajax-overlay" id="ajax-overlay">
-        <div class="overlay_content">
-          <!--
-            need a container for further overlay DOM manipulation without loosing
-            close button.
-          -->
-        </div>
-      </div>
-
-      <div class="ajax-dialog" id="ajax-dialog">
-        <div class="text">
-        </div>
-        <div class="buttons">
-          <button class="submit allowMultiSubmit">OK</button>
-          <button class="cancel allowMultiSubmit">Cancel</button>
-        </div>
-      </div>
-
-      <div class="ajax-message" id="ajax-message">
-        <div class="message">Message</div>
-        <button class="close allowMultiSubmit">OK</button>
-      </div>
-
-      <iframe id="ajaxformresponse" name="ajaxformresponse" src="about:blank" style="width:0px;height:0px;display:none">
-      </iframe>
-    </div>
-
-    <nav class="navbar navbar-default navbar-fixed-top plone-navbar cd-auto-hide-header" id="website-nav">
-    </nav>
-
-    
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header">
@@ -211,6 +166,41 @@
         </div>
     </footer>
     </div>
+
+    <a href="#cd-nav" class="cd-nav-trigger outside">
+        <span class="menu-text">Menu</span>
+        <span class="cd-nav-icon"></span>
+
+        <svg x="0px" y="0px" width="90px" height="90px">
+            <rect width="90" height="90" fill="transparent" stroke="#ffffff" stroke-width="2" stroke-dasharray="360 360" stroke-dashoffset="360"></rect>
+        </svg>
+    </a>
+
+    <div id="cd-nav" class="cd-nav">
+        <div class="cd-navigation-wrapper">
+            
+            <div class="logo-nav-wrapper">
+                <a href="/">
+                    <img id="nav-logo" src="/nl/intk/images/logo3.svg" alt="Centraal Museum" title="Centraal Museum"/>
+                </a>    
+            </div>
+
+            <!--<div class="navigation-search-wrapper" id="nav-search-wrapper">
+            </div>-->
+            <div class="main-block">
+                <nav>
+                    <ul class="cd-primary-nav">
+                        
+                    </ul>
+                </nav>
+                <div class="language-wrapper">
+                    <!--<h5>
+                        <a class="lang-link" href="/english/">ENGLISH</a>
+                    </h5>-->
+                </div>
+            </div><!-- .cd-half-block -->
+        </div> <!-- .cd-navigation-wrapper -->
+    </div> <!-- .cd-nav -->
 </body>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChhDADsgOq0NAOhmc0SdGpnz1lbHgrhS0"></script>
 <script src="js/centraalmuseum.js"></script> 
