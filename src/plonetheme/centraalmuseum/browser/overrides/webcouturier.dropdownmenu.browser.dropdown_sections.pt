@@ -26,7 +26,7 @@
             tal:define="selected_tab python:view.selected_portal_tab">
             <div class="container-fluid fluid-tabs">
             <tal:tabs tal:repeat="tab portal_tabs">
-              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 line-wrapper"
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 line-wrapper"
                 tal:define="tid tab/id;
                               href tab/url;
                               title tab/description|nothing;
@@ -62,7 +62,7 @@
                   </tal:block>
               </li>
               </div>
-              <tal:clearfix condition="python: number % 3 == 0" tal:define="number repeat/tab/number">
+              <tal:clearfix condition="python: number % 2 == 0" tal:define="number repeat/tab/number">
                 <div class="clearfix visible-lg visible-md"></div>
               </tal:clearfix> 
 

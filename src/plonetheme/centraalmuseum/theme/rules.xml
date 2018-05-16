@@ -9,6 +9,7 @@
     <theme href="backend.html" css:if-content="body.template-cart"/>
     <theme href="backend.html" css:if-content="body.template-mollie_payment_success"/>
     <theme href="backend.html" css:if-not-content="body.frontend"/>
+    <theme href="index_empty.html" css:if-content="body.portaltype-file"/>
     <theme href="index_empty.html" css:if-content="#slickcarousel.empty"/>
     <theme href="index.html" css:if-content="body.frontend"/>
 

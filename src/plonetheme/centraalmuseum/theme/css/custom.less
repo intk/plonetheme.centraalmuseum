@@ -3880,11 +3880,14 @@ body.frontend.template-default_error_message {
 
 
 #cd-nav {
+	.logo-nav-wrapper {
+		display: none !important;
+	}
+
 	.navigation-search-wrapper {
-		position: absolute;
-		top: 27px;
-		left: 120px;
-		width: 25%;
+		display: none !important;
+		width: 50%;
+		padding-bottom: 50px;
 
 		@media (max-width: 992px) {
 			position: initial;
@@ -4072,7 +4075,7 @@ body.frontend.template-default_error_message {
 }
 
 .plone-toolbar-expanded #cd-nav .navigation-search-wrapper {
-	left: 170px;
+
 }
 
 body.frontend.mobile {
