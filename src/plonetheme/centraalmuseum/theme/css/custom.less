@@ -880,12 +880,12 @@ body:not(.frontend) {
 	&:active:focus,
 	&:focus {
 		background: @brand-primary-titles;
-		color: @brand-primary-titles;
+		color: #ffffff;
 	}
 
 	&:hover {
 		background: @brand-primary-titles;
-		color: @brand-primary-titles;
+		color: #ffffff;
 		box-shadow: none;
 	}
 }
@@ -4030,6 +4030,7 @@ body.frontend.template-default_error_message {
 			outline: none;
 			outline: 0px;
 			outline-offset: 0px;
+			color: @brand-primary-titles !important;
 		}
 
 		&:active {
@@ -4039,6 +4040,7 @@ body.frontend.template-default_error_message {
 			outline: none;
 			outline: 0px;
 			outline-offset: 0px;
+			color: @brand-primary-titles !important;
 		}
 
 		&:focus {
@@ -4048,6 +4050,7 @@ body.frontend.template-default_error_message {
 			outline: none;
 			outline: 0px;
 			outline-offset: 0px;
+			color: @brand-primary-titles !important;
 		};
 	}
 
@@ -7769,12 +7772,11 @@ body.frontend.userrole-authenticated .portlet-rrssb {
     }
 }
 
-@media (max-width: 991px) {
-	#slickcarousel #title-carousel-wrapper {
-	}
 
-	.main-container .title-container {
-		display: block !important;
+@media (max-width: 991px) {
+
+	#website-wrapper:not(.empty-slideshow) .main-container .title-container {
+		display: none !important;
 	}
 }
 
@@ -7921,5 +7923,10 @@ body:not(.portaltype-object) #slickcarousel:before {
 .main-container .main-content {
 	z-index: 3 !important;
 }
+
+body:not(.frontend) #portal-logo {
+	pointer-events: none !important;
+}
+
 
 

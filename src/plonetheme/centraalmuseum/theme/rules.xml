@@ -114,7 +114,7 @@
         />
 
       <drop css:content="#title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
-      <drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>
+      <!--<drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>-->
 
 
       <!-- viewlet-above-content -->
