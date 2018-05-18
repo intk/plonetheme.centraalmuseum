@@ -885,7 +885,7 @@ body:not(.frontend) {
 
 	&:hover {
 		background: @brand-primary-titles;
-		color: @brand-primary-titles;
+		color: #ffffff;
 		box-shadow: none;
 	}
 }
@@ -1062,8 +1062,8 @@ body:not(.frontend) {
 	position: absolute;
 	top: 60px;
 	left: 0px;
-	width: 459px;
-	margin-left: -230px;
+	width: auto;
+	margin-left: -168px;
 	height: auto;
 	background-color: transparent;
 	cursor: pointer;
@@ -1076,20 +1076,18 @@ body:not(.frontend) {
 		z-index: inherit;
 	}
 
-	@media (max-width: 768px) {
-		width: 200px;
+	@media (max-width: 991px) {
+		width: 400px;
 		height: auto;
-		margin-left: -80px;
 		top: 15px;
+		margin-left: -180px;
+	}
 
-		/*img {
-			content: url('++resource++plonetheme.centraalmuseum/logo-glyph.svg') !important;
-			height: 70px;
-		}
-
-		img:before {
-			content: url('++resource++plonetheme.centraalmuseum/logo-glyph.svg') !important;
-		}*/
+	@media (max-width: 480px) {
+		width: 250px;
+		height: auto;
+		top: 15px;
+		margin-left: -120px;
 	}
 }
 
@@ -1789,7 +1787,7 @@ body.frontend, body#tinymce {
 				@media (max-width: 768px) {
 					font-size: 35px;
 					line-height: 42px;
-					text-align: left;
+					text-align: center;
 				}
 			}
 
@@ -1800,9 +1798,9 @@ body.frontend, body#tinymce {
 		}
 
 		.main-container {
-			@media (max-width: 768px) {
-				padding-right: 60px;
-				padding-left: 60px;
+			@media (min-width: 480px) {
+				padding-right: 75px;
+				padding-left: 75px;
 			}
 
 			@media (min-width: 767px) {
@@ -1928,6 +1926,18 @@ body.frontend, body#tinymce {
 		    letter-spacing: 0.05em;
 		    text-transform: uppercase;
 		    .FranklinMed();
+
+		    @media (max-width: 991px) {
+		    	font-size: 17px;
+		    	line-height: 35px;
+		    }
+
+		    @media (max-width: 768px) {
+		    	font-size: 14px;
+		    	line-height: 20px;
+		    }
+
+		    
 		}
 
 		.event.summary {
@@ -2669,6 +2679,28 @@ footer, body.mce-content-body {
 				max-width: 150px !important;
 			}
 		}
+
+		&.bank-text {
+			margin-top: 39px !important;
+			color: #a1a1a3;
+
+			@media(max-width: 480px) {
+				font-size: 18px;
+			}
+		}
+
+		&.gutrecht-text { 
+			margin-top: 24px !important;
+			color: #a1a1a3;
+			font-size: 19px;
+			margin-right: 20px;
+
+			@media(max-width: 480px) {
+				margin-top: 35px !important;
+				margin-right: 0px;
+				font-size: 18px;
+			}
+		}
 	}
 
 	.social-footer {
@@ -2704,7 +2736,7 @@ body:not(.portaltype-document):not(.portaltype-event) {
 }
 
 footer {
-	padding-bottom: 30px;
+	padding-bottom: 0px;
 
 	ul {
 		margin-left: -40px;
@@ -2831,7 +2863,7 @@ footer {
 	.social-media-wrapper, .footer-wrapper {
 		padding-top: 0px;
 		@media (min-width: 769px) {
-			padding-bottom: 45px;
+			padding-bottom: 22px;
 		}
 	}
 
@@ -7709,56 +7741,74 @@ body.template-advancedsearch .select2-container.sort_filters {
 }
 
 #title-carousel-wrapper {
-	@media(min-width: 992px) {
-		position: absolute;
-		padding-bottom: 20px;
-		width: 100%;
-		bottom: 0px;
-		background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 100%);
+	position: absolute;
+	padding-bottom: 20px;
+	width: 100%;
+	bottom: 0px;
+	background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 100%);
 
 
+	.title-container {
+		margin-right: auto;
+		margin-left: auto;
+
+		.event-date {
+			color: #ffffff;
+		}
+
+		h1.brand-name {
+			color: #ffffff;
+			font-size: 93px;
+			max-width: 100%;
+			margin-bottom: 0px;
+			line-height: 75px;
+			margin-top: 0px;
+		}
+
+		.subheading {
+			color: #ffffff;
+			max-width: 520px;
+			font-size: 1.220em;
+			max-width: 82%;
+			margin-top: 0px;
+		}
+	}
+
+
+	@media(max-width: 991px) {
 		.title-container {
-			margin-right: auto;
-			margin-left: auto;
-
-			.event-date {
-				color: #ffffff;
-			}
+			padding-left: 25px;
+			padding-right: 25px;
 
 			h1.brand-name {
-				color: #ffffff;
-				font-size: 93px;
 				max-width: 100%;
-				margin-bottom: 0px;
-				line-height: 75px;
-				margin-top: 0px;
+				font-size: 65px;
+				line-height: 70px;
 			}
 
 			.subheading {
-				color: #ffffff;
-				max-width: 520px;
-				font-size: 1.220em;
-				max-width: 82%;
-				margin-top: 0px;
+				max-width: 100%;
+				font-size: 1.200em;
+				line-height: 30px;
 			}
 		}
 	}
 
-	@media(max-width: 991px) {
-		background: #ffffff;
-	}
-
 	@media(max-width: 768px) {
 		.title-container {
-			padding-left: 30px;
-			padding-right: 30px;
+			padding-left: 25px;
+			padding-right: 25px;
 
 			h1.brand-name {
 				max-width: 100%;
+				font-size: 50px;
+				line-height: 55px;
 			}
 
 			.subheading {
 				max-width: 100%;
+				font-size: 1.100em;
+				line-height: 25px;
 			}
 		}
 	}
@@ -7782,12 +7832,9 @@ body.frontend.userrole-authenticated .portlet-rrssb {
 }
 
 @media (max-width: 991px) {
-	#slickcarousel #title-carousel-wrapper {
-		display: none !important;
-	}
 
-	.main-container .title-container {
-		display: block !important;
+	#website-wrapper:not(.empty-slideshow) .main-container .title-container {
+		display: none !important;
 	}
 }
 
@@ -7877,8 +7924,8 @@ body.frontend #slickcarousel .carousel-item.portrait {
 				top: 50%;
 				
 				padding-top: 0px !important;
-				padding-left: 90px;
-				padding-right: 90px;
+				padding-left: 100px;
+				padding-right: 100px;
 
 				-ms-transform: translateY(-50%);
 				-moz-transform: translateY(-50%);
@@ -7896,7 +7943,7 @@ body.frontend #slickcarousel .carousel-item.portrait {
 	@media(min-width: 992px) and (max-width: 1300px) {
 		#title-carousel-wrapper {
 			h1.brand-name {
-				font-size: 6.2vw !important;
+				font-size: 5.5vw !important;
 				line-height: 0.8em;
 			}
 
@@ -7912,8 +7959,22 @@ body.frontend #slickcarousel .carousel-item.portrait {
 }
 
 #website-wrapper.empty-slideshow .page-container {
-	min-height: calc(~"100vh - 536px");
+	min-height: calc(~"100vh - 608px");
 	padding-top: 59px;
+
+	@media(min-width: 768px) {
+		padding-top: 120px;
+	}
+}
+
+body.userrole-authenticated #website-wrapper.empty-slideshow .page-container {
+	padding-top: 85px;
+}
+
+body.userrole-authenticated:not(.frontend) #website-wrapper.empty-slideshow .page-container {
+	padding-top: 115px;
+  	padding-left: 40px;
+  	padding-right: 40px;
 }
 
 body.site-en h5.lang-link-nl {
@@ -7939,3 +8000,8 @@ body:not(.frontend) #portal-logo {
 	z-index: 3 !important;
 }
 
+body.template-search {
+	dl.actionMenu {
+		display: none !important;
+	}
+}
