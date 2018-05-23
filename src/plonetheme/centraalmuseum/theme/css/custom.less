@@ -1753,7 +1753,7 @@ body.frontend, body#tinymce {
 			}
 
 			h1 {
-				font-size: 93px;
+				font-size: 82px !important;
 				text-align: center;
 				margin-top: 25px;
 				font-weight: 400;
@@ -1764,7 +1764,7 @@ body.frontend, body#tinymce {
 				line-height: 75px;
 
 				@media (max-width: 768px) {
-					font-size: 35px;
+					font-size: 35px !important;
 					line-height: 42px;
 					text-align: center;
 				}
@@ -4567,7 +4567,7 @@ body.portaltype-person.template-listing_view,
 body.frontend.portaltype-folder {
     .title-container {
     	@media (min-width: 768px) {
-    		padding-bottom: 62px;
+    		padding-bottom: 0px;
     		padding-top: 47px;
     	}
 	}
@@ -7958,12 +7958,34 @@ body:not(.frontend) #portal-logo {
 }
 
 
+body.portaltype-folder,
+body.portaltype-collection,
+body.portaltype-portlet-page,
+body.template-listing_view {
+	#slickcarousel:before {
+		padding-top: 42%;
+	}
+}
+
 
 /* Mobile */
+
+
+
 
 @media (max-width: 767px) {
 	body:not(.portaltype-object) #slickcarousel:before {
 		padding-top: 43.6vh;
+	}
+
+	body.portaltype-folder,
+	body.portaltype-collection,
+	body.portaltype-portlet-page,
+	body.template-listing_view {
+
+		#slickcarousel:before {
+			padding-top: 70%;
+		}
 	}
 
 	#portal-logo {
@@ -8003,7 +8025,7 @@ body:not(.frontend) #portal-logo {
 		}
 
 		h1.brand-name {
-			font-size: 70px;
+			font-size: 70px !important;
 			line-height: 58px;
 			text-align: center;
 		}
@@ -8046,6 +8068,15 @@ body:not(.frontend) #portal-logo {
 	body:not(.portaltype-object) #slickcarousel:before {
 		padding-top: 77vh;
 	}
+
+	body.portaltype-folder,
+	body.portaltype-collection,
+	body.portaltype-portlet-page,
+	body.template-listing_view {
+		#slickcarousel:before {
+			padding-top: 110%;
+		}
+	}
 }
 
 
@@ -8056,6 +8087,17 @@ body:not(.frontend) #portal-logo {
 }
 
 
+@media (max-width: 480px) {
+	body.portaltype-folder,
+	body.portaltype-collection,
+	body.portaltype-portlet-page,
+	body.template-listing_view {
+		#slickcarousel:before {
+			padding-top: 110%;
+		}
+	}
+}
+
 /* Tablet */
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -8065,6 +8107,16 @@ body:not(.frontend) #portal-logo {
 
 	body:not(.portaltype-object) #slickcarousel:before {
 		padding-top: 43.6vh;
+	}
+
+	body.portaltype-folder,
+	body.portaltype-collection,
+	body.portaltype-portlet-page,
+	body.template-listing_view {
+
+		#slickcarousel:before {
+			padding-top: 55%;
+		}
 	}
 
 	#portal-logo {
@@ -8156,11 +8208,31 @@ body:not(.frontend) #portal-logo {
 	body:not(.portaltype-object) #slickcarousel:before {
 		padding-top: 77vh;
 	}
+
+	body.portaltype-folder,
+	body.portaltype-collection,
+	body.portaltype-portlet-page,
+	body.template-listing_view {
+
+		#slickcarousel:before {
+			padding-top: 55%;
+		}
+	}
 }
 
 @media (min-width: 768px) and (max-width: 991px) and (max-height: 1050px) {
 	body:not(.portaltype-object) #slickcarousel:before {
 		padding-top: 77vh;
+	}
+
+	body.portaltype-folder,
+	body.portaltype-collection,
+	body.portaltype-portlet-page,
+	body.template-listing_view {
+
+		#slickcarousel:before {
+			padding-top: 55%;
+		}
 	}
 }
 
