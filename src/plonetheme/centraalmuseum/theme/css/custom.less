@@ -1376,7 +1376,7 @@ body.frontend, body#tinymce {
     		text-transform: none;
     		letter-spacing: 0.00em;
     		line-height: 62px;
-    		max-width: 430px;
+    		max-width: 100%;
 		    margin-left: auto;
 		    margin-right: auto;
 		    margin-bottom: 18px;
@@ -1491,10 +1491,10 @@ body.frontend, body#tinymce {
 
     h4:not(.page-header) {
     	.FranklinMed();
-    	font-size: 26px;
+    	font-size: 25px;
     	color: #494A51;
     	letter-spacing: 0.0em;
-    	line-height: 40px;
+    	line-height: 32px;
     	font-weight: 400;
     	margin-top: 45px;
     	text-transform: none;
@@ -1794,14 +1794,15 @@ body.frontend, body#tinymce {
 			}
 
 			@media(min-width: 992px) {
-				padding-right: 95px;
-				padding-left: 95px;
+				padding-right: 65px;
+				padding-left: 65px;
 			}
 		}
 
 		h4.item-title {
 			margin-top: 0px;
 			margin-bottom: 0px;
+			padding-top: 12px;
 
 			clear:both;
 			a {
@@ -1819,17 +1820,33 @@ body.frontend, body#tinymce {
 			font-size: 17px;
 		    line-height: 35px;
 		    color: @brand-primary-titles;
-		    letter-spacing: 0.05em;
+		    letter-spacing: 0.0em;
 			margin-bottom: 20px;
-			margin-top: 0px;
+			margin-top: 14px;
 			text-transform: uppercase;
 			.FranklinMed();
+
+			@media(max-width: 767px) {
+				margin-bottom: 0px;
+			}
 		}
 
 		.main-content {
 			padding: 0;
 			margin: 0;
 			width: 100%;
+			padding-top: 60px;
+			float:left;
+
+			@media(max-width: 768px) {
+				padding-top: 0px;
+				padding-bottom: 50px;
+			}
+
+			@media(min-width: 768px) {
+				padding-bottom: 80px;
+
+			}
 		}
 
 		#content-core {
@@ -1857,15 +1874,26 @@ body.frontend, body#tinymce {
 		}
 
 		.item-description {
-			margin-top: 3px;
+			margin-top: 10px;
 			line-height: 30px;
 			margin-bottom: 5px;
 			/*font-size: 1.063em;*/
+
+
 		}
 
 
 		.listing-item {
-			padding-bottom: 40px;
+			padding-bottom: 30px;
+
+			@media(min-width: 992px) {
+				padding-left: 25px;
+				padding-right: 25px;
+			}
+
+			@media(max-width: 767px) {
+				padding-bottom: 60px;
+			}
 		}
 
 		abbr {
@@ -7998,8 +8026,8 @@ body:not(.frontend) #portal-logo {
 	
 
 	body.portaltype-collection #website-wrapper .page-container, body.portaltype-folder #website-wrapper .page-container {
-		padding-left: 35px;
-		padding-right: 35px;
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 
 	body.portaltype-collection #website-wrapper.empty-slideshow .page-container {
