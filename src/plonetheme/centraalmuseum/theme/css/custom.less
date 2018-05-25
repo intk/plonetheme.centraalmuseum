@@ -1797,12 +1797,32 @@ body.frontend, body#tinymce {
 				padding-right: 65px;
 				padding-left: 65px;
 			}
+
+
+		}
+
+		#website-wrapper.empty-slideshow .main-container {
+			@media(min-width: 992px) {
+				padding-right: 95px;
+				padding-left: 95px;
+			}
+		}
+
+		&.userrole-authenticated {
+			#website-wrapper.empty-slideshow .main-container {
+				@media(min-width: 992px) {
+					padding-right: 95px;
+					padding-left: 95px;
+				}
+			}
 		}
 
 		h4.item-title {
 			margin-top: 0px;
 			margin-bottom: 0px;
-			padding-top: 12px;
+			padding-top: 0px;
+			.FranklinDmCp();
+			font-size: 30px;
 
 			clear:both;
 			a {
@@ -1821,7 +1841,7 @@ body.frontend, body#tinymce {
 		    line-height: 35px;
 		    color: @brand-primary-titles;
 		    letter-spacing: 0.0em;
-			margin-bottom: 20px;
+			margin-bottom: 0px;
 			margin-top: 14px;
 			text-transform: uppercase;
 			.FranklinMed();
@@ -4086,6 +4106,8 @@ body.frontend.template-default_error_message {
 		a.lang-link {
 			color: @brand-primary-text;
 			text-transform: uppercase;
+			font-size: 18px;
+			.FranklinMed();
 
 			&:hover {
 				color: @brand-primary-titles;
