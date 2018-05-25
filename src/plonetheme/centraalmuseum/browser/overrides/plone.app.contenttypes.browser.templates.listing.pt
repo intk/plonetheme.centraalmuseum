@@ -64,6 +64,17 @@
                           </div>
 
                           <div class="entry-wrapper">
+                          <tal:event condition="item_is_event"
+                             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
+                              <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
+                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())"/>
+                              <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
+                                <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
+                              </span>
+                              </p>
+                            </tal:event>
+                            
+                            
                               <h4 class="item-title">
                                 <a href="#"
                                  tal:attributes="href python: item_link;"
@@ -89,15 +100,6 @@
                             </tal:notperson>
                             <metal:block metal:define-macro="document_byline">
                             
-                            <tal:event condition="item_is_event"
-                             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
-                              <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())"/>
-                              <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
-                                <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
-                              </span>
-                              </p>
-                            </tal:event>
                             
           
                           </metal:block>

@@ -983,8 +983,8 @@ body:not(.frontend) {
 
 	table {
 		margin-top: 0px;
-		width: 100%;
-		max-width: 100%;
+		width: 100% !important;
+		max-width: 100% !important;
 		border: 0px;
 	}
 
@@ -1103,6 +1103,19 @@ body.frontend.userrole-authenticated div#parent-fieldname-text {
 	}
 }
 
+body#tinymce {
+	img.image-left {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		float: none;
+
+		@media(min-width: 1200px) {
+  			padding-top: 45px;
+  		}
+	}
+}
+
 
 body.frontend, body#tinymce {
 
@@ -1118,6 +1131,11 @@ body.frontend, body#tinymce {
 		    font-size: 15px;
 		    letter-spacing: 0.0;
 		}
+	}
+
+	span.discreet {
+		font-size: 12px;
+		letter-spacing: 0.0;
 	}
 
 	.intro-header {
@@ -1194,6 +1212,8 @@ body.frontend, body#tinymce {
   			padding-top: 45px;
   		}
 	}
+
+
 
 	img.image-inline[data-scale='large'] {
 		width: 50%;
@@ -1446,7 +1466,7 @@ body.frontend, body#tinymce {
     	}
     }
 
-    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event) {
+    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event):not(.portaltype-occurrence) {
     	.separator-wrapper:not(.kasteel) {
     		display: none;
     	}
@@ -1818,26 +1838,31 @@ body.frontend, body#tinymce {
 		h4.item-title {
 			margin-top: 0px;
 			margin-bottom: 0px;
-			padding-top: 12px;
+			padding-top: 0px;
+			.FranklinDmCp();
+			font-size: 32px;
+			line-height: 40px;
+			color: @brand-primary-titles;
 
 			clear:both;
 			a {
+				color: @brand-primary-titles;
 				border-bottom: 0px !important;
 
 				&:hover,
 				&:focus,
 				&:active {
-					border-bottom: 1px solid @brand-primary-text !important;
+					border-bottom: 2px solid @brand-primary-text !important;
 				}
 			}
 		}
 
 		p.event-date {
-			font-size: 17px;
-		    line-height: 35px;
-		    color: @brand-primary-titles;
-		    letter-spacing: 0.0em;
-			margin-bottom: 20px;
+			font-size: 15px;
+		    line-height: 32px;
+		    color: @brand-primary-text;
+		    letter-spacing: 0.05em;
+			margin-bottom: 0px;
 			margin-top: 14px;
 			text-transform: uppercase;
 			.FranklinMed();
@@ -1899,7 +1924,7 @@ body.frontend, body#tinymce {
 
 
 		.listing-item {
-			padding-bottom: 30px;
+			padding-bottom: 52px;
 
 			@media(min-width: 992px) {
 				padding-left: 25px;
@@ -2711,22 +2736,25 @@ footer, body.mce-content-body {
 		&.bank-text {
 			margin-top: 39px !important;
 			color: #a1a1a3;
+			font-size: 15px;
+			line-height: 22px;
 
 			@media(max-width: 480px) {
-				font-size: 18px;
+				font-size: 15px;
 			}
 		}
 
 		&.gutrecht-text { 
 			margin-top: 24px !important;
 			color: #a1a1a3;
-			font-size: 19px;
+			font-size: 15px;
 			margin-right: 20px;
+			line-height: 22px;
 
 			@media(max-width: 480px) {
 				margin-top: 35px !important;
 				margin-right: 0px;
-				font-size: 18px;
+				font-size: 15px;
 			}
 		}
 	}
@@ -2745,7 +2773,8 @@ footer, body.mce-content-body {
 body.portaltype-folder,
 body.portaltype-collection,
 body.portaltype-person.template-listing_view,
-body:not(.portaltype-document):not(.portaltype-event) {
+body:not(.portaltype-document):not(.portaltype-event),
+body:not(.portaltype-document):not(.portaltype-occurrence) {
 	footer {
 		border-top: 0px;
 	}
@@ -4615,7 +4644,8 @@ body.mobile.frontend {
 /* Single content page */
 body.frontend {
 	&.portaltype-document,
-	&.portaltype-event {
+	&.portaltype-event,
+	&.portaltype-occurrence {
 		#content-core {
 	    	@media (min-width: 769px) {
 	    		border-bottom: 0px solid #e7e7e7;
@@ -4630,7 +4660,8 @@ body.frontend {
 	}
 }
 
-body.frontend:not(.portaltype-event) {
+body.frontend:not(.portaltype-event),
+body.frontend:not(.portaltype-occurrence) {
     .title-container {
     	@media (min-width: 768px) {
     		padding-bottom: 20px;
@@ -5737,7 +5768,8 @@ body.frontend {
 	}
 
 	&.portaltype-document,
-	&.portaltype-event {
+	&.portaltype-event,
+	&.portaltype-occurrence {
 
 		@media (min-width: 992px) {
 			#above-content {
@@ -6246,7 +6278,8 @@ th.header-titleAuthorImprintCollation_imprint_year {
 	width: 10%;
 }
 
-body:not(.portaltype-event) .event.summary {
+body:not(.portaltype-event) .event.summary,
+body:not(.portaltype-occurrence) .event.summary {
 	display: none;
 }
 
@@ -6267,7 +6300,8 @@ body.frontend {
 }
 
 
-body:not(.portaltype-document):not(.portaltype-event) {
+body:not(.portaltype-document):not(.portaltype-event),
+body:not(.portaltype-document):not(.portaltype-occurrence) {
 	.arrow-title {
 		display: none;
 	}
@@ -6287,7 +6321,8 @@ body.frontend #above-content .portlet-rrssb {
 
 body.frontend {
 	&.portaltype-document,
-	&.portaltype-event { 
+	&.portaltype-event,
+	&.portaltype-occurrence { 
 		#below-content .portlet-rrssb {
 			@media (max-width: 991px) {
 				padding-bottom: 50px;
@@ -6381,7 +6416,8 @@ body:not(.frontend) .portlet-rrssb {
 }
 
 body.frontend.portaltype-document,
-body.frontend.portaltype-event {
+body.frontend.portaltype-event,
+body.frontend.portaltype-occurrence {
 	li.event-category {
 		display: none;
 	}
@@ -6467,7 +6503,7 @@ body.disable-hover .entries * {
 }
 
 #babel-edit fieldset {
-	height: auto !important;
+	/*height: auto !important;*/
 }
 
 
@@ -7734,7 +7770,7 @@ body.template-checkout #form-checkout #field-checkout-accept_terms_and_condition
 }
 
 
-body.portaltype-event, body.portaltype-document {
+body.portaltype-event, body.portaltype-document, body.portaltype-occurrence {
 	#slickcarousel .video-slide iframe {
 		display: none;
 	}
@@ -8114,7 +8150,8 @@ body.template-listing_view {
 		}
 	}
 
-	body.portaltype-event #website-wrapper .main-container .title-container {
+	body.portaltype-event #website-wrapper .main-container .title-container,
+	body.portaltype-occurrence #website-wrapper .main-container .title-container {
 		ul.event.summary .event-date {
 			text-align: center;
 			font-size: 16px;
@@ -8247,7 +8284,8 @@ body:not(.frontend) {
 		}
 	}
 
-	body.portaltype-event #website-wrapper .main-container .title-container {
+	body.portaltype-event #website-wrapper .main-container .title-container,
+	body.portaltype-occurrence #website-wrapper .main-container .title-container {
 		ul.event.summary .event-date {
 			text-align: center;
 			font-size: 16px;

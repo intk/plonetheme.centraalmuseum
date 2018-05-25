@@ -9,6 +9,7 @@
     <theme href="backend.html" css:if-content="body.template-cart"/>
     <theme href="backend.html" css:if-content="body.template-mollie_payment_success"/>
     <theme href="backend.html" css:if-not-content="body.frontend"/>
+    <theme href="index_empty.html" css:if-content="body.template-search"/>
     <theme href="index_empty.html" css:if-content="body.portaltype-file"/>
     <theme href="index_empty.html" css:if-content="body.template-login_form"/>
     <theme href="index_empty.html" css:if-content="body.template-login_success"/>
@@ -283,11 +284,11 @@
         
       </replace>
 
-      <!--<replace css:content="#parent-fieldname-text iframe">
+      <replace css:content="#parent-fieldname-text iframe">
         <div class="iframe-wrapper">
           <xsl:copy-of select="."/>
         </div>
-      </replace>-->
+      </replace>
 
       <replace css:content="#parent-fieldname-text img.image-left">
         <div class="img-wrapper">
