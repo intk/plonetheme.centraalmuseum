@@ -19,9 +19,9 @@
 
   <div class="container-fluid" id="row-items">
     <tal:events tal:repeat="obj python: view.results()"
-                tal:define="portlet_class python: 'col-lg-4 col-md-4 col-sm-6 col-xs-12' if context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence', 'Object'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12'">
+                tal:define="portlet_class python: 'col-lg-4 col-md-4 col-sm-6 col-xs-12 listing-item' if context.portal_type in ['Portlet Page', 'Event', 'Document', 'Occurrence', 'Object'] else 'col-lg-6 col-md-6 col-sm-6 col-xs-12 listing-item'">
 
-    <div tal:attributes="class portlet_class" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+    <div tal:attributes="class portlet_class" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 listing-item"
         tal:define="plone_view python:context.restrictedTraverse('@@plone');
                     oddrow repeat/obj/odd;
                     item_type python:obj.portal_type;
@@ -50,18 +50,7 @@
         </div>
         
         <div class="entry-wrapper">
-        
-            <h4 class="item-title">
-              <a href="#"
-               tal:attributes="href itemUrl;"
-               tal:content="obj/Title"
-               >
-              Title
-              </a>
-          </h4>
-        </div>
-        <div>
-          <metal:block metal:define-macro="document_byline">
+            <metal:block metal:define-macro="document_byline">
           <tal:event condition="item_is_event"
            tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(obj)">
             <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
@@ -74,6 +63,18 @@
           
           
         </metal:block>
+
+            <h4 class="item-title">
+              <a href="#"
+               tal:attributes="href itemUrl;"
+               tal:content="obj/Title"
+               >
+              Title
+              </a>
+          </h4>
+        </div>
+        <div>
+          
           <p tal:content="obj/Description" class="item-description"></p>
         </div>
 

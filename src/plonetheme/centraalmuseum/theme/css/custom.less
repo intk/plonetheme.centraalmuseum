@@ -1993,7 +1993,7 @@ body.frontend, body#tinymce {
 		}
 
 		.title-container {
-			display: none;
+
 		}
 
 		@media (max-width: 768px) {
@@ -2006,13 +2006,13 @@ body.frontend, body#tinymce {
 
 		h1 {
 			font-size: 40px;
-			color: @brand-primary-text;
-			.FranklinBook();
+			color: @brand-primary-titles;
+			.FranklinDmCp();
 			text-align: center;
 			margin-top: 25px;
 			font-weight: 400;
 			text-transform: none;
-			letter-spacing: 0.05em;
+			letter-spacing: 0.0em;
 
 			@media (max-width: 768px) {
 				font-size: 35px;
@@ -2100,8 +2100,7 @@ body.frontend, body#tinymce {
 
 		@media (min-width: 769px) {
 			#row-items {
-				padding-left: 25px !important;
-				padding-right: 25px !important;
+
 			}
 		}
 
@@ -2128,6 +2127,74 @@ body.frontend, body#tinymce {
 		.main-container > .row {
 			margin-right: 0px !important;
 			margin-left: 0px !important;
+		}
+
+		.title-container {
+			width: 100%;
+
+
+			@media (max-width: 768px) {
+				padding-top: 20px;
+			}
+
+			h1 {
+				font-size: 82px !important;
+				text-align: center;
+				margin-top: 25px;
+				font-weight: 400;
+				text-transform: none;
+				letter-spacing: 0.0em;
+				width: 100%;
+				max-width: 100%;
+				line-height: 75px;
+
+				@media (max-width: 768px) {
+					font-size: 35px !important;
+					line-height: 42px;
+					text-align: center;
+				}
+			}
+
+			.separator-wrapper {
+				margin-top: 55px;
+				margin-bottom: 70px;
+			}
+		}
+
+		.main-container {
+			@media (min-width: 480px) {
+				padding-right: 50px;
+				padding-left: 50px;
+			}
+
+			@media (min-width: 767px) {
+				width: 100%;
+				padding-right: 60px;
+				padding-left: 60px;
+
+				.row {
+					margin-left: 0px;
+					margin-right: 0px;
+				}
+			}
+
+			@media(min-width: 992px) {
+				padding-right: 50px;
+				padding-left: 50px;
+			}
+		}
+
+		.listing-item {
+			padding-bottom: 52px;
+
+			@media(min-width: 992px) {
+				padding-left: 25px;
+				padding-right: 25px;
+			}
+
+			@media(max-width: 767px) {
+				padding-bottom: 60px;
+			}
 		}
 
 	}
@@ -4589,7 +4656,8 @@ body.frontend:not(.portaltype-event) {
 
 body.frontend.portaltype-collection,
 body.portaltype-person.template-listing_view,
-body.frontend.portaltype-folder {
+body.frontend.portaltype-folder,
+body.frontend.portaltype-portlet-page {
     .title-container {
     	@media (min-width: 768px) {
     		padding-bottom: 0px;
@@ -8006,7 +8074,8 @@ body.template-listing_view {
 	body.portaltype-folder,
 	body.portaltype-collection,
 	body.portaltype-portlet-page,
-	body.template-listing_view {
+	body.template-listing_view,
+	body.portaltype-portlet-page {
 
 		#slickcarousel:before {
 			padding-top: 70%;
@@ -8072,7 +8141,7 @@ body.template-listing_view {
 
 	
 
-	body.portaltype-collection #website-wrapper .page-container, body.portaltype-folder #website-wrapper .page-container {
+	body.portaltype-collection #website-wrapper .page-container, body.portaltype-folder #website-wrapper .page-container, body.portaltype-portlet-page #website-wrapper .page-container {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
@@ -8206,7 +8275,7 @@ body.template-listing_view {
 		padding-right: 15px;
 	}
 
-	body.portaltype-collection #website-wrapper .page-container, body.portaltype-folder #website-wrapper .page-container {
+	body.portaltype-collection #website-wrapper .page-container, body.portaltype-folder #website-wrapper .page-container, body.portaltype-portlet-page #website-wrapper .page-container {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
