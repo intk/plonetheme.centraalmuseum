@@ -16,6 +16,9 @@ import time
 
 from plone.app.event.browser.event_listing import EventEventListing, EventListing, EventListingIcal
 import plone.api
+from zope.component import getMultiAdapter
+from plone.event.interfaces import IEvent
+from zope.contentprovider.interfaces import IContentProvider
 
 class ContextToolsView(BrowserView):
 
@@ -43,6 +46,14 @@ class ContextToolsView(BrowserView):
             return False
 
         return annon
+
+    def formatted_date(self, obj):
+        item = obj.getObject()
+        provider = getMultiAdapter(
+            (self.context, self.request, self),
+            IContentProvider, name='formatted_date'
+        )
+        return provider(item)
 
     def isSlideshowPublished(self, item):
         obj = item.getObject()

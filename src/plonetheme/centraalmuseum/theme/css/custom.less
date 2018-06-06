@@ -880,7 +880,7 @@ body:not(.frontend) {
 	&:active:focus,
 	&:focus {
 		background: @brand-primary-titles;
-		color: @brand-primary-titles;
+		color: #ffffff;
 	}
 
 	&:hover {
@@ -901,7 +901,7 @@ body:not(.frontend) {
     color: #848484;
     letter-spacing: 0.05em;
     width: auto;
-    font-size: 17px;
+    font-size: 16px;
     background-color: #ffffff;
     letter-spacing: 0.05em;
     text-shadow: 0px 0px 0px #ffffff;
@@ -912,8 +912,8 @@ body:not(.frontend) {
 	outline: none;
 	outline: 0px;
 	outline-offset: 0px;
-	padding-left: 28px;
-    padding-right: 28px;
+	padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 13px;
 
 	&:focus {
@@ -1215,7 +1215,7 @@ body.frontend, body#tinymce {
 
 
 
-	img.image-inline[data-scale='large'] {
+	img.image-inline:not(.footer-img) {
 		width: 50%;
 		padding: 10px;
 
@@ -1227,7 +1227,7 @@ body.frontend, body#tinymce {
 		}
 	}
 
-	p > img.image-inline[data-scale='large']:first-child {
+	p > img.image-inline:not(.footer-img):first-child {
 		padding-left: 0px;
 		padding-right: 10px;
 
@@ -1239,7 +1239,7 @@ body.frontend, body#tinymce {
 		}
 	}
 
-	p > img.image-inline[data-scale='large']:nth-child(2) {
+	p > img.image-inline:not(.footer-img):nth-child(2) {
 		padding-left: 10px;
 		padding-right: 0px;
 
@@ -1312,7 +1312,11 @@ body.frontend, body#tinymce {
 	}
 
 	.floating-label-form-group label {
-		line-height: 1.761705882em;
+		line-height: 23px;
+	}
+
+	fieldset.PFGFieldsetWidget {
+		width: 100%;
 	}
 
 	.floating-label-form-group {
@@ -2156,11 +2160,11 @@ body.frontend, body#tinymce {
 
 		.label {
 			color: @brand-primary-text;
-			font-size: 1.188em;
+			font-size: 18px;
 			text-align: left;
 			padding-left: 0px;
 			display: block;
-			letter-spacing: 0.1em;
+			letter-spacing: 0.0em;
 			font-weight: 400;
 			margin-bottom: 5px;
 		}
@@ -2170,7 +2174,7 @@ body.frontend, body#tinymce {
 		.field.ArchetypesSelectionWidget,
 		.field.ArchetypesLinesWidget,
 		.field.ArchetypesBooleanWidget {
-			padding-top: 20px;
+			padding-top: 0px;
 		}
 
 		.listing {
@@ -2190,21 +2194,29 @@ body.frontend, body#tinymce {
 		}
 
 		label {
-			letter-spacing: 0.1em;
+			letter-spacing: 0.0em;
 			color: @brand-primary-text;
 			margin-left: 4px;
-			font-size: 1.08em;
+			font-size: 16px;
 			font-weight: 400;
+
+			&.formQuestion {
+				font-size: 18px;
+				margin-left: 0px;
+				line-height: 24px;
+			}
 		}
 
 		label .required:after {
 			top: 4px !important;
+			margin-left: 0px !important;
 		}
 
 		&:not(.template-quickedit) {
 			.field {
 				width: initial;
-				margin-bottom: 5px;
+				margin-bottom: 0px;
+				margin-top: 10px;
 			}
 
 			.pfg-form {
@@ -2272,6 +2284,10 @@ body.frontend, body#tinymce {
 		.subheading {
 			color: @brand-primary-text;
 			line-height: 2em;
+			width: 100%;
+		    max-width: 100%;
+		    margin-left: 0;
+		    text-align: left;
 		}
 
 		.floating-label-form-group {
@@ -2284,22 +2300,44 @@ body.frontend, body#tinymce {
 
 			textarea, input[type="text"] {
 				border: 1px  solid #c3c3c3;
-				color: #848484;
+				color: #727276;
 
 				&::-webkit-input-placeholder {
-				   color: #848484;
+				   color: #727276;
 				}
 
 				&:-moz-placeholder { /* Firefox 18- */
-				   color: #848484;  
+				   color: #727276;  
 				}
 
 				&::-moz-placeholder {  /* Firefox 19+ */
-				   color: #848484;  
+				   color: #727276;  
 				}
 
 				&:-ms-input-placeholder {  
-				   color: #848484;  
+				   color: #727276;  
+				}
+
+				&:focus,
+				&:active {
+					border: 1px solid #8e8e90;
+					color: #373739;
+
+					&::-webkit-input-placeholder {
+					   color: #373739;
+					}
+
+					&:-moz-placeholder { /* Firefox 18- */
+					   color: #373739;  
+					}
+
+					&::-moz-placeholder {  /* Firefox 19+ */
+					   color: #373739;  
+					}
+
+					&:-ms-input-placeholder {  
+					   color: #373739;  
+					}
 				}
 			}
 
@@ -2309,13 +2347,19 @@ body.frontend, body#tinymce {
 				height: auto;
 			}
 
-			&> .field:not(.ArchetypesBooleanWidget):not(.ArchetypesCalendarWidget):not(.ArchetypesMultiSelectionWidget):not(.ArchetypesSelectionWidget) label {
-				letter-spacing: 0.1em;
-				font-size: 1.00em;
+			&> .field:not(.ArchetypesBooleanWidget):not(.ArchetypesCalendarWidget):not(.ArchetypesMultiSelectionWidget):not(.ArchetypesSelectionWidget):not(.ArchetypesDateWidget)  label {
+				letter-spacing: 0.0em;
+				font-size: 16px;
 				color: @brand-primary-text;
 				text-transform: none;
+				line-height: 16px;
 			}
 		}	
+
+		div.field.error input, 
+		div.field.error textarea {
+			border:1px solid #a94442 !important;
+		}
 
 		.pfg-form .formControls {
 			text-align: right;
@@ -2331,15 +2375,54 @@ body.frontend, body#tinymce {
 			padding-bottom: 65px;
 		}
 
+		button.pattern-pickadate-now,
+		button.pattern-pickadate-clear {
+			margin: 0px;
+			.buttonField();
+			margin: 0px !important;
+		    display: inline-block !important;
+		    margin-left: 5px !important;
+		    margin-right: 5px !important;
+		    padding-top: 16px !important;
+		    padding-bottom: 10px !important;
+		    padding-left: 19px !important;
+   			padding-right: 19px !important;
+		}
+
+		button.pattern-pickadate-now {
+			margin-left: 10px !important;
+		}
+
 		.pfg-form {
 			table.listing td {
 				vertical-align: middle;
 			}
 
-			select {
+			/*select {
 				padding-top: 12px;
     			padding-bottom: 12px;
 				border-radius: 0px;
+				width: 100%;
+				font-size: 16px;
+			}*/
+
+			select.blurrable,
+			select[name='tijdstip'],
+			select[name='betaalwijze'],
+			select[name='alternatief-tijdstip'] {
+				padding-top: 12px;
+			    padding-bottom: 12px;
+			    border-radius: 0px;
+			    width: 100%;
+			    font-size: 16px;
+			}
+
+			select[name='tijdstip'],
+			select[name='betaalwijze'],
+			select[name='alternatief-tijdstip'] {
+				font-size: 15px;
+			    height: 40px;
+			    font-family: 'Arial';
 			}
 
 			select:active:focus {
@@ -2347,6 +2430,24 @@ body.frontend, body#tinymce {
 				outline: 0;
 				-webkit-box-shadow: none;
 				box-shadow: none;
+			}
+		}
+
+
+
+		label.formQuestion {
+		    
+
+			span.required {
+				font-size: 15px !important;
+			}
+		}
+
+		div.ArchetypesDateWidget {
+			label.formQuestion {
+				opacity: 1 !important;
+				top: 0 !important;
+				margin-bottom: 1px !important;
 			}
 		}
 	}
@@ -7840,7 +7941,7 @@ body.template-advancedsearch .select2-container.sort_filters {
 			font-size: 93px;
 			max-width: 100%;
 			margin-bottom: 0px;
-			line-height: 75px;
+			line-height: 88px;
 			margin-top: 0px;
 		}
 
@@ -7849,7 +7950,7 @@ body.template-advancedsearch .select2-container.sort_filters {
 			max-width: 520px;
 			font-size: 1.220em;
 			max-width: 82%;
-			margin-top: 0px;
+			margin-top: 5px;
 		}
 	}
 

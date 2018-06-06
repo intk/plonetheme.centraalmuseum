@@ -135,31 +135,7 @@
                     </div>-->
                     
                     <div class="search-type-options" style="display:none;">
-                      <tal:div tal:define="typeLists python:context.createMultiColumnList(types_list, numCols=2, sort_on='self');"
-                               tal:repeat="sublist typeLists">
-                        <tal:items repeat="type sublist">
-                          <div>
-                            <tal:all_checked tal:condition="all_checked">
-                            <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
-                                   tal:attributes="value type;
-                                                   id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                                   checked python:((type in ['Object']) and 'checked' or '')"/>
-                              <label for="" i18n:translate=""
-                                     tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
-                                     tal:content="python: portal_types.getTypeInfo(type).Title()" />
-                            </tal:all_checked>
-                            <tal:not_all_checked tal:condition="not:all_checked">
-                            <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
-                                   tal:attributes="value type;
-                                                   id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                                   checked python:((type in request.get('portal_type', [])) or first_call) and 'checked' or ''"/>
-                              <label for="" i18n:translate=""
-                                     tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
-                                     tal:content="python: portal_types.getTypeInfo(type).Title()" />
-                            </tal:not_all_checked>
-                          </div>
-                        </tal:items>
-                      </tal:div>
+                      
                     </div>
                   </div>
                 </fieldset>
@@ -367,7 +343,7 @@
                                     <tal:event condition="item_is_event"
                                      tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
                                       <p class="post-meta event-date" tal:attributes="class python: 'post-meta event-date past' if is_past else 'post-meta event-date'">
-                                      <tal:date tal:replace="structure python:view.formatted_date(item)"/>
+                                      <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(item)"/>
                                       <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
                                         <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
                                       </span>
