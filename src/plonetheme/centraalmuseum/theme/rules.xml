@@ -251,7 +251,7 @@
       <drop css:content="footer .portlet-rrssb"/>-->
 
       <!-- Mailchimp portlet -->
-      <replace css:content-children=".portletMailChimp">
+      <!--<replace css:content-children=".portletMailChimp">
         
           <xsl:copy-of select="dt[@class='portletTitle']"/>
           <xsl:copy-of select="dt[@class='portletHeader']"/>
@@ -281,6 +281,11 @@
           </form>
           </dd>
         
+      </replace>-->
+
+
+      <replace css:content="#form-widgets-email">
+        <input id="form-widgets-email" name="form.widgets.email" class="text-widget required textline-field" value="" type="text" placeholder="Je emailadres"/>
       </replace>
 
       <replace css:content="#parent-fieldname-text iframe">

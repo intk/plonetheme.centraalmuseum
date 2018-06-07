@@ -1535,6 +1535,7 @@ body.frontend, body#tinymce {
     	text-transform: none;
     	@media (max-width: 768px) {
 			font-size: 1.400em;
+			line-height: 30px;
 		}
     }
 
@@ -2698,7 +2699,7 @@ footer, body.mce-content-body {
 		}
 
 		.portletWrapper:last-child {
-			float: none;
+			float: left;
 		}
 	}
 
@@ -2710,11 +2711,21 @@ footer, body.mce-content-body {
 	}
 
 	border-top: 0px solid #e7e7e7;
-	padding-top: 94px;
+	padding-top: 0px;
 	padding-bottom: 30px;
 
+	.portlet-static-footer {
+		padding-top: 94px;
+
+		@media(max-width: 767px) {
+			padding-top: 0px;
+		}
+	}
+
+	
+
 	@media (max-width: 768px) {
-		padding-top: 40px;
+		padding-top: 0px;
 	}
 
 	@media (max-width: 767px) {
@@ -3304,7 +3315,7 @@ footer {
 
 	padding-top: 0px;
 	padding-bottom: 90px;
-	background-color: #ffffff;
+	background-color: #e1ecf2;
 	margin: 0px;
 	margin-left: -15px;
 	margin-right: -15px;
@@ -3455,7 +3466,7 @@ footer {
 
 	#form-widgets-email {
 		@media (min-width: 992px) {
-			border-right: 0px;
+
 		}
 	}
 
@@ -4849,7 +4860,7 @@ body.frontend {
 
 	.page-container {
 		dl.portletMailChimp {
-			max-width: 520px;
+			/*max-width: 520px;
 			margin: 0 auto;
 			background: inherit;
 			padding-bottom: 70px;
@@ -4892,7 +4903,7 @@ body.frontend {
 				dt.portletTitle {
 					padding-top: 10px;
 				}
-			}
+			}*/
 		}
 	}
 
@@ -8507,5 +8518,96 @@ body.frontend.portaltype-formthankspage {
 
 	.title-container {
 		margin-right: auto !important;
+	}
+}
+
+.portletMailChimp {
+	padding-bottom: 70px;
+	
+
+	h3 {
+		margin-top: 0px;
+		text-align: center;
+	}
+
+	.portletHeader {
+		padding-top: 25px;
+		padding-bottom: 10px !important;
+	}
+
+	#formfield-form-widgets-email_type, #formfield-form-widgets-interest_groups, #formfield-form-widgets-list_id {
+		display: none;
+	}
+
+	input#form-buttons-subscribe {
+		padding-top: 15px;
+	    padding-bottom: 12px;
+	    padding-left: 15px;
+	    padding-right: 15px;
+	}
+
+	@media (min-width: 992px) {
+		.portalMessage.error {
+			width: 40%;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+
+
+		#formfield-form-widgets-email {
+			display: inline-block;
+			width: 70%;
+
+			&.error {
+				width: 100%;
+			}
+		}
+
+		.formControls {
+			display: inline-block;
+	    	width: 28%;
+		}
+
+		#newsletter-subscriber-form {
+			width: 40%;
+			margin:0 auto;
+		}
+
+	}	
+
+	@media (min-width: 992px) and (max-width: 1222px) {
+		#newsletter-subscriber-form {
+			width: 50%;
+		}
+	}
+
+	@media (max-width: 991px) {
+		padding-top: 20px;
+
+		#formfield-form-widgets-email {
+			display: block;
+			width: 100%;
+		}
+
+		.formControls {
+			display: block;
+	    	width: 100%;
+		}
+
+		#newsletter-subscriber-form {
+			width: 100%;
+		}
+
+		h3 {
+			margin-top: 0px !important;
+		}
+	}
+
+}
+
+@media (max-width: 992px) {
+	#above-content .portletMailChimp {
+		margin-left: -30px;
+		margin-right: -30px;
 	}
 }
