@@ -35,6 +35,22 @@ class ContextToolsView(BrowserView):
         else:
             return None
 
+    def getImageBrain(self, item):
+        img_brain = None
+
+        if item.portal_type == "Image":
+            return item
+        
+        if getattr(item, 'leadMedia', None) not in [None, '']:
+            uuid = item.leadMedia
+            media_object = uuidToCatalogBrain(uuid)
+            if media_object:
+                return media_object
+            else:
+                return None
+        else:
+            return None
+
     def is_event(self, obj):
         if getattr(obj, 'getObject', False):
             obj = obj.getObject()

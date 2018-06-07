@@ -1155,8 +1155,12 @@ body.frontend, body#tinymce {
 		background-color: #fff;
 	}
 
-	.title-container {
+	#website-wrapper.empty-slideshow .title-container {
 		padding-top: 55px;
+	}
+
+	#website-wrapper:not(.empty-slideshow) .title-container {
+		padding-top: 0px;
 	}
 
 	.main-content {
@@ -6452,8 +6456,8 @@ body.frontend h4.item-title a.hover {
 
 
 body.frontend #searchform .input-group input.searchPage.btn {
-	padding-top: 17px;
-    padding-bottom: 12px;
+	padding-top: 16px;
+    padding-bottom: 11px;
 }
 
 body.portaltype-formfolder .formid-contact #pfg-fieldwrapper {
@@ -6638,6 +6642,12 @@ html.ie9 {
 				border-bottom: 1px solid transparent !important;
 			}
 		}
+	}
+
+	height: 100%;
+
+	body {
+		height: 100%;
 	}
 }
 
@@ -7925,7 +7935,6 @@ body.template-advancedsearch .select2-container.sort_filters {
 	padding-bottom: 20px;
 	width: 100%;
 	bottom: 0px;
-	background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 100%);
 
 
 	.title-container {
@@ -8483,5 +8492,20 @@ body:not(.frontend) {
 		#slickcarousel:before {
 			padding-top: 55%;
 		}
+	}
+}
+
+body.frontend.portaltype-formthankspage {
+	#content-core {
+		margin-right: auto !important;
+		margin-left: auto !important;
+
+		blockquote {
+			margin-left: 0px !important;
+		}
+	}
+
+	.title-container {
+		margin-right: auto !important;
 	}
 }

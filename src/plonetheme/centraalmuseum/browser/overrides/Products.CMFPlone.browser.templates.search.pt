@@ -41,6 +41,7 @@
                       DateTime python:modules['DateTime'].DateTime;
                       navigation_root_url view/navroot_url;
                       isAnon nocall:context/@@plone_portal_state/anonymous;
+                      portal context/@@plone_portal_state/portal;
                       ">
 
         <input type="hidden" name="advanced_search" value="False" />
@@ -305,14 +306,15 @@
                                      tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                                                  use_view_action python:context.portal_registry.get('plone.types_use_view_action_in_listings', []);
                                                  allowAnonymousViewAbout python:context.portal_registry['plone.allow_anon_views_about'];
-                                                 show_about python:not isAnon or allowAnonymousViewAbout;">
+                                                 show_about python:not isAnon or allowAnonymousViewAbout;
+                                                 image_scale portal/@@image_scale;">
                         <div class="searchResults">
                           
                           <tal:results repeat="item batch">
                             
                               <div class="search-item row"
                                 tal:define="item_type item/PortalType;
-                                            leadmedia python: context.restrictedTraverse('@@context_tools').getImageObject(item, 'mini') if item_type not in ['Object'] else context.restrictedTraverse('@@context_tools').getImageObject(item, 'large');
+                                            leadmedia python: context.restrictedTraverse('@@context_tools').getImageBrain(item);
                                             item_on_display item/object_on_display|nothing;
                                             item_is_event python: item_type in ['Event', 'Exhibition'];">
 
@@ -325,7 +327,7 @@
                                     <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.centraalmuseum">
                                       <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
                                     </div>
-                                    <img tal:attributes="src leadmedia" class="lead-img"/>
+                                    <img class="lead-img" tal:replace="structure python:image_scale.tag(leadmedia, 'image', scale='large', css_class='lead-image')"/>
                                     </a>
                                   </tal:leadmedia>
                                 </div>
