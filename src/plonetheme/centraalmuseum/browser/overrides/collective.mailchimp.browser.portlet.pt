@@ -11,8 +11,26 @@
       <h3 tal:content="view/name">Title of the portlet</h3>
     </dt>
 
-    <dd class="portletItem odd" tal:content="structure view/form/render">
-      here comes the subscriber-form
+
+
+    <dd class="portletItem odd">
+      <form tal:attributes="action view/endpoint_url|nothing;" id="newsletter-subscriber-form" method="get">
+        <div id="formfield-form-widgets-email">
+          <input id="form-widgets-email" name="email" class="text-widget required textline-field" value="" type="text" placeholder="Je emailadres"/>
+        </div>
+
+        <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
+        <input type="hidden" value="42702e9770" name="id" tal:attributes="value view/list_id|nothing"/>
+
+        <div class="formControls">
+          <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Inschrijven" type="submit">
+        </div>
+
+        <div id="subscribe-result">
+          <p class="error-msg" style="display:none;">Could not subscribe to newsletter. Either the email is already subscribed or something else is wrong. Try again later.</p>
+          <p class="success-msg" style="display:none;">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
+        </div>
+      </form>
     </dd>
   </dl>
 </html>
