@@ -11,12 +11,10 @@
       <h3 tal:content="view/name">Title of the portlet</h3>
     </dt>
 
-
-
     <dd class="portletItem odd">
       <form tal:attributes="action view/endpoint_url|nothing;" id="newsletter-subscriber-form" method="get">
         <div id="formfield-form-widgets-email">
-          <input id="form-widgets-email" name="email" class="text-widget required textline-field" value="" type="text" placeholder="Je emailadres"/>
+          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Je emailadres"/>
         </div>
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
@@ -27,8 +25,12 @@
         </div>
 
         <div id="subscribe-result">
-          <p class="error-msg" style="display:none;">Could not subscribe to newsletter. Either the email is already subscribed or something else is wrong. Try again later.</p>
-          <p class="success-msg" style="display:none;">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
+          <p class="error-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">Could not subscribe to newsletter. Either the email is already subscribed or something else is wrong. Try again later.</p>
+          <p class="error-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Aanmelden op nieuwsbrief mislukt.</p>
+          
+          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
+          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">We moeten uw email adres bevestigen om de nieuwsbrief inschrijving af te ronden. Klik op de link in de email die we u zojuist hebben verstuurd.</p>
+
         </div>
       </form>
     </dd>

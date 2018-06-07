@@ -198,16 +198,26 @@ function do_ecommerce_transactions() {
 };
 
 $(document).ready(function () {
-  var $form = $('#newsletter-subscriber-form')
+  var $form = $('#newsletter-subscriber-form');
   if ($form.length > 0) {
-    $('form input[type="submit"]').bind('click', function (event) {
-      if (event) event.preventDefault()
-      register($form)
-    })
+  	$form.each(function(index, value) {
+  		$(value).find('input[type="submit"]').bind('click', function (event) {
+      	if (event) event.preventDefault()
+      	register($form);
+    	})
+  	})
   }
-})
+});
 
 function register($form) {
+
+  var $loader = jQuery('.plone-loader');
+  if($loader.size() === 0){
+    $loader = $('<div class="plone-loader"><div class="loader"/></div>');
+    jQuery('body').append($loader);
+  }
+
+  $loader.show();
   $.ajax({
     type: $form.attr('method'),
     url: $form.attr('action'),
@@ -216,25 +226,28 @@ function register($form) {
     dataType: 'json',
     contentType: 'application/json; charset=utf-8',
     error: function (err) { 
-    	$('#form-widgets-email').css('borderColor', '#e70518');
-    	$('#subscribe-result .succcess-msg').hide();
-    	$('#subscribe-result .error-msg').show();
+    	$form.find('#form-widgets-email').css('borderColor', '#e70518');
+    	$form.find('#subscribe-result .success-msg').hide();
+    	$form.find('#subscribe-result .error-msg').show();
+    	$loader.hide();
     },
     success: function (data) {
       
       if (data.result === 'success') {
         // Yeahhhh Success
-        $('#form-widgets-email').css('borderColor', '#c3c3c3')
-        $('#subscribe-result').css('color', 'rgb(53, 114, 210)')
-        $('#subscribe-result .succcess-msg').show();
-    	$('#subscribe-result .error-msg').hide();
-        $('#form-widgets-email').val('')
+        $form.find('#form-widgets-email').css('borderColor', '#c3c3c3')
+        $form.find('#subscribe-result').css('color', 'rgb(53, 114, 210)')
+        $form.find('#subscribe-result .success-msg').show();
+    	$form.find('#subscribe-result .error-msg').hide();
+        $form.find('#form-widgets-email').val('');
+        $loader.hide();
       } else {
         // Something went wrong, do something to notify the user.
-        $('#form-widgets-email').css('borderColor', '#e70518');
-        $('#subscribe-result').css('color', '#e70518');
-        $('#subscribe-result .succcess-msg').hide();
-    	$('#subscribe-result .error-msg').show();
+        $form.find('#form-widgets-email').css('borderColor', '#e70518');
+        $form.find('#subscribe-result').css('color', '#e70518');
+        $form.find('#subscribe-result .success-msg').hide();
+    	$form.find('#subscribe-result .error-msg').show();
+    	$loader.hide();
       }
     }
   })
