@@ -203,7 +203,7 @@ $(document).ready(function () {
   	$form.each(function(index, value) {
   		$(value).find('input[type="submit"]').bind('click', function (event) {
       	if (event) event.preventDefault()
-      	register($form);
+      	register($(value));
     	})
   	})
   }

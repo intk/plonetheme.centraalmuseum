@@ -732,6 +732,12 @@ body.portaltype-object {
 	.carousel-item {
 		overflow: hidden;
 	}
+
+	.slick-track {
+		@media(max-width: 767px) {
+			pointer-events: none !important;
+		}
+	}
 }
 
 #slickcarousel {
@@ -749,6 +755,11 @@ body.portaltype-object {
 	    opacity: 0.75;
 	    transition: opacity 0.2s ease-in;
 	    cursor: pointer;
+
+	    @media(max-width: 767px) {
+	    	margin-top: -75px;
+	    	pointer-events: all !important;
+	    }
 	}
 }
 
