@@ -6,6 +6,7 @@
        xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <theme href="backend.html" css:if-not-content="body.frontend"/>
+    <theme href="index_presentation.html" css:if-content="#presentation"/>
     <theme href="index_empty.html" css:if-content="body.portaltype-formfolder"/>
     <theme href="index_empty.html" css:if-content="body.portaltype-formthankspage"/>
     <theme href="index_empty.html" css:if-content="body.template-search"/>
@@ -121,6 +122,7 @@
       <!--<drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>-->
 
 
+
       <!-- viewlet-above-content -->
       <replace
         css:theme-children="#above-content"
@@ -156,6 +158,29 @@
 
       <drop css:content="#slickcarousel" css:if-content="body.template-online_experience_view"/>
       <drop css:theme="#slickcarousel" css:if-content="body.template-online_experience_view"/>
+
+
+      <replace
+        css:theme="#presentation"
+        css:content="#presentation"
+        method="raw"
+        css:if-content="#presentation"
+      />
+
+      <drop css:content="#presentation" css:if-content="#presentation"/>
+      <drop css:theme="#presentation" css:if-not-content="#presentation"/>
+      <drop css:theme=".main-container" css:if-content="#presentation"/>
+      <drop css:theme=".page-container" css:if-content="#presentation"/>
+      
+
+      <replace
+        css:theme-children="#slideshow-btn-wrapper"
+        css:content=".slideshow-btn-wrapper"
+        css:if-content="#presentation"
+        />
+
+      <drop css:theme="#slideshow-btn-wrapper" css:if-not-content="#presentation"/>
+      
 
 
       <!-- Header -->

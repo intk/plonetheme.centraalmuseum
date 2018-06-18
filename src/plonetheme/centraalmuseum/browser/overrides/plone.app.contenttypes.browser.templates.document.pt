@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core"
+                      tal:define="toc context/table_of_contents|nothing;
+                                  is_presentation python:context.restrictedTraverse('@@context_tools').hasPresentation(context);">
+
+
+    <div id="presentation" tal:condition="is_presentation">
+      <style>
+      body {
+        overflow-y: auto !important;
+        -webkit-transform: none !important;
+        -moz-transform: none !important;
+        -ms-transform: none !important;
+        -o-transform: none !important;
+        transform: none !important;
+      }
+
+      body.navigation-is-open {
+        overflow-y: unset !important;
+      }
+
+      </style>
+      <tal:presentation_items tal:define="items python:context.restrictedTraverse('@@context_tools').getPresentationItems(context);">
+        <tal:render_items tal:condition="items">
+          <tal:items tal:repeat="presentation_item items">
+
+            <tal:item tal:define="obj presentation_item/getObject;
+                                  slide_type python: context.restrictedTraverse('@@context_tools').getSlideType(obj);">
+              
+
+              <div class="presentation-item" data-type="slider-item" tal:attributes="class python: 'presentation-item %s' %(slide_type); style python: context.restrictedTraverse('@@context_tools').getSlideStyles(obj, slide_type);">
+                
+                <div id="parent-fieldname-text" tal:content="structure python:context.restrictedTraverse('@@context_tools').getSlideBodyText(obj).output" tal:condition="python:slide_type in ['text-only', 'video-slide', 'side-text-slide', 'side-text-slide left', 'side-text-slide right']"></div>
+                
+                <tal:body_text tal:condition="python:slide_type in ['image-slide']" tal:content="structure python:context.restrictedTraverse('@@context_tools').getSlideBodyText(obj).output"></tal:body_text>
+              </div>
+            </tal:item>
+
+          </tal:items>
+        </tal:render_items>
+
+      </tal:presentation_items>
+    </div>
+
+    <tal:render_body tal:condition="not:is_presentation">
+      <div id="parent-fieldname-text"
+          tal:condition="context/text"
+          tal:content="structure python:context.text.output_relative_to(view.context)"
+          tal:attributes="class python: toc and 'pat-autotoc' or ''" />
+    </tal:render_body>
+
+  </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

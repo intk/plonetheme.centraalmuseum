@@ -563,7 +563,7 @@ body.frontend {
 
 		.slideshow-btn-wrapper {
 			pointer-events: all;
-			z-index: 2;
+			z-index: 4;
 		}
 	}
 }
@@ -738,27 +738,54 @@ body.portaltype-object {
 			pointer-events: none !important;
 		}
 	}
+
 }
 
 #slickcarousel {
 	.video-play-btn {
 	    position: relative;
-	    top: 55%;
+	    top: 50%;
 	    left: 50%;
 	    width: 100px;
 	    height: 100px;
 	    background: url("../img/play.svg") no-repeat;
 	    background-size: 100% 100%;
 	    z-index: 10;
-	    margin-left: -50px;
-	    margin-top: -100px;
-	    opacity: 0.75;
+	    margin-left: 0px;
+	    margin-top: 0px;
+	    opacity: 0.50;
 	    transition: opacity 0.2s ease-in;
 	    cursor: pointer;
+	    pointer-events: all !important;
+	    transform: translate(-50%,-50%);
 
-	    @media(max-width: 767px) {
-	    	margin-top: -75px;
-	    	pointer-events: all !important;
+	    &:hover,
+	    &:focus {
+	    	opacity: 0.75;
+	    	transition: opacity 0.2s ease-in;
+	    }
+
+	    &:active {
+	    	opacity: 1;
+	    	transition: opacity 0.2s ease-in;
+	    }
+
+	    &:active:focus {
+	    	opacity: 1;
+	    	transition: opacity 0.2s ease-in;
+	    }
+
+	    &.clicked {
+	    	opacity: 1;
+	    	transition: opacity 0.2s ease-in;
+	    }
+
+	    @media(max-width: 991px) {
+	    	margin-top: 0px;
+	    	pointer-events: none !important;
+
+	    	width: 50px;
+	    	height: 50px;
 	    }
 	}
 }

@@ -20,7 +20,90 @@ from zope.component import getMultiAdapter
 from plone.event.interfaces import IEvent
 from zope.contentprovider.interfaces import IContentProvider
 
+from bs4 import BeautifulSoup as BSHTML
+import re
+
 class ContextToolsView(BrowserView):
+
+    def get_img_tags(self, data):
+        soup = BSHTML(data)
+        images = soup.findAll('img')
+        if images:
+            image = images[0]
+            src = image['src']
+            return src
+        return ''
+
+
+
+    def getSlideStyles(self, item, slide_style="text-only"):
+        text = getattr(item, 'text', None)
+        text_output = text.output
+
+        styles = ""
+
+        if slide_style == "reveal-image-slide":
+            img_source = self.get_img_tags(text_output)
+
+            styles = ""
+
+            if img_source:
+                styles = "background-image: url(%s);" %(img_source)
+            else:
+                styles = ""
+
+        return styles
+        
+    def getSlideBodyText(self, item):
+        text = getattr(item, 'text', None)
+        return text
+
+    def getSlideType(self, item):
+        text = getattr(item, 'text', None)
+        if text:
+
+            if "side-text" in getattr(item, 'id', ''):
+
+                if "image-left" in getattr(text, 'raw', ''):
+                    return "side-text-slide left"
+                elif "image-right" in getattr(text, 'raw', ''):
+                    return "side-text-slide right"
+                else:
+                    return "side-text-slide"
+            
+            elif "<img" in getattr(text, 'raw', ''):
+                return "image-slide"
+
+            elif "<iframe" in getattr(text, 'raw', ''):
+                return "video-slide"
+            else:
+                return "text-only"
+        else:
+            return ""
+
+
+    def hasPresentation(self, item):
+        try:
+            if 'presentation' in item:
+                presentation_folder = item['presentation']
+                state = plone.api.content.get_state(obj=presentation_folder)
+                if state != 'published':
+                    return False
+                else:
+                    return True
+        except:
+            raise
+
+        return False
+
+    def getPresentationItems(self, item):
+        folder_contents = None
+        if 'presentation' in item:
+            presentation_folder = item['presentation']
+            contents = presentation_folder.getFolderContents()
+            folder_contents = [item for item in contents if getattr(item, 'portal_type', '') == 'Document']
+
+        return folder_contents
 
     def getImageObject(self, item, scale="large"):
         if item.portal_type == "Image":
