@@ -4562,7 +4562,7 @@ body.template-collective-object-object {
 	.slideshow-btn-wrapper {
 		position: absolute;
 		text-align: center;
-	    bottom: 40px;
+	    bottom: 20px;
 	    width: 100%;
 	    z-index: 2;
 
@@ -4577,9 +4577,25 @@ body.template-collective-object-object {
 		padding-left: 25px;
 		padding-right: 25px;
 		text-transform: none;
-		margin: 10px 20px !important;
+		margin: 10px 35px !important;
 	    display: inline-block;
 	    min-width: 228px;
+	    background-color: transparent;
+	    text-transform: uppercase;
+
+	    @media(min-width: 768px) {
+	    	border: 1px solid #ffffff;
+	    	color: #ffffff;
+	    }
+
+	    &:hover,
+	    &:focus,
+	    &:active,
+	    &:active:focus {
+	    	@media(min-width: 768px) {
+	    		border: 1px solid #282931;
+	    	}
+	    }
 	}
 
 	.mejs-container {
@@ -6624,7 +6640,7 @@ body.frontend #below-content .portlet-rrssb {
 
 
 body.frontend h4.item-title a.hover {
-	color: @brand-primary !important;
+	border-bottom: 2px solid #494a51 !important;
 }
 
 
@@ -9169,6 +9185,8 @@ body.frontend #presentation {
 
 				padding-left: 15px;
 				padding-right: 15px;
+				width: 100%;
+				max-width: 100%;
 			}
 		}
 

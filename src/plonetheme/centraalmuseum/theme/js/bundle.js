@@ -323,7 +323,7 @@ jQuery(document).ready(function($) {
     }
   });
 
-  if (jQuery("#row-items").length) {
+  if (jQuery(".entries").length) {
     jQuery('.tileImage').hover(function() {
       jQuery(this).parents('article.entry, .col-lg-4').find('.item-title a').addClass('hover');
     },
