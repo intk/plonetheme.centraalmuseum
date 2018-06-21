@@ -273,21 +273,23 @@ jQuery(document).ready(function($) {
      document.documentElement.className+=' ie'+document.documentMode;
   }
 
-  jQuery(".sticky-img").hcSticky();
+
+  var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  var is_firefox = typeof window.InstallTrigger !== 'undefined';
+
+  if (is_safari) {
+  	jQuery('html').addClass('safari');
+  }
+
+  if (is_firefox) {
+  	jQuery('html').addClass('firefox');
+  }
+
+
+  jQuery(".sticky-img-stick").hcSticky();
 
   var body = document.body,
     timer;
-
-  window.addEventListener('scroll', function() {
-    clearTimeout(timer);
-    if(!body.classList.contains('disable-hover')) {
-      body.classList.add('disable-hover')
-    }
-    
-    timer = setTimeout(function(){
-      body.classList.remove('disable-hover')
-    }, 250);
-  }, false);
 
    if (jQuery("body").hasClass('template-advancedsearch')) {
       jQuery("#advanced_search_form").submit(function() {
@@ -405,15 +407,6 @@ jQuery(document).ready(function($){
     // open primary navigation on mobile
     event.preventDefault();
     mainHeader.toggleClass('nav-open');
-  });
-
-  jQuery(window).on('scroll', function(){
-    if( !scrolling ) {
-      scrolling = true;
-      (!window.requestAnimationFrame)
-        ? setTimeout(autoHideHeader, 250)
-        : requestAnimationFrame(autoHideHeader);
-    }
   });
 
   jQuery(window).on('resize', function(){

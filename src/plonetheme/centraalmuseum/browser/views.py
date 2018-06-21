@@ -34,7 +34,9 @@ class ContextToolsView(BrowserView):
             return src
         return ''
 
-
+    def remove_img_tags(self, data):
+        p = re.compile(r'<img.*?/>')
+        return p.sub('', data)
 
     def getSlideStyles(self, item, slide_style="text-only"):
         text = getattr(item, 'text', None)
@@ -42,7 +44,7 @@ class ContextToolsView(BrowserView):
 
         styles = ""
 
-        if slide_style == "reveal-image-slide":
+        if slide_style == "image-slide":
             img_source = self.get_img_tags(text_output)
 
             styles = ""
@@ -54,9 +56,15 @@ class ContextToolsView(BrowserView):
 
         return styles
         
-    def getSlideBodyText(self, item):
+    def getSlideBodyText(self, item, slide_type="text-only"):
         text = getattr(item, 'text', None)
-        return text
+
+        if slide_type == "image-slide":
+            new_text = self.remove_img_tags(text.output)
+            return new_text
+
+        output_text = getattr(text, 'output', '')
+        return output_text
 
     def getSlideType(self, item):
         text = getattr(item, 'text', None)

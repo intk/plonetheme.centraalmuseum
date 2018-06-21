@@ -25,7 +25,11 @@
       }
 
       body.navigation-is-open {
-        overflow-y: unset !important;
+        overflow-y: hidden !important;
+      }
+
+      body.navigation-is-open .cd-nav .cd-navigation-wrapper {
+        overflow: auto !important;
       }
 
       </style>
@@ -37,11 +41,28 @@
                                   slide_type python: context.restrictedTraverse('@@context_tools').getSlideType(obj);">
               
 
-              <div class="presentation-item" data-type="slider-item" tal:attributes="class python: 'presentation-item %s' %(slide_type); style python: context.restrictedTraverse('@@context_tools').getSlideStyles(obj, slide_type);">
+              <div class="presentation-item" data-type="slider-item" tal:attributes="class python: 'presentation-item %s' %(slide_type);">
                 
-                <div id="parent-fieldname-text" tal:content="structure python:context.restrictedTraverse('@@context_tools').getSlideBodyText(obj).output" tal:condition="python:slide_type in ['text-only', 'video-slide', 'side-text-slide', 'side-text-slide left', 'side-text-slide right']"></div>
+                <div id="parent-fieldname-text" tal:content="structure python:context.restrictedTraverse('@@context_tools').getSlideBodyText(obj)" tal:condition="python:slide_type in ['text-only', 'video-slide', 'side-text-slide', 'side-text-slide left', 'side-text-slide right']"></div>
                 
-                <tal:body_text tal:condition="python:slide_type in ['image-slide']" tal:content="structure python:context.restrictedTraverse('@@context_tools').getSlideBodyText(obj).output"></tal:body_text>
+                <!--<tal:play_btn tal:condition="python:slide_type in ['video-slide']">
+                <div class="video-play-btn slide-play">
+                </div>
+                </tal:play_btn>-->
+
+                <!--<tal:linear_gradient tal:condition="python:slide_type in ['image-slide']">
+                <div class="linear-gradient">
+                </div>
+                </tal:linear_gradient>-->
+
+                <tal:sticky_image tal:condition="python:slide_type in ['image-slide']">
+                  <div class="sticky-img-stick" tal:attributes="style python: context.restrictedTraverse('@@context_tools').getSlideStyles(obj, slide_type);">
+                  </div>
+                </tal:sticky_image>
+
+                <tal:body_text tal:condition="python:slide_type in ['image-slide']" tal:content="structure python:context.restrictedTraverse('@@context_tools').getSlideBodyText(obj, slide_type)"></tal:body_text>
+
+
               </div>
             </tal:item>
 
