@@ -201,4 +201,14 @@ msgid "sortable_production_date"
 msgstr "Datering"
 
 
+#: ../object.py
+msgid "explore_the_house"
+msgstr "Ontdek het huis"
+
+#: ../object.py
+msgid "buy_tickets"
+msgstr "Tickets"
+
+
+
 

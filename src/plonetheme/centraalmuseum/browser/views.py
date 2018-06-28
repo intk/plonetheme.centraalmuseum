@@ -34,9 +34,30 @@ class ContextToolsView(BrowserView):
             return src
         return ''
 
+    def get_iframe_tags(self, data):
+        soup = BSHTML(data)
+        iframes = soup.findAll('iframe')
+        if iframes:
+            iframe = iframes[0]
+            src = iframe['src']
+            return src
+        return ''
+
     def remove_img_tags(self, data):
         p = re.compile(r'<img.*?/>')
         return p.sub('', data)
+
+    def remove_iframe_tags(self, data):
+        p = re.compile(r'<iframe.*?/>')
+        return p.sub('', data)
+
+
+    def getIframeSrc(self, item):
+        text = getattr(item, 'text', None)
+        text_output = text.output
+        iframe_src = ""
+        iframe_src = self.get_iframe_tags(text_output)
+        return iframe_src
 
     def getSlideStyles(self, item, slide_style="text-only"):
         text = getattr(item, 'text', None)
@@ -44,7 +65,7 @@ class ContextToolsView(BrowserView):
 
         styles = ""
 
-        if slide_style == "image-slide":
+        if slide_style in ["image-slide"]:
             img_source = self.get_img_tags(text_output)
 
             styles = ""
@@ -63,6 +84,10 @@ class ContextToolsView(BrowserView):
             new_text = self.remove_img_tags(text.output)
             return new_text
 
+        if slide_type in ["video-slide", "video-slide right"]:
+            new_text = self.remove_iframe_tags(text.output)
+            return new_text
+
         output_text = getattr(text, 'output', '')
         return output_text
 
@@ -71,7 +96,6 @@ class ContextToolsView(BrowserView):
         if text:
 
             if "side-text" in getattr(item, 'id', ''):
-
                 if "image-left" in getattr(text, 'raw', ''):
                     return "side-text-slide left"
                 elif "image-right" in getattr(text, 'raw', ''):
@@ -83,12 +107,14 @@ class ContextToolsView(BrowserView):
                 return "image-slide"
 
             elif "<iframe" in getattr(text, 'raw', ''):
-                return "video-slide"
+                if "text-align: right" in getattr(text, 'raw', ''):
+                    return "video-slide right"
+                else:
+                    return "video-slide"
             else:
                 return "text-only"
         else:
             return ""
-
 
     def hasPresentation(self, item):
         try:

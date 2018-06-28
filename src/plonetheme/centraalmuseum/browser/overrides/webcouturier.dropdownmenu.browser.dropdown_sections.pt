@@ -22,11 +22,14 @@
 
       <div class="plone-collapse plone-navbar-collapse collapse navbar-collapse" id="portal-globalnav-collapse">
         <div class="container-fluid">
+
         <ul id="portal-globalnav" class="plone-nav plone-navbar-nav navTreeRoot nav navbar-nav"
             tal:define="selected_tab python:view.selected_portal_tab">
             <div class="container-fluid fluid-tabs">
+            
+
             <tal:tabs tal:repeat="tab portal_tabs">
-              <div class="col col-lg-3 col-md-3 col-sm-6 col-xs-12 line-wrapper"
+              <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12 line-wrapper"
                 tal:define="tid tab/id;
                               href tab/url;
                               title tab/description|nothing;
@@ -62,7 +65,7 @@
                   </tal:block>
               </li>
               </div>
-              <tal:clearfix condition="python: number % 4 == 0" tal:define="number repeat/tab/number">
+              <tal:clearfix condition="python: number % 2 == 0" tal:define="number repeat/tab/number">
                 <div class="clearfix visible-lg visible-md"></div>
               </tal:clearfix> 
 
@@ -70,7 +73,6 @@
                 <div class="clearfix visible-sm"></div>
               </tal:clearfixmd>
             </tal:tabs>
-
 
             <div class="language-wrapper">
                     <h5 class="lang-link-nl" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">
@@ -83,7 +85,17 @@
                         <a class="lang-link lang-link-nl" href="/nl/" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/nl?set_language=nl'">NEDERLANDS</a> | <a class="lang-link" href="/de/" tal:attributes="href python: '/@@multilingual-selector/'+view.getTranslationGroup()+'/en?set_language=en'">ENGLISH</a>
                     </h5>
             </div>
+
+            <div class="logo-nav-wrapper">
+                <a href="/">
+                    <img id="nav-logo" src="/++resource++plonetheme.centraalmuseum/rsh_logo.svg">
+                </a>    
+            </div>
+
+            
           </div>
+
+
         </ul>
       </div>
     </div>
