@@ -505,14 +505,14 @@ def objectTranslated(ob, event):
                 if not hasattr(ob, 'slideshow'):
                     if ITranslationManager(ob).has_translation('nl'):
                         original_ob = ITranslationManager(ob).get_translation('nl')
-                        
+
                         if hasattr(original_ob, 'slideshow'):
                             slideshow = original_ob['slideshow']
                             ITranslationManager(slideshow).add_translation('en')
                             slideshow_trans = ITranslationManager(slideshow).get_translation('en')
                             slideshow_trans.title = slideshow.title
                             slideshow_trans.portal_workflow.doActionFor(slideshow_trans, "publish", comment="Slideshow published")
-                            
+
                             for sitem in slideshow:
                                 if slideshow[sitem].portal_type == "Image":
                                     ITranslationManager(slideshow[sitem]).add_translation('en')

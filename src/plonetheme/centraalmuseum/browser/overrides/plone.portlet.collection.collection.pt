@@ -50,18 +50,7 @@
         </div>
         
         <div class="entry-wrapper">
-        
-            <h4 class="item-title">
-              <a href="#"
-               tal:attributes="href itemUrl;"
-               tal:content="obj/Title"
-               >
-              Title
-              </a>
-          </h4>
-        </div>
-        <div>
-          <metal:block metal:define-macro="document_byline">
+            <metal:block metal:define-macro="document_byline">
           <tal:event condition="item_is_event"
            tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(obj)">
             <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
@@ -74,6 +63,18 @@
           
           
         </metal:block>
+        
+            <h4 class="item-title">
+              <a href="#"
+               tal:attributes="href itemUrl;"
+               tal:content="obj/Title"
+               >
+              Title
+              </a>
+          </h4>
+        </div>
+        <div>
+          
           <p tal:content="obj/Description" class="item-description"></p>
         </div>
 

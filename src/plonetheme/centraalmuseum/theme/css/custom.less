@@ -1068,6 +1068,21 @@ body:not(.frontend) {
 		color: @brand-primary-text;
 		padding-top: 10px;
     	padding-bottom: 5px;
+
+    	p {
+    		padding: 0;
+		    padding-left: 0px;
+		    padding-right: 20px;
+		    padding-top: 0px;
+		    line-height: 32px;
+		    font-size: 17px;
+		    letter-spacing: 0.075em;
+		    vertical-align: middle;
+		    color: #494a51;
+		    padding-bottom: 0px;
+		    margin-bottom: 0px;
+		    margin-top: 0px;
+    	}
 	}
 
 	table:not(.picker__table) tr:first-child td {
@@ -1115,26 +1130,25 @@ body:not(.frontend) {
 		height: auto;
 		cursor: inherit;
 		z-index: inherit;
-		margin-left: -168px;
+		margin-left: -138px;
 	}
 
 	@media (max-width: 991px) {
-		width: 400px;
 		height: auto;
 		top: 15px;
 
 		img {
-			margin-left: -180px;
+			margin-left: -160px;
 		}
 	}
 
 	@media (max-width: 480px) {
-		width: 300px;
 		height: auto;
 		top: 15px;
 
 		img {
 			margin-left: -144px;
+			width: 300px;
 		}
 	}
 }
@@ -2094,13 +2108,13 @@ body.frontend, body#tinymce {
 
 		h1 {
 			font-size: 40px;
-			color: @brand-primary-text;
-			.FranklinBook();
+			color: @brand-primary-titles;
+			.FranklinDmCp();
 			text-align: center;
 			margin-top: 25px;
 			font-weight: 400;
 			text-transform: none;
-			letter-spacing: 0.05em;
+			letter-spacing: 0.00em;
 
 			@media (max-width: 768px) {
 				font-size: 35px;
@@ -2726,6 +2740,10 @@ body.frontend, body#tinymce {
 			fill: @brand-primary-titles !important;
 		}
 
+		.rrssb-buttons li.rrssb-whatsapp a:hover .rrssb-icon svg path {
+			fill: @brand-primary-titles !important;
+		}
+
         .rrssb-buttons.small-format li a .rrssb-icon svg path {
                 height: 50%;
         }
@@ -2866,11 +2884,9 @@ footer, body.mce-content-body {
 	}
 
 	ul.social-media {
-		visibility: hidden;
 		margin-left: 0;
 		padding-left: 0;
-		padding-top: 0px;
-		margin-bottom: 5px;
+		padding-top: 17px;
 
 		a {
 			border-bottom: 0px !important;
@@ -2983,7 +2999,6 @@ footer, body.mce-content-body {
 
 			@media(min-width: 992px) {
 				max-width: 100%;
-				padding-left: 78px;
 			}
 		}
 	}
@@ -2997,14 +3012,14 @@ footer, body.mce-content-body {
 
 	.sponsor-line {
 		position: relative;
-		height: 110px;
+		height: 85px;
 
 		img {
 			position: absolute;
 			bottom: 0;
 			max-width: 100%;
 			width: 100%;
-			opacity: 0.85;
+			opacity: 0.65;
 			padding-top: 5px !important;
 
 			&:hover,
@@ -3019,7 +3034,7 @@ footer, body.mce-content-body {
 		}
 
 		@media(max-width: 480px) {
-			height: 110px;
+			height: 85px;
 
 			img {
 				max-width: 120px !important;
@@ -3032,23 +3047,21 @@ footer, body.mce-content-body {
 			}
 
 			@media(min-width: 481px) {
-				margin-top: 0px !important;
+				margin-top: 40px !important;
 			}
 
-			img {
-				max-width: 100px !important;
-			}
+			margin-top: 40px !important;
+			max-width: 170px;
 		}
 
 		&.gutrecht {
-			margin-top: 15px;
 
 			@media(max-width: 480px) {
 				margin-top: 0px;
 			}
 
 			img {
-				max-width: 150px !important;
+				max-width: 167px !important;
 			}
 		}
 
@@ -3217,17 +3230,17 @@ footer {
 			border-bottom: 1px solid @brand-primary-text;
 
 			&:hover {
-				color: @brand-primary-red;
+				color: @brand-primary;
 				border-bottom: 0px;
 				text-decoration: none;
-				border-bottom: 1px solid @brand-primary-red;
+				border-bottom: 1px solid @brand-primary;
 			}
 
 			&:active,
 			&:focus {
-				color: @brand-primary-red;
+				color: @brand-primary;
 				text-decoration: none;
-				border-bottom: 1px solid @brand-primary-red;
+				border-bottom: 1px solid @brand-primary;
 			}
 		}
 
@@ -3241,7 +3254,11 @@ footer {
 	.social-media-wrapper, .footer-wrapper {
 		padding-top: 0px;
 		@media (min-width: 769px) {
-			padding-bottom: 22px;
+			padding-bottom: 70px;
+		}
+
+		@media(max-width: 768px) {
+			padding-bottom: 50px;
 		}
 	}
 
@@ -3767,7 +3784,7 @@ body.template-logged_out #content-core {
 }
 
 body.template-default_error_message #content-core p {
-    white-space: initial;
+    white-space: initial !important;
 }
 
 #formfolder-base-edit .field {
@@ -4334,7 +4351,7 @@ body.frontend.template-default_error_message {
 	.navigation-search-wrapper {
 		position: absolute;
 		top: 32px;
-		right: 310px;
+		right: 250px;
 		width: 25%;
 
 		@media(min-width: 992px) {
@@ -4610,7 +4627,7 @@ body.site-en #cd-nav {
 	.navigation-search-wrapper {
 		position: absolute;
 		top: 32px;
-		right: 340px;
+		right: 250px;
 		width: 25%;
 
 		@media (max-width: 992px) {
@@ -4650,7 +4667,7 @@ body.site-de #cd-nav {
 	.navigation-search-wrapper {
 		position: absolute;
 		top: 32px;
-		right: 340px;
+		right: 250px;
 		width: 25%;
 
 		@media (max-width: 992px) {
@@ -5162,8 +5179,8 @@ body.frontend, body#tinymce {
 			&:active,
 			&:focus {
 				border-bottom: 0px;
-				color: @brand-primary-red;
-				border-bottom: 1px solid @brand-primary-red;
+				color: @brand-primary;
+				border-bottom: 1px solid @brand-primary;
  				text-decoration: none;
 			}
 		}
@@ -9869,7 +9886,7 @@ body.frontend {
 
 	    @media(max-width: 991px) {
 	    	margin-top: 0px;
-	    	pointer-events: none !important;
+	    	/*pointer-events: none !important;*/
 	    	width: 50px;
 	    	height: 50px;
 	    }
@@ -9933,7 +9950,7 @@ body.frontend {
 }
 
 body.mobile .video-slide .plone-loader {
-	display: none !important;
+	display: none;
 }
 
 body.frontend #below-content {
@@ -9987,6 +10004,10 @@ body.frontend #below-content {
 			.rrssb-buttons li.rrssb-googleplus a:hover .rrssb-icon svg path {
 				fill: #ffffff !important;
 			}
+
+			.rrssb-buttons li.rrssb-whatsapp a:hover .rrssb-icon svg path {
+				fill: #ffffff !important;
+			}
 		}
 	}
 
@@ -10026,4 +10047,27 @@ body.frontend #below-content {
 	margin-right: 0px;
 }
 
+body.frontend #below-content .portlet-rrssb .sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp a {
+	padding: 9px 12px !important;
+}
+
+body.frontend.mobile #below-content .portlet-rrssb {
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-email {
+		display: none !important;
+	}
+
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp {
+		display: inline-block !important;
+	}
+}
+
+body.frontend:not(.mobile) #below-content .portlet-rrssb {
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-email {
+		display: inline-block !important;
+	}
+
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp {
+		display: none !important;
+	}
+}
 
