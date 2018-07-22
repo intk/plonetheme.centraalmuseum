@@ -353,10 +353,6 @@ body:not(.frontend).portaltype-object.template-edit {
 
 /* Collection slideshow */
 body.frontend.portaltype-object {
-	.page-container,
-	footer {
-		display: none;
-	}
 
 	#slickslideshow {
 		width: 100%;
@@ -393,11 +389,23 @@ body.frontend.portaltype-object {
 
 	.intro-header:before {
 		padding-top: 0px !important;
-		height: 100% !important;
+		height: 50vh !important;
 	}
 
 	.intro-header {
-		height: 100% !important;
+		height: 80vh !important;
+	}
+
+	@media(min-width: 992px) {
+		.intro-header {
+			min-height: 540px !important;
+		}
+	}
+
+	@media(max-width: 991px) {
+		.intro-header {
+			min-height: 540px !important;
+		}
 	}
 
 	#slickslideshow #slideshow-controls {
@@ -456,6 +464,10 @@ body.frontend.portaltype-object {
 		#slideshow-controls .count-description {
 		    display: none !important;
 		}
+	}
+
+	#slideshow-controls .count-description {
+		display: none !important;
 	}
 
 	.object-container {
@@ -623,7 +635,7 @@ body.portaltype-object {
 	}
 
 	#slickcarousel {
-		background: #2b2b2b;
+		background: #ffffff;
 
 		.slick-next, .slick-prev {
 			border: none;
@@ -646,7 +658,7 @@ body.portaltype-object {
 		    left: 0;
 		    height: 80px;
 		    width: 100%;
-		    background-color: #242424;
+		    background-color: transparent;
 		    padding-right: 0px;
 		    padding-left: 0px;
 		    opacity: 0.8;
@@ -663,7 +675,7 @@ body.portaltype-object {
 
 		    .slide-description {
 		    	color: #ffffff !important;
-
+		    	display: none;
 		    	span {
 		    		padding-right: 20px;
 		    	}
@@ -676,21 +688,25 @@ body.portaltype-object {
 		    .btn.info-btn .fa.fa-times,
 		    .btn-share-btn .fa.fa-share-alt {
 		    	line-height: 55px;
-			    color: #ffffff;
+			    color: @brand-primary-titles;
 			    font-size: 1.400em;
 			    opacity: 0.6;
 			    font-weight: 400;
 		    }
 
 		    .btn {
-		    	width: 32%;
+		    	width: 100px;
 		    	height: 100%;
-    			background-color: #242424;
+    			background-color: transparent;
     			float: right;
 			    border: 0px;
-			    border-left: 0px solid #2b2b2b;
-			    border-right: 0px solid #2b2b2b;
+			    border-left: 0px solid transparent;
+			    border-right: 0px solid transparent;
 			    padding: 15px 25px;
+
+			    &:active {
+			    	box-shadow: none;
+			    }
 		    }
 
 		    .btn.expand-btn, .btn.share-btn {
@@ -704,7 +720,19 @@ body.portaltype-object {
 		    .actions-div {
 		    	padding-right: 0px;
     			padding-left: 0px;
+    			margin: 0 auto;
+				width: auto;
+				-webkit-transform: translateX(-50%);
+	            -moz-transform: translateX(-50%);
+	            -ms-transform: translateX(-50%);
+	            transform: translateX(-50%);
+				margin-left: 50%;
+
+				@media(max-width: 768px) {
+					width: 100px;
+				}
 		    }
+
 		}
 	}
 
@@ -793,10 +821,20 @@ body.portaltype-object {
 body.template-search,
 body.template-advancedsearch {
 	.title-container {
-		padding-top: 150px !important;
+		padding-top: 50px !important;
 
 		@media (max-width: 768px) {
 			padding-top: 50px;
+		}
+	}
+}
+
+body.template-advancedsearch { 
+	.title-container {
+		padding-top: 100px !important;
+
+		@media (max-width: 768px) {
+			padding-top: 150px !important;
 		}
 	}
 }

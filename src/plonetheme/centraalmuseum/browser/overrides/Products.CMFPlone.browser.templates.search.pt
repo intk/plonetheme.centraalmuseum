@@ -67,7 +67,7 @@
         </div>
         
         <div class="visualClear div-advanced-search">
-          <!--<a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query()) if advanced_query() else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>-->
+          <a class="advanced-search" tal:attributes="href python: '/%s/@@advancedsearch?%s' %(getattr(context,'language', 'nl'), advanced_query()) if advanced_query() else '/%s/@@advancedsearch' %(getattr(context, 'language', 'nl'))" i18n:translate="label_advanced_search">Advanced search</a>
         </div>
         
         <dl class="actionMenu"
@@ -268,7 +268,7 @@
                <div class="clearfix extra-fields" i18n:domain="plonetheme.centraalmuseum">
                       <tal:define_extra
                         tal:define="extra_filters python: extra_filters">
-                        <p tal:condition="extra_filters" tal:content="python: 'Verfijnen: ' if getattr(context, 'language', None) == 'nl' else 'Refine: '"></p>
+                        <p tal:condition="extra_filters" tal:content="python: 'Verfijnen: ' if getattr(context, 'language', None) == 'nl' else 'Refine: '" class="filter-text"></p>
                         <tal:items repeat="extra_filter extra_filters">
                           <p i18n:translate=""><tal:hasparam tal:condition="python: extra_filter['param'] != ''"><span i18n:translate="" tal:content="python: extra_filter['param']"></span>: </tal:hasparam><span tal:content="python: extra_filter['value']" i18n:translate=""></span><span> <a tal:attributes="href python: extra_filter['link']" class="glyphicon glyphicon-remove extra-filter-remove"></a></span></p>
                           <input type="hidden" tal:attributes="value python: extra_filter['value']; name python: extra_filter['param']"/>

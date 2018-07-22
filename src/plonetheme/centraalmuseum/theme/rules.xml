@@ -109,7 +109,8 @@
       <drop css:content=".documentDescription"/>
       <drop css:content=".documentFirstHeading"/>
       <drop css:theme=".nav-home-wrapper" css:if-content="body.site-ZM"/>
-
+      
+      <drop css:theme="#object-header" css:if-not-content="body.portaltype-object"/>
 
       <replace
         css:theme-children="#nav-search-wrapper"
@@ -134,6 +135,20 @@
         css:content-children="#viewlet-below-content-body"
         />
 
+      <replace
+        css:theme-children="#top-left-header"
+        css:content=".top-left-header-portlets"
+        method="raw"
+        />
+
+      <replace
+        css:theme-children="#top-left-header-below"
+        css:content=".top-left-header-portlets .text-top-left-wrapper"
+        method="raw"
+        />
+
+      <drop css:content=".top-left-header-portlets"/>
+      <drop css:content="#column-collective-portletpage-toprow-portlet-top-left-header"/>
       <drop css:content="#viewlet-below-content-body"/>
       <drop css:content="#viewlet-above-content-title"/>
 
