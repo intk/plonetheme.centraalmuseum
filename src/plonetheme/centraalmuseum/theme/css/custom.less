@@ -1068,6 +1068,21 @@ body:not(.frontend) {
 		color: @brand-primary-text;
 		padding-top: 10px;
     	padding-bottom: 5px;
+
+    	p {
+    		padding: 0;
+		    padding-left: 0px;
+		    padding-right: 20px;
+		    padding-top: 0px;
+		    line-height: 32px;
+		    font-size: 17px;
+		    letter-spacing: 0.075em;
+		    vertical-align: middle;
+		    color: #494a51;
+		    padding-bottom: 0px;
+		    margin-bottom: 0px;
+		    margin-top: 0px;
+    	}
 	}
 
 	table:not(.picker__table) tr:first-child td {
@@ -1119,22 +1134,22 @@ body:not(.frontend) {
 	}
 
 	@media (max-width: 991px) {
-		width: 400px;
 		height: auto;
 		top: 15px;
 
 		img {
 			margin-left: -180px;
+			width: 400px;
 		}
 	}
 
 	@media (max-width: 480px) {
-		width: 300px;
 		height: auto;
 		top: 15px;
 
 		img {
 			margin-left: -144px;
+			width: 300px;
 		}
 	}
 }
@@ -1530,7 +1545,7 @@ body.frontend, body#tinymce {
     	}
     }
 
-    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event):not(.portaltype-occurrence) {
+    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event):not(.portaltype-occurrence):not(.portaltype-news-item) {
     	.separator-wrapper:not(.kasteel) {
     		display: none;
     	}
@@ -2032,7 +2047,7 @@ body.frontend, body#tinymce {
 		display: none;
 	}
 
-	&.portaltype-event, &.portaltype-occurrence {
+	&.portaltype-event, &.portaltype-occurrence, &.portaltype-news-item {
 
 		abbr {
 			cursor: initial;
@@ -2726,6 +2741,10 @@ body.frontend, body#tinymce {
 			fill: @brand-primary-titles !important;
 		}
 
+		.rrssb-buttons li.rrssb-whatsapp a:hover .rrssb-icon svg path {
+			fill: @brand-primary-titles !important;
+		}
+
         .rrssb-buttons.small-format li a .rrssb-icon svg path {
                 height: 50%;
         }
@@ -3092,7 +3111,7 @@ footer, body.mce-content-body {
 body.portaltype-folder,
 body.portaltype-collection,
 body.portaltype-person.template-listing_view,
-body:not(.portaltype-document):not(.portaltype-event),
+body:not(.portaltype-document):not(.portaltype-event):not(.portaltype-news-item),
 body:not(.portaltype-document):not(.portaltype-occurrence) {
 	footer {
 		border-top: 0px;
@@ -3767,7 +3786,7 @@ body.template-logged_out #content-core {
 }
 
 body.template-default_error_message #content-core p {
-    white-space: initial;
+    white-space: initial !important;
 }
 
 #formfolder-base-edit .field {
@@ -5118,6 +5137,7 @@ body.mobile.frontend {
 body.frontend {
 	&.portaltype-document,
 	&.portaltype-event,
+	&.portaltype-news-item,
 	&.portaltype-occurrence {
 		#content-core {
 	    	@media (min-width: 769px) {
@@ -6245,6 +6265,7 @@ body.frontend {
 	}
 
 	&.portaltype-document,
+	&.portaltype-news-item,
 	&.portaltype-event,
 	&.portaltype-occurrence {
 
@@ -6777,7 +6798,7 @@ body.frontend {
 }
 
 
-body:not(.portaltype-document):not(.portaltype-event),
+body:not(.portaltype-document):not(.portaltype-event):not(.portaltype-news-item),
 body:not(.portaltype-document):not(.portaltype-occurrence) {
 	.arrow-title {
 		display: none;
@@ -6798,6 +6819,7 @@ body.frontend #above-content .portlet-rrssb {
 
 body.frontend {
 	&.portaltype-document,
+	&.portaltype-news-item,
 	&.portaltype-event,
 	&.portaltype-occurrence { 
 		#below-content .portlet-rrssb {
@@ -6892,6 +6914,7 @@ body:not(.frontend) .portlet-rrssb {
 }
 
 body.frontend.portaltype-document,
+body.frontend.portaltype-news-item,
 body.frontend.portaltype-event,
 body.frontend.portaltype-occurrence {
 	li.event-category {
@@ -8261,7 +8284,7 @@ body.template-checkout #form-checkout #field-checkout-accept_terms_and_condition
 }
 
 
-body.portaltype-event, body.portaltype-document, body.portaltype-occurrence {
+body.portaltype-event, body.portaltype-document, body.portaltype-occurrence, body.portaltype-news-item {
 	#slickcarousel .video-slide iframe {
 		
 		@media(min-width: 992px) {
@@ -8676,8 +8699,12 @@ body.template-listing_view {
 	}
 
 	#title-carousel-wrapper .title-container {
-		ul.event.dates, span.subheading {
+		span.subheading {
 			display: none !important;
+		}
+
+		ul.event.dates {
+			text-align: center;
 		}
 
 		h1.brand-name {
@@ -9869,7 +9896,7 @@ body.frontend {
 
 	    @media(max-width: 991px) {
 	    	margin-top: 0px;
-	    	pointer-events: none !important;
+	    	/*pointer-events: none !important;*/
 	    	width: 50px;
 	    	height: 50px;
 	    }
@@ -9933,7 +9960,7 @@ body.frontend {
 }
 
 body.mobile .video-slide .plone-loader {
-	display: none !important;
+	display: none;
 }
 
 body.frontend #below-content {
@@ -9987,6 +10014,10 @@ body.frontend #below-content {
 			.rrssb-buttons li.rrssb-googleplus a:hover .rrssb-icon svg path {
 				fill: #ffffff !important;
 			}
+
+			.rrssb-buttons li.rrssb-whatsapp a:hover .rrssb-icon svg path {
+				fill: #ffffff !important;
+			}
 		}
 	}
 
@@ -10026,4 +10057,27 @@ body.frontend #below-content {
 	margin-right: 0px;
 }
 
+body.frontend #below-content .portlet-rrssb .sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp a {
+	padding: 9px 12px !important;
+}
+
+body.frontend.mobile #below-content .portlet-rrssb {
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-email {
+		display: none !important;
+	}
+
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp {
+		display: inline-block !important;
+	}
+}
+
+body.frontend:not(.mobile) #below-content .portlet-rrssb {
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-email {
+		display: inline-block !important;
+	}
+
+	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp {
+		display: none !important;
+	}
+}
 

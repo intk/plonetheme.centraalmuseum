@@ -13,6 +13,7 @@ from plone.event.interfaces import IEvent
 from datetime import date
 from DateTime import DateTime
 import time
+from Products.CMFCore.utils import getToolByName
 
 from plone.app.event.browser.event_listing import EventEventListing, EventListing, EventListingIcal
 import plone.api
@@ -24,6 +25,22 @@ from bs4 import BeautifulSoup as BSHTML
 import re
 
 class ContextToolsView(BrowserView):
+
+    def toLocalizedTime(self, time, long_format=None, time_only=None):
+        """Convert time to localized time
+        """
+        util = getToolByName(self.context, 'translation_service')
+        return util.ulocalized_time(time, long_format, time_only, self.context,
+                                    domain='plonelocales')
+
+    def get_pub_date(self, item):
+        try:
+            date = item.EffectiveDate()
+            if not date or date == 'None':
+                return None
+            return self.toLocalizedTime(DateTime(date))
+        except:
+            return None
 
     def get_img_tags(self, data):
         soup = BSHTML(data)
@@ -505,14 +522,14 @@ def objectTranslated(ob, event):
                 if not hasattr(ob, 'slideshow'):
                     if ITranslationManager(ob).has_translation('nl'):
                         original_ob = ITranslationManager(ob).get_translation('nl')
-                        
+
                         if hasattr(original_ob, 'slideshow'):
                             slideshow = original_ob['slideshow']
                             ITranslationManager(slideshow).add_translation('en')
                             slideshow_trans = ITranslationManager(slideshow).get_translation('en')
                             slideshow_trans.title = slideshow.title
                             slideshow_trans.portal_workflow.doActionFor(slideshow_trans, "publish", comment="Slideshow published")
-                            
+
                             for sitem in slideshow:
                                 if slideshow[sitem].portal_type == "Image":
                                     ITranslationManager(slideshow[sitem]).add_translation('en')

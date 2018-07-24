@@ -5,7 +5,7 @@
       lang="en"
       i18n:domain="plone.app.event"
       tal:omit-tag="">
-<body tal:omit-tag="">
+<body tal:omit-tag=""> 
 
 <tal:def tal:define="data python:view.data; excludes view/excludes">
   

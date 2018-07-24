@@ -42,6 +42,7 @@
                 has_media nocall:item/leadMedia;
                 item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;                
                 item_is_event python:item_type in ['Event', 'Exhibition'];
+                item_is_news_item python:item_type in ['News Item'];
                 item_has_image python:item.getIcon;
                 context_portal_type context/portal_type|nothing;
                 item_index repeat/item/index;"
@@ -64,10 +65,12 @@
                           </div>
 
                           <div class="entry-wrapper">
-                          <tal:event condition="item_is_event"
+                          <tal:event condition="python: item_is_event or item_is_news_item"
                              tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
                               <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())"/>
+                              <tal:date tal:replace="structure python:view.formatted_date(item.getObject())" tal:condition="item_is_event"/>
+                              <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(item.getObject())" tal:condition="item_is_news_item"/>
+
                               <span tal:condition="item/location" i18n:translate="label_event_byline_location">&mdash;
                                 <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
                               </span>
