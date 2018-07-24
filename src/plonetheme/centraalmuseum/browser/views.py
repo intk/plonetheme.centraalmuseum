@@ -20,10 +20,28 @@ from zope.component import getMultiAdapter
 from plone.event.interfaces import IEvent
 from zope.contentprovider.interfaces import IContentProvider
 
+from Products.CMFCore.utils import getToolByName
+
 from bs4 import BeautifulSoup as BSHTML
 import re
 
 class ContextToolsView(BrowserView):
+
+    def toLocalizedTime(self, time, long_format=None, time_only=None):
+        """Convert time to localized time
+        """
+        util = getToolByName(self.context, 'translation_service')
+        return util.ulocalized_time(time, long_format, time_only, self.context,
+                                    domain='plonelocales')
+
+    def get_pub_date(self, item):
+        try:
+            date = item.EffectiveDate()
+            if not date or date == 'None':
+                return None
+            return self.toLocalizedTime(DateTime(date))
+        except:
+            return None
 
     def get_img_tags(self, data):
         soup = BSHTML(data)

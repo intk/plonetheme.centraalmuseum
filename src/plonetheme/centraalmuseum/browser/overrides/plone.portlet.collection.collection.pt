@@ -36,7 +36,9 @@
         >
         <div class="thumb-wrapper">         
           <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl"
-            tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'mini')">
+            tal:define="
+              img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+              item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, img_scale)">
 
             <div class="on-display-wrapper" tal:condition="python:item_on_display" i18n:domain="plonetheme.centraalmuseum">
               <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
@@ -74,7 +76,7 @@
           </h4>
 
           <div class="portlet-item-description">
-            <p tal:content="obj/Description" class="item-description"></p>
+            <p class="item-description"><span tal:condition="view/data/show_collection_online" class="desc-mdash">&mdash;</span> <span tal:replace="obj/Description" ></span></p>
           </div>
 
           <div class="show-more-portlet-item" tal:condition="view/data/show_frontpage">
