@@ -26,6 +26,20 @@ from bs4 import BeautifulSoup as BSHTML
 import re
 
 class ContextToolsView(BrowserView):
+    def trimText(self, text, limit):
+        try:
+            if text != None:
+                if len(text) > limit:
+                    res = text[0:limit]
+                    lastspace = res.rfind(" ")
+                    res = res[0:lastspace] + " ..."
+                    return res
+                else:
+                    return text
+            else:
+                return ""
+        except:
+            return text
 
     def toLocalizedTime(self, time, long_format=None, time_only=None):
         """Convert time to localized time
