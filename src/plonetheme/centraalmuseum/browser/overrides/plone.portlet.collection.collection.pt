@@ -84,7 +84,7 @@
 
           <div class="show-more-portlet-item" tal:condition="view/data/show_frontpage">
             <a tal:attributes="href itemUrl">
-              <input i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
+              <input i18n:domain="plonetheme.centraalmuseum" i18n:attributes="value more_url" type="submit" class="btn-default show-more" value="More&hellip;"/>
             </a>
           </div>
         </div>

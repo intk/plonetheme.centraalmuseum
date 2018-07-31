@@ -1945,8 +1945,8 @@ body.frontend, body#tinymce {
 
 		p.event-date {
 			font-size: 15px;
-		    line-height: 32px;
-		    color: @brand-primary-text;
+		    line-height: 35px;
+		    color: @brand-primary-titles;
 		    letter-spacing: 0.05em;
 			margin-bottom: 0px;
 			margin-top: 14px;
@@ -2939,7 +2939,7 @@ footer, body.mce-content-body {
 	padding-bottom: 30px;
 
 	.portlet-static-footer {
-		padding-top: 94px;
+		padding-top: 80px;
 
 		@media(max-width: 767px) {
 			padding-top: 0px;
@@ -3017,7 +3017,7 @@ footer, body.mce-content-body {
 
 	.sponsor-line {
 		position: relative;
-		height: 85px;
+		height: 105px;
 
 		img {
 			position: absolute;
@@ -3162,7 +3162,7 @@ footer {
 			}
 
 			.footer-wrapper {
-				padding-left: 35px;
+				padding-left: 50px;
 				padding-right: 35px;
 			}
 		}
@@ -3182,7 +3182,7 @@ footer {
 	}
 
 	div.portlet-static-footer {
-		background-color: #f9fafb;
+		background-color: #fbf9f2;
 		margin-left: -15px;
 		margin-right: -15px;
 
@@ -3193,7 +3193,7 @@ footer {
 
 			a:not(.text-button) {
 				.FranklinMed();
-				font-size: 17px;
+				font-size: 15px;
 				text-transform: uppercase;
 				text-decoration: none;
 				color: @brand-primary-titles;
@@ -3235,17 +3235,17 @@ footer {
 			border-bottom: 1px solid @brand-primary-text;
 
 			&:hover {
-				color: @brand-primary;
+				color: @brand-primary-text;
 				border-bottom: 0px;
 				text-decoration: none;
-				border-bottom: 1px solid @brand-primary;
+				border-bottom: 0px solid @brand-primary;
 			}
 
 			&:active,
 			&:focus {
-				color: @brand-primary;
+				color: @brand-primary-text;
 				text-decoration: none;
-				border-bottom: 1px solid @brand-primary;
+				border-bottom: 0px solid @brand-primary;
 			}
 		}
 
@@ -3259,7 +3259,7 @@ footer {
 	.social-media-wrapper, .footer-wrapper {
 		padding-top: 0px;
 		@media (min-width: 769px) {
-			padding-bottom: 70px;
+			padding-bottom: 35px;
 		}
 
 		@media(max-width: 768px) {
@@ -5194,7 +5194,7 @@ body.frontend, body#tinymce {
 			&:focus {
 				border-bottom: 0px;
 				color: @brand-primary;
-				border-bottom: 1px solid @brand-primary;
+				border-bottom: 0px solid @brand-primary;
  				text-decoration: none;
 			}
 		}
@@ -10147,7 +10147,7 @@ body.frontend.portaltype-object {
 			&:focus:active {
 				color: #ffffff;
 			}
-			margin-top: 40px;
+			margin-top: 0px;
 			margin-bottom: 100px;
 		}
 	}
@@ -10239,7 +10239,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 	  		content: "\f105";
 		    font-size: 16px;
 		    position: absolute;
-		    top: 3px;
+		    top: 1px;
 		    color: @brand-primary-text;
 		    left: 0px;
 		    font-family: 'FontAwesome';
@@ -10263,14 +10263,21 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 	    font-size: 45px;
 	    text-align: left;
 	    line-height: 1.0;
-	    margin-bottom: 0px;
+	    margin-bottom: 5px;
 	  }
 
 	  a {
 	  	color: #ffffff;
-	  	font-size: 20px;
 	  	border-bottom: 1px solid #ffffff;
 	  	cursor: pointer;
+
+	  	@media(min-width: 992px) and (max-width: 1299px) {
+	  		font-size: 1.5vw;
+	  	}
+
+	  	@media(min-width: 1300px) {
+	  		font-size: 20px;
+	  	}
 
 	  	&:hover,
 	  	&:active,
@@ -10339,7 +10346,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		#top-left-header {
 			position: absolute;
 		    top: 0;
-		    width: 320px;
+		    width: 410px;
 		    height: 100%;
 
 		    .top-left-header-portlets {
@@ -10356,9 +10363,12 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 			    position: absolute;
 			    bottom: 0;
-			    padding: 40px;
-    			padding-bottom: 20px;
+			    padding: 54px;
+			    padding-bottom: 40px;
+			    padding-right: 100px;
 			    z-index: 4;
+
+			    max-width: 400px;
 
 		    }
 
@@ -10367,6 +10377,10 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			  	font-size: 20px;
 			  	border-bottom: 1px solid @brand-primary-text;
 			  	cursor: pointer;
+
+			  	@media(max-width: 1400px) {
+			  		font-size: 1.5vw;
+			  	}
 
 			  	&:hover,
 			  	&:active,
@@ -10379,8 +10393,14 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			  }
 
 			 p {
-			 	line-height: 30px;
-			 	margin-bottom: 25px;
+			 	line-height: 1.5;
+			    margin-bottom: 25px;
+			    font-size: 20px;
+			    
+
+			    @media(max-width: 1400px) {
+			    	font-size: 1.5vw;
+			    }
 			 }
 
 			 ul.arrow-lists li {
@@ -10389,6 +10409,16 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 			ul.arrow-lists {
 				margin-left: -40px;
+			}
+
+			.logo-nav-wrapper {
+				width: 495px;
+
+				padding-left:55px;
+
+				#nav-logo {
+					margin-top: 43px;
+				}
 			}
 
 
@@ -10405,7 +10435,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		    margin-left: 0;
 
 		    .slideshow-wrapper {
-		    	margin-left: 320px;
+		    	margin-left: 410px;
 		    }
 		}
 
@@ -10414,12 +10444,20 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		}
 
 		.slide-info-wrapper {
-			padding: 35px 64px;
+			padding: 55px 64px;
 
 			h1 {
-				font-size: 85px;
+				font-size: 7vw;
 			    text-align: left;
-			    line-height: 1.0;
+			    line-height: 0.83;
+
+			    @media(min-width: 1100px) {
+			    	max-width: 85%;
+			    }
+
+			    @media(min-width: 1300px) {
+			    	font-size: 90px;
+			    }
 			}
 
 			a {
@@ -10439,7 +10477,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 	@media screen and (max-height: 700px) and (min-width: 768px) {
 		#top-left-header {
-			.text-top-left-wrapper {
+			/*.text-top-left-wrapper {
 				padding: 30px;
 				padding-bottom: 15px;
 			}
@@ -10463,14 +10501,14 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				&:before {
 					top: 0px;
 				}
-			}
+			}*/
 		}
 	}
 
 	@media screen and (max-height: 320px) and (min-width: 768px) { 
-		.text-top-left-wrapper { 
+		/*.text-top-left-wrapper { 
 			display: none;
-		}
+		}*/
 	}
 }
 
@@ -10513,7 +10551,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 				input {
 					margin-left: 0;
-					width: 130px
+					width: 135px
 				}
 			}
 		}
@@ -10561,7 +10599,8 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				margin-bottom: 25px;
 
 				h1 {
-					font-size: 70px;
+					font-size: 80px;
+					margin-top: 5px;
 				}
 			}
 
@@ -10571,33 +10610,42 @@ body.frontend.portaltype-portlet-page.section-frontpage {
     			padding-right: 0px !important;
 
 				.portlet-item {
-					margin-bottom: 70px;
+					margin-bottom: 75px;
 				}
 
 				.thumb-wrapper {
-					width: 60%;
+					width: 55%;
 					float: left;
 					padding: 15px;
 
 					img {
 						margin-bottom: 0px;
+						width: auto;
+						max-height: 715px;
+						height: auto;
+						max-width: 100%;
 					}
 				}
 
 				.entry-wrapper {
-					width: 40%;
+					width: 45%;
 					float: right;
 					padding: 50px;
-					padding-top: 30px;
+					padding-top: 5.5vw;
     				padding-bottom: 30px;
+    				max-width: 550px;
+
+    				@media(min-width: 1300px) {
+    					padding-top: 70px;
+    				}
 
 					h4 {
 						font-size: 70px;
     					line-height: 65px;
 
     					@media(max-width: 1280px) {
-    						font-size: 6.5vw;
-    						line-height: 5.8vw;
+    						font-size: 5.5vw;
+    						line-height: 5vw;
     					}
 
     					a {
@@ -10616,6 +10664,8 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 					}
 
 
+
+
 				}
 
 				&> .portlet-item:nth-child(even) {
@@ -10624,22 +10674,35 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 						float: right;
 						padding-right: 55px;
 
+						img {
+							float: left;
+						}
+
 					}
 					.entry-wrapper {
 						width: 40%;
 						float: left;
 						padding-left: 75px;
+						float: right;
+						padding-top: 3vw;
+						@media(min-width: 1300px) {
+							padding-top: 40px;
+						}
 					}
 				} 
 
 				&> .portlet-item:nth-child(odd) {
 					.thumb-wrapper {
 						padding-left: 55px;
+						img {
+							float: right;
+						}
 						
 					}
 
 					.entry-wrapper {
 						padding-right: 75px;
+						float: left;
 					}
 				} 
 			}
@@ -10647,8 +10710,8 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			&.alternate-color {
 				#row-items > .portlet-item:nth-child(even) {
 					background-color: #e1ecf4;
-					padding-top: 70px;
-					padding-bottom: 70px;
+					padding-top: 75px;
+					padding-bottom: 75px;
 					padding-left: 0px;
 					padding-right: 0px;
 
@@ -10660,7 +10723,12 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 					}
 
 					.entry-wrapper { 
-						padding-left: 90px;
+						padding-left: 82px;
+						padding-top: 3vw;
+
+						@media(min-width: 1300px) {
+							padding-top: 60px;
+						}
 
 						.show-more {
 							background-color: #e1ecf4;
@@ -10677,19 +10745,27 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 			&.extra-padding {
 
-				padding-bottom: 35px;
+				padding-bottom: 5px;
 				
 				#row-items {
 
 				.entry-wrapper {
 
 					    padding: 40px;
-					    padding-top: 25px;
+					    padding-top: 5vw;
 					    padding-bottom: 25px;
 
+					    @media(min-width: 1300px){
+					    	padding-top: 60px;
+					    }
+
 						h4 {
-							font-size: 55px;
-							line-height: 45px;
+							font-size: 4.5vw;
+							line-height: 0.85;
+
+							@media(min-width: 1300px) {
+								font-size: 60px;
+							}
 						}
 					}
 
@@ -10706,7 +10782,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 					}
 					.entry-wrapper {
 						width: 45%;
-						padding-left: 75px;
+						padding-left: 55px;
 					}
 				} 
 
@@ -10742,7 +10818,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			display: none;
 		}
 		@media(min-width: 768px) {
-			padding-top: 40px !important;
+			padding-top: 70px !important;
 		}
 	}
 
@@ -10882,24 +10958,32 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			}
 
 		}
+
+		.entry-wrapper {
+			p.event-date {
+				color: #a1a1a3;
+			}
+		}
+
 		@media(min-width: 992px) {
-			padding-top: 120px;
+			padding-top: 100px;
 			padding-left: 25px;
+			padding-bottom: 50px;
 
 			.portletHeader {
 				width: 25%;
 				float: right;
 
 				h1 {
-					max-width: 250px;
+					max-width: 160px;
 				    font-size: 4.5vw;
-				    line-height: 4.3vw;
+				    line-height: 4.0vw;
 				    margin-top: 1.8vw;
 				    text-align: left;
 
 				    @media(min-width: 1400px) {
-				    	font-size: 65px;
-				    	line-height: 65px;
+				    	font-size: 60px;
+				    	line-height: 60px;
 				    }
 				}
 
@@ -10917,10 +11001,23 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				padding-left: 15px !important;
 			}
 
+			.thumb-wrapper {
+				img {
+					margin-bottom: 15px;
+				}
+			}
+
 			.entry-wrapper {
 				h4.item-title {
-					font-size: 25px;
-    				line-height: 30px;
+    				font-size: 20px;
+				    line-height: 25px;
+				    .FranklinMed();
+				    color: #494A51;
+
+				    a {
+				    	color: #494A51;
+				    	margin-top: 0px;
+				    }
 				}
 			}
 

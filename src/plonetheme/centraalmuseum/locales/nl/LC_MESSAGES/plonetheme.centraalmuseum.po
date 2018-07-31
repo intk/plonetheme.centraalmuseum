@@ -209,6 +209,8 @@ msgstr "Ontdek het huis"
 msgid "buy_tickets"
 msgstr "Tickets"
 
-
+#: ../object.py
+msgid "more_url"
+msgstr "Meer info"
 
 
