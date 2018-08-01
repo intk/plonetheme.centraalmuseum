@@ -13,6 +13,8 @@
     <theme href="index_empty.html" css:if-content="body.portaltype-file"/>
     <theme href="index_empty.html" css:if-content="body.template-login_form"/>
     <theme href="index_empty.html" css:if-content="body.template-login_success"/>
+    <theme href="index_empty.html" css:if-content="body.portaltype-folder"/>
+    <theme href="index_empty.html" css:if-content="body.portaltype-collection"/>
     <theme href="index_empty.html" css:if-content="#slickcarousel.empty"/>
     <theme href="index.html" css:if-content="body.frontend"/>
 
@@ -325,7 +327,7 @@
 
 
       <replace css:content="#form-widgets-email">
-        <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Je emailadres"/>
+        <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres"/>
       </replace>
 
       <replace css:content="#parent-fieldname-text iframe">

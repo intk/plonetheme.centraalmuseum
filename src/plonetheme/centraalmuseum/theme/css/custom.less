@@ -11009,8 +11009,6 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				    	line-height: 60px;
 				    }
 				}
-
-
 			}
 
 			.portletFooter {
@@ -11053,7 +11051,40 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 	}
 }
 
+body.frontend.portaltype-folder,
+body.frontend.portaltype-collection {
+	#website-wrapper.empty-slideshow {
+		.title-container {
+			@media(max-width: 991px) {
+				h1.brand-name {
+					font-size: 45px !important;
+    				line-height: 42px;
+				}
 
+				span.subheading {
+					margin: 0 auto;
+					font-size: 1.180em;
+					line-height: 1.5;
+					color: @brand-primary-text;
+				}
+			}
+			@media(min-width: 992px) {
+				h1.brand-name {
+					font-size: 60px !important;
+					margin-bottom: 10px;
+				}
+
+				span.subheading {
+					max-width: 660px;
+					margin: 0 auto;
+					font-size: 1.500em;
+					line-height: 1.5;
+					color: @brand-primary-text;
+				}
+			}
+		}
+	}
+}
 
 
 

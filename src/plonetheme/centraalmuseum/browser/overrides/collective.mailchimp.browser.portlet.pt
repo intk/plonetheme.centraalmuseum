@@ -14,7 +14,7 @@
     <dd class="portletItem odd">
       <form tal:attributes="action view/endpoint_url|nothing;" id="newsletter-subscriber-form" method="get">
         <div id="formfield-form-widgets-email">
-          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Je emailadres"/>
+          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres"/>
         </div>
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
