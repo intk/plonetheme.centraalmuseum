@@ -17,7 +17,44 @@
     </header>
 
 
-  <div class="container-fluid" id="row-items">
+
+
+  <div class="collection-slider-wrapper" tal:condition="python: view.data.show_collection_online">
+    <div class="collection-slider multiple-items">
+      <tal:items tal:repeat="obj python: view.results()">
+        <tal:item tal:define="has_media nocall:obj/leadMedia;
+                              item_type python:obj.portal_type;
+                              useView python:item_type in viewActions;
+                              itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();">
+          <div class="collection-slide">
+            <div class="collection-slide-wrapper" tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'large')" tal:condition="has_media">
+              <div class="collection-slide-img-wrapper">
+                <div class="slide-inner-img-wrapper">
+                  <a tal:attributes="href python: itemUrl"><img tal:define="images_src python: item_img" tal:attributes="src images_src; alt obj/Title; title obj/Title;"></a>
+                  <div class="slide-inner-title">
+                    <h4>
+                      <a href="#"
+                         tal:attributes="href itemUrl;"
+                         tal:content="obj/Title"
+                         >
+                        Title
+                        </a>
+                    </h4>
+                    <p class="item-description"><span class="desc-mdash">&mdash;</span> <span tal:replace="python:context.restrictedTraverse('@@context_tools').trimText(obj.Description(), 100)" ></span></p>
+                  </div>
+                </div>
+              </div>
+              <!--<div class="collection-slide-title-wrapper">
+                
+              </div>-->
+            </div>
+          </div>
+        </tal:item>
+      </tal:items>
+    </div>
+  </div>
+
+  <div class="container-fluid" id="row-items" tal:condition="python: not view.data.show_collection_online">
     <tal:events tal:repeat="obj python: view.results()"
                 tal:define="portlet_class string: ${view/get_css_class}">
 

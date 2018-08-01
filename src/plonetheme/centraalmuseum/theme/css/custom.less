@@ -6871,6 +6871,10 @@ body.frontend.portaltype-portlet-page #portletPageTopRow > div:nth-child(2) {
 	.portletCollection {
 		padding-top: 0px;
 
+		@media(max-width: 991px) {
+			margin-bottom: 0px;
+		}
+
 		.portletHeader {
 			padding-top: 10px;
 		}
@@ -10513,9 +10517,8 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 }
 
 body.frontend.portaltype-portlet-page {
-
 	.portlet-item {
-		margin-bottom: 45px;
+		margin-bottom: 75px;
 	}
 	
 }
@@ -10563,6 +10566,11 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				background-color: #e1ecf4;
 				padding-top: 50px;
 				padding-bottom: 50px;
+
+				@media(max-width: 991px) {
+					margin-bottom: 0px;
+				}
+
 				.entry-wrapper { 
 					.show-more {
 						background-color: #e1ecf4;
@@ -10610,7 +10618,8 @@ body.frontend.portaltype-portlet-page.section-frontpage {
     			padding-right: 0px !important;
 
 				.portlet-item {
-					margin-bottom: 75px;
+					margin-bottom: 0px !important;
+					padding-bottom: 75px;
 				}
 
 				.thumb-wrapper {
@@ -10746,6 +10755,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			&.extra-padding {
 
 				padding-bottom: 5px;
+				padding-top: 75px;
 				
 				#row-items {
 
@@ -10823,7 +10833,6 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 	}
 
 	.portletCollection.frontpage-collection-online {
-
 		.portletHeader {
 			h2 {
 				text-align: center;
@@ -10835,20 +10844,34 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				text-transform: uppercase;
 				font-size: 16px;
 				.FranklinMed();
-				color: @brand-primary-text;
+				color: @brand-primary-titles;
 				letter-spacing: 0.03em;
 			}
 		}
 
+		.portletFooter {
+			display: none;
+		}
+
+		margin-left: -15px;
+		margin-right: -15px;
+		background-color: #fbf9f2;
+		padding-top: 40px;
+		padding-bottom: 30px;
 
 		@media(min-width: 992px) {
+			
+			padding-top: 60px;
+			padding-bottom: 60px;
+
 
 			.desc-mdash {
 				display: inline;
 			}
 			.portletHeader {
 				h2 {
-					font-size: 70px;
+					font-size: 80px;
+					margin-bottom: 20px;
 				}
 			}
 			#row-items {
