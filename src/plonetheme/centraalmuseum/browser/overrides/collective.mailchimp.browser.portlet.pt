@@ -14,14 +14,16 @@
     <dd class="portletItem odd">
       <form tal:attributes="action view/endpoint_url|nothing;" id="newsletter-subscriber-form" method="get">
         <div id="formfield-form-widgets-email">
-          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres"/>
+          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"/>
+          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Email" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'"/>
         </div>
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
         <input type="hidden" value="42702e9770" name="id" tal:attributes="value view/list_id|nothing"/>
 
         <div class="formControls">
-          <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Inschrijven" type="submit">
+          <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Inschrijven" type="submit" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">
+          <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Subscribe" type="submit" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">
         </div>
 
         <div id="subscribe-result">

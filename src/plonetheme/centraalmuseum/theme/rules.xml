@@ -326,8 +326,11 @@
       </replace>-->
 
 
-      <replace css:content="#form-widgets-email">
+      <replace css:content="#form-widgets-email" css:if-content="body.site-nl">
         <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres"/>
+      </replace>
+      <replace css:content="#form-widgets-email" css:if-content="body.site-en">
+        <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Email"/>
       </replace>
 
       <replace css:content="#parent-fieldname-text iframe">

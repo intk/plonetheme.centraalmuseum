@@ -171,3 +171,7 @@ msgstr "Creator"
 msgid "sortable_production_date"
 msgstr "Production date"
 
+#: ../object.py
+msgid "more_url"
+msgstr "More info"
+

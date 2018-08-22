@@ -532,8 +532,9 @@ class CustomEventListingIcal(EventListingIcal):
 def objectTranslated(ob, event):
     if ob:
         if ITranslatable.providedBy(ob):
-            if getattr(ob, 'language', None) == "en" and getattr(ob, 'portal_type', None) in ["Document", "Event"]:
+            if getattr(ob, 'language', None) == "en" and getattr(ob, 'portal_type', None) in ["Document", "Event", "News Item"]:
                 createdEvent(ob, event)
+                
                 if not hasattr(ob, 'slideshow'):
                     if ITranslationManager(ob).has_translation('nl'):
                         original_ob = ITranslationManager(ob).get_translation('nl')
