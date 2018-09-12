@@ -259,6 +259,10 @@ function register($form) {
         $form.find('#form-widgets-email').css('borderColor', '#e70518');
         $form.find('#subscribe-result').css('color', '#e70518');
         $form.find('#subscribe-result .success-msg').hide();
+
+        if (data.msg.indexOf("reeds geabonneerd op lijst") > 0) {
+       		$form.find('#subscribe-result .error-msg').html(data.msg);
+       	}
     	$form.find('#subscribe-result .error-msg').show();
     	$loader.hide();
       }

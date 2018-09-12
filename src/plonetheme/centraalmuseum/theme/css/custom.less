@@ -2243,25 +2243,23 @@ body.frontend, body#tinymce {
 
 	&.portaltype-formfolder {
 
-
 		@media(min-width: 768px) {
 			#content-core {
-				width: 80% !important;
+				width: 90% !important;
 				margin-right: auto !important;
 			}
 
 			.title-container {
-				    width: 80% !important;
+				    width: 90% !important;
     				margin-right: auto !important;
 			}
 		}
 
 		#website-wrapper.empty-slideshow .page-container {
-			padding-left: 10px !important;
-    		padding-right: 10px !important;
+			padding-left: 50px !important;
+    		padding-right: 25px !important;
+    		padding-top: 10px !important;
 		}
-
-
 
 		.label {
 			color: @brand-primary-text;
@@ -2612,7 +2610,7 @@ body.frontend, body#tinymce {
 
 			
 
-			div.field:not(.ArchetypesDateWidget):not(.ArchetypesBooleanWidget) {
+			div.field:not(.ArchetypesDateWidget):not(.ArchetypesBooleanWidget):not(.ArchetypesMultiSelectionWidget) {
 				input,textarea,select {
 					display: inline-block;
 					width: 60% !important;
@@ -2633,6 +2631,18 @@ body.frontend, body#tinymce {
 			div.field.error:not(.ArchetypesBooleanWidget) {
 				label.formQuestion {
 					margin-top: 35px !important;
+				}
+			}
+
+			div.field.ArchetypesMultiSelectionWidget {
+				div.formQuestion {
+					width: 40% !important;
+					float: left;
+				}
+
+				.ArchetypesMultiSelectionValue {
+					width: 60%;
+    				float: right;
 				}
 			}
 		}
@@ -7231,9 +7241,9 @@ body.plone-toolbar-left-expanded {
 body.section-jaarverslag:not(.portaltype-folder),
 body.portaltype-object.section-collectie:not(.userrole-authenticated) {
 	.intro-header {
-		padding-top: 59px !important;
+		/*padding-top: 59px !important;*/
 		@media (max-width: 1185px) {
-			padding-top: 55px !important;
+			/*padding-top: 55px !important;*/
 		}
 	}
 }
@@ -10400,7 +10410,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			 	line-height: 1.5;
 			    margin-bottom: 25px;
 			    font-size: 20px;
-			    
+			    display: none;
 
 			    @media(max-width: 1400px) {
 			    	font-size: 1.5vw;
@@ -10416,7 +10426,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 			}
 
 			.logo-nav-wrapper {
-				width: 495px;
+				width: 380px;
 
 				padding-left:55px;
 
@@ -10425,8 +10435,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 				}
 			}
 
-
-
+			
 		}
 
 		#portal-logo {
@@ -10439,7 +10448,7 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		    margin-left: 0;
 
 		    .slideshow-wrapper {
-		    	margin-left: 410px;
+		    	margin-left: 300px;
 		    }
 		}
 
@@ -10448,7 +10457,8 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 		}
 
 		.slide-info-wrapper {
-			padding: 55px 64px;
+			padding: 55px 100px;
+			z-index: 3;
 
 			h1 {
 				font-size: 7vw;
@@ -10475,6 +10485,19 @@ body.frontend.portaltype-portlet-page.section-frontpage {
 
 		}
 
+	}
+
+
+	@media(min-width: 1220px) {
+		#top-left-header .logo-nav-wrapper {
+			width: 495px;
+		}
+
+		#slickcarousel {
+		    .slideshow-wrapper {
+		    	margin-left: 410px;
+		    }
+		}
 	}
 
 
@@ -11122,6 +11145,35 @@ body:not(.frontend).template-folder_contents {
 		display: none;
 	}
 }
+
+body.frontend.portaltype-portlet-page.section-frontpage {
+	#slickcarousel {
+		height: auto !important;
+		min-height: auto !important;
+	}
+
+	#slickcarousel .carousel-wrapper {
+		position: relative;
+	}
+
+	.video-box {
+	    position: relative;
+		width: 100%;
+	}
+
+	.video-box:before {
+		content: "";
+	    display: block;
+	    padding-top: 52.76015625%;
+	}
+
+	@media(max-width: 991px) {
+		#top-left-header-below {
+			padding-left: 60px;
+		}
+	}
+}
+
 
 
 

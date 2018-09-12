@@ -97,9 +97,6 @@
             <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(obj)" tal:condition="item_is_event"/>
             <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(obj)" tal:condition="item_is_news_item"/>
 
-            <span tal:condition="python: getattr(obj, 'location', None)" i18n:translate="label_event_byline_location">&mdash;
-              <span tal:content="string:${item/location}" class="location" i18n:name="location">Oslo</span>,
-            </span>
             </p>
           </tal:event>
           
