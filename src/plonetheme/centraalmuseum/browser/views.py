@@ -26,6 +26,59 @@ from bs4 import BeautifulSoup as BSHTML
 import re
 
 class ContextToolsView(BrowserView):
+
+    def getObjectCreator(self, obj):
+        try:
+            value = getattr(obj, 'creator', '')
+            if value:
+                creators = []
+                for creator in value:
+                    new_creator = ""
+                    name = creator.get('name', '')
+
+                    if name:
+                        name_split = name.split(",")
+                        if len(name_split) > 1:
+                            firstname = name_split[1]
+                            lastname = name_split[0]
+                            name = "%s %s" %(firstname, lastname)
+
+                        name = name.strip()
+                        creators.append(name)
+
+                final_creators = ", ".join(creators)
+                return final_creators
+            else:
+                return '' 
+        except:
+            raise
+            return ''
+
+    def getObjectDetails(self, image):
+        try:
+            slideshow = image.aq_parent
+
+            if slideshow and slideshow.id == 'slideshow':
+
+                obj = slideshow.aq_parent
+                if obj.portal_type == "Object":
+
+                    details = {}
+
+                    details['rights'] = getattr(obj, 'rights', '')
+                    details['object_number'] = getattr(obj, 'object_number', '')
+                    details['url'] = obj.absolute_url()
+                    details['creator'] = self.getObjectCreator(obj)
+                    details['title'] = getattr(obj, 'title', '')
+                    
+                    return details
+            else:
+                return {}
+
+        except:
+            return {}
+
+
     def trimText(self, text, limit):
         try:
             if text != None:

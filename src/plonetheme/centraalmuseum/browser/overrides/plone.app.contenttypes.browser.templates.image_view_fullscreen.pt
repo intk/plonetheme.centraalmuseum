@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    i18n:domain="plone">
+<head>
+  <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=utf-8')" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title tal:content="context/Title">Title</title>
+  <style type="text/css" media="screen">
+    body {
+      background-color: white;
+      color: black;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      padding:0;
+      margin:0;
+    }
+    @media screen and (max-width: 768px) {
+        body {
+          font-size: 100%;
+        }
+    }
+    a {
+      color: #08c;
+      text-decoration: none;
+      text-align:center;
+    }
+
+    p {
+      text-align: center;
+    }
+    a:hover {text-decoration:underline;}
+    a span {
+      display:block;
+      line-height:1.5em;
+      padding:12px;
+    }
+    img {
+      border: 0;
+      display:block;
+      margin:0 auto;
+      max-width: 100%; height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content-core" tal:condition="context/@@images">
+
+    <tal:backtosite tal:condition="request/HTTP_REFERER"
+      tal:define="object_details python:context.restrictedTraverse('@@context_tools').getObjectDetails(context);
+                  rights python: object_details.get('rights', '');">
+      <a tal:attributes="href request/HTTP_REFERER"
+          tal:condition="request/HTTP_REFERER"
+        ><span i18n:translate="label_back_to_site">Back to site</span>
+        
+      </a>
+      
+      <p tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">
+        <span>Niet wat u zocht?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Bestelformulier</a>
+      </p>
+
+      <p tal:condition="python: getattr(context, 'language', 'nl') == 'en'">
+        <span>Not what you are looking for?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
+      </p>
+
+      <p tal:condition="rights">
+        <span tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bij gebruik deze gegevens vermelden: </span><span tal:content="rights" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"></span>
+        <span tal:condition="python: getattr(context, 'language', 'nl') == 'en'">When using this information please state: </span><span tal:condition="python: getattr(context, 'language', 'nl') == 'en'" tal:content="rights"></span>
+      </p>
+
+      <a tal:attributes="href request/HTTP_REFERER"
+          tal:condition="request/HTTP_REFERER"
+        >
+        <p><br/></p>
+        <tal:block replace="structure context/@@images/image" />
+      </a>
+    </tal:backtosite>
+
+    <tal:home tal:condition="not: request/HTTP_REFERER"
+        tal:define="object_details python:context.restrictedTraverse('@@context_tools').getObjectDetails(context);
+                  rights python: object_details.get('rights', '');">
+      <a tal:attributes="href context/portal_url"
+          tal:condition="not: request/HTTP_REFERER"
+        ><span i18n:translate="label_home">Home</span>
+      </a>
+
+      <p tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">
+        <span>Niet wat u zocht?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Bestelformulier</a>
+      </p>
+
+      <p tal:condition="python: getattr(context, 'language', 'nl') == 'en'">
+        <span>Not what you are looking for?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
+      </p>
+
+      <a tal:attributes="href context/portal_url"
+          tal:condition="not: request/HTTP_REFERER"
+        >
+        <p><br/></p>
+        <tal:block replace="structure context/@@images/image" />
+      </a>
+    </tal:home>
+  </div>
+</body>
+</html>
