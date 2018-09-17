@@ -260,7 +260,7 @@ function register($form) {
         $form.find('#subscribe-result').css('color', '#e70518');
         $form.find('#subscribe-result .success-msg').hide();
 
-        if (data.msg.indexOf("reeds geabonneerd op lijst") > 0) {
+        if (data.msg.indexOf("reeds geabonneerd op lijst") > 0 || data.msg.indexOf("zich al ingeschreven") > 0) {
        		$form.find('#subscribe-result .error-msg').html(data.msg);
        	}
     	$form.find('#subscribe-result .error-msg').show();

@@ -223,9 +223,29 @@ img#MainContent_imgOmniKassa {
 		width: auto;
 	    height: auto;
 	    top: 15px;
-	    margin-left: -188px;
+	    margin-left: -140px;
 	    z-index: 1;
 	}
+
+	#MainContent_moduleHTML {
+		margin-left: 5px;
+	}
+}
+
+#MainContent_moduleHTML strong {
+	display: block;
+	margin-top: 15px;
+	color: #282931;
+	font-weight: 800;
+}
+
+#MainContent_moduleHTML div {
+	margin-top: 8px;
+}
+
+.RadGrid .rgHeader {
+	padding-top: 15px !important;
+    padding-bottom: 15px !important;
 }
 
 .gp_header .gp_main:before,
@@ -485,6 +505,22 @@ h1.syx_pageHeading span {
 	}
 }
 
+.syx_checkoutDetails > div.gp_gridColumn8:nth-child(2) {
+	display: none;
+}
 
+
+#ctlAccountAndLanguage_panNotLoggedIn {
+	display: none;
+}
+
+.syx_articleItemList .thumb {
+	width: 200px !important;
+	height: auto !important;
+}
+
+.syx_articleItemList .thumb input[type="image"] {
+	width: 100% !important;
+}
 
 

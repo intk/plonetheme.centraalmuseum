@@ -72,9 +72,6 @@
           </a> 
           </div>
 
-          <h3 class="tileHeadline item-title"><a href="" itemprop="url" class="url" tal:attributes="href data/url">
-            <span itemprop="summary" class="summary" tal:content="data/title">Title</span>
-          </a></h3>
           <div class="documentByLine">
           <p class="event-date">
             <tal:date tal:replace="structure python:view.formatted_date(data)"/>
@@ -83,6 +80,10 @@
                 tal:content="structure data/location">location</div>
           </p>
           </div>
+
+          <h4 class="tileHeadline item-title"><a href="" itemprop="url" class="url" tal:attributes="href data/url">
+            <span itemprop="summary" class="summary" tal:content="data/title">Title</span>
+          </a></h4>
 
           <p itemprop="description" class="description item-description" tal:condition="data/description" tal:content="data/description" />
 
