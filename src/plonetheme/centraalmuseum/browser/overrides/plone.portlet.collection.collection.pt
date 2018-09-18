@@ -14,10 +14,13 @@
         </a>
         <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
         <span class="portletTopRight"></span>
+
+        <tal:news tal:condition="python: view.data.show_news">
+          <a tal:attributes="href collection_url" class="show-more-a">
+           <span i18n:translate="more_url" class="show-more-header">More&hellip;</span>
+          </a>
+        </tal:news>
     </header>
-
-
-
 
   <div class="collection-slider-wrapper" tal:condition="python: view.data.show_collection_online">
     <div class="collection-slider multiple-items">

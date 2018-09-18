@@ -8514,11 +8514,17 @@ body.frontend.userrole-authenticated .portlet-rrssb {
 		}
 	}
 
-	body:not(.slideshow-empty):not(.portaltype-portlet-page.subsection-nu-te-zien) .main-container .title-container {
+	body:not(.slideshow-empty) .main-container .title-container {
 		display: block !important;
 
 		h1.brand-name {
 			display: none !important;
+		}
+	}
+
+	body.portaltype-portlet-page.subsection-nu-te-zien .main-container .title-container {
+		h1.brand-name {
+			display: block !important;
 		}
 	}
 
@@ -10357,8 +10363,6 @@ body.frontend.portaltype-portlet-page.section-home-page {
 	  }
 
 	  ul.arrow-lists li {
-	  	opacity: 0;
-	  	display: none;
 	  	text-align: center;
 	  	transition: opacity 0.2s ease-in;
 	    -webkit-transition: opacity 0.2s ease-in;
@@ -11076,6 +11080,9 @@ body.frontend.portaltype-portlet-page.section-frontpage,
 body.frontend.portaltype-portlet-page.section-home-page,
 body.frontend.portaltype-portlet-page.subsection-nu-te-zien {
 	#content-core .portletCollection.frontpage-news {
+		.show-more-header {
+			display: none;
+		}
 
 		padding-top: 30px;
 		padding-bottom: 30px;
@@ -11107,6 +11114,22 @@ body.frontend.portaltype-portlet-page.subsection-nu-te-zien {
 			padding-left: 25px;
 			padding-bottom: 50px;
 
+			.show-more-a {
+				&:hover,
+				&:focus,
+				&:active,
+				&:focus {
+					text-decoration: none !important;
+				}
+			}
+			.show-more-header {
+				display: inline;
+
+				color: #494a51 !important;
+				text-decoration: none !important;
+
+			}
+
 			.portletHeader {
 				width: 25%;
 				float: right;
@@ -11115,7 +11138,7 @@ body.frontend.portaltype-portlet-page.subsection-nu-te-zien {
 					max-width: 160px;
 				    font-size: 4.5vw;
 				    line-height: 4.0vw;
-				    margin-top: 1.8vw;
+				    margin-top: 0.8vw;
 				    text-align: left;
 
 				    @media(min-width: 1400px) {
@@ -11236,16 +11259,17 @@ body.frontend.portaltype-portlet-page.subsection-nu-te-zien {
 	#content-core .portletCollection.frontpage-news {
 
 
-		.portletFooter {
-			display: none;
-		}
+		
 
 		p.item-description {
 			display: block;
 		}
 
 		@media(min-width: 992px) {
-
+			.portletFooter {
+				display: none;
+			}
+			
 			.portlet-item {
 				margin-bottom: 40px;
 			}
