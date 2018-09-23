@@ -20,13 +20,26 @@ from zope.component import getMultiAdapter
 from plone.event.interfaces import IEvent
 from zope.contentprovider.interfaces import IContentProvider
 
+
 from Products.CMFCore.utils import getToolByName
 
 from bs4 import BeautifulSoup as BSHTML
 import re
+YEAR_LIMIT = 2024
+
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('plonetheme.centraalmuseum')
 
 class ContextToolsView(BrowserView):
+    def getCollectionItems(self, item):
+        collection = item.getObject()
 
+        results = []
+        if collection is not None:
+            results = collection.queryCatalog()
+
+        return results
+        
     def getObjectCreator(self, obj):
         try:
             value = getattr(obj, 'creator', '')
@@ -271,7 +284,33 @@ class ContextToolsView(BrowserView):
             (self.context, self.request, self),
             IContentProvider, name='formatted_date'
         )
-        return provider(item)
+
+        rec = getattr(item, 'recurrence', None)
+        if rec:
+            if "FREQ=DAILY" in rec:
+                return self.context.translate(_("DAILY"))
+            elif "FREQ=MONDAYFRIDAY" in rec:
+                return self.context.translate(_("MONDAYFRIDAY"))
+            elif "FREQ=WEEKDAYS" in rec:
+                return self.context.translate(_("WEEKDAYS"))
+            elif "FREQ=WEEKLY" in rec:
+                return self.context.translate(_("WEEKLY"))
+            elif "FREQ=MONTHLY" in rec:
+                return self.context.translate(_("MONTHLY"))
+            elif "FREQ=YEARLY" in rec:
+                return self.context.translate(_("YEARLY"))
+            else:
+                return provider(item)
+        else:
+            end_date = getattr(item, 'end', None)
+            if end_date:
+                end = DateTime(end_date)
+                if end.year() > YEAR_LIMIT:
+                    return self.context.translate(_("permanent_collection"))
+                else:
+                    return provider(item)
+            else:
+                return provider(item)
 
     def isSlideshowPublished(self, item):
         obj = item.getObject()
@@ -524,6 +563,9 @@ class FullScreenCollectionView(CollectionView):
             else:
                 return None
         return None
+
+class InfiniteCollectionView(CollectionView):
+    pass
 
 
 

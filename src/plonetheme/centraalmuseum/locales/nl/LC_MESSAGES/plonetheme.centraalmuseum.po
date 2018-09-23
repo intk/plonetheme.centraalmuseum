@@ -214,3 +214,53 @@ msgid "more_url"
 msgstr "Meer info"
 
 
+
+#: ../object.py
+msgid "DAILY"
+msgstr "Dagelijks"
+
+#: ../object.py
+msgid "MONDAYFRIDAY"
+msgstr "Maandag en vrijdag"
+
+#: ../object.py
+msgid "WEEKDAYS"
+msgstr "Dag van de week"
+
+#: ../object.py
+msgid "WEEKLY"
+msgstr "Wekelijks"
+
+#: ../object.py
+msgid "MONTHLY"
+msgstr "Maandelijks"
+
+#: ../object.py
+msgid "YEARLY"
+msgstr "Jaarlijks"
+
+#: ../object.py
+msgid "slide_images"
+msgstr "Preview"
+
+#: ../object.py
+msgid "slide_buy"
+msgstr "Tickets"
+
+#: ../object.py
+msgid "slide_photos"
+msgstr "Fotos"
+
+#: ../object.py
+msgid "permanent_collection"
+msgstr "Vaste collectie"
+
+#: ../object.py
+msgid "label_toggle_search"
+msgstr "Alleen in de collectie"
+
+
+
+
+
+

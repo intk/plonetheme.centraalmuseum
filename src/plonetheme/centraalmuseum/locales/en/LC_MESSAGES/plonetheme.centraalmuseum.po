@@ -175,3 +175,34 @@ msgstr "Production date"
 msgid "more_url"
 msgstr "More info"
 
+#: ../object.py
+msgid "DAILY"
+msgstr "Daily"
+
+#: ../object.py
+msgid "MONDAYFRIDAY"
+msgstr "Monday and Friday"
+
+#: ../object.py
+msgid "WEEKDAYS"
+msgstr "Day of the week"
+
+#: ../object.py
+msgid "WEEKLY"
+msgstr "Weekly"
+
+#: ../object.py
+msgid "MONTHLY"
+msgstr "Monthly"
+
+#: ../object.py
+msgid "YEARLY"
+msgstr "Yearly"
+
+#: ../object.py
+msgid "permanent_collection"
+msgstr "Permanent collection"
+
+#: ../object.py
+msgid "label_toggle_search"
+msgstr "Only in the collection"

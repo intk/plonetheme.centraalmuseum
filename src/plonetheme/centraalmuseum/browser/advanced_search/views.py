@@ -7,6 +7,7 @@ from AccessControl import getSecurityManager
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from plone.app.uuid.utils import uuidToCatalogBrain
+from plone import api
 
 class AdvancedSearchView(BrowserView, Search):
     """
@@ -39,25 +40,19 @@ class AdvancedSearchView(BrowserView, Search):
         searchFilters = []
         registry = getUtility(IRegistry)
 
-        try:
-            searchFiltersRecord = registry['searchfilters.folders']
-        except:
-            if lang == "nl":
-                searchFiltersRecord = ['1431a8b32fc94c7492cf296688be5233', '0a35ff0214bc47c5b719593aab4c0b0a', '7c00323d7114470ca50ff73f6586947f', '1aae4add8d094ed1b81459573cd2abb8', '1f57d68cb7f64917bb51e161c2910364',
-                                    'af85e21e2e4f4c80a8123bcdd94dc5ed']
-            else:
-                searchFiltersRecord = ['a14cf19bc0214efdb4a7fe23489e07c1', 'cd8561384f3e4178a7862392f5bdef56', 'ede5a71351384b448f9bf6fde2a627d6', '0807e0ce2a76428bb33757176325f172', 'aa7162b1baca4757a5e63dea925b2678',
-                                    '0370da7156024774965eee7b6cb48989']
+        if lang == "nl":
+            searchFiltersRecord = ['163baacdad1f49e3acf7fc577547a9ae']
+        else:
+            searchFiltersRecord = ['8821485ba9134088b97ae8d4726d3da3']
 
         if searchFiltersRecord:
             filters = list(searchFiltersRecord)
-
             if filters:
                 for uid in filters:
                     item = uuidToCatalogBrain(uid)
                     if item:
                         searchFilters.append({"name": item.Title, "path": item.getPath()})
-
+                        
         return searchFilters
 
     def getExtraFilters(self):

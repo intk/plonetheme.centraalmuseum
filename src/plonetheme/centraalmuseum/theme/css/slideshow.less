@@ -394,6 +394,10 @@ body.frontend.portaltype-object {
 
 	.intro-header {
 		height: 80vh !important;
+
+		@media(max-width: 768px) {
+			height: 70vh !important;
+		}
 	}
 
 	@media(min-width: 992px) {
@@ -654,6 +658,7 @@ body.portaltype-object {
 		/* Slideshw controls */
 		#slideshow-controls {
 			position: absolute;
+			display: none !important;
 		    bottom: 0;
 		    left: 0;
 		    height: 80px;
@@ -1674,6 +1679,77 @@ body.portaltype-object.slideshow-empty {
 
 
 }
+
+
+#slickcarousel-controls {
+	opacity: 0;
+	visibility: hidden;
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	height: auto;
+	width: 100%;
+	position: relative;
+	float: left;
+	z-index: 1;
+
+	-moz-transition: all 100ms linear;
+    -o-transition: all 100ms linear;
+    -webkit-transition: all 100ms linear;
+    transition: all 100ms linear;
+
+	ul li {
+		display: inline;
+	}
+
+	ul {
+		margin-left: -40px;
+	}
+
+	.controls-description {
+		display: inline-block;
+
+		@media(min-width: 992px) {
+			margin-left: 30px;
+		}
+
+		@media(max-width: 991px) {
+			display: block;
+		    margin-top: 10px;
+		    margin-left: 10px;
+		    line-height: 1.6;
+		}
+	}
+
+	.controls-wrapper {
+		text-align: left;
+
+		@media(min-width: 991px) {
+			margin-left: 65px;
+			margin-right: 65px;
+		}
+	}
+}
+
+body.portaltype-object #slickcarousel-controls {
+	padding-top: 20px;
+	.controls-wrapper {
+		text-align: center;
+
+		@media(min-width: 991px) {
+			margin-left: 65px;
+			margin-right: 65px;
+		}
+
+		.controls-description {
+			display: none !important;
+		}
+	}
+
+}
+
+
 
 
 

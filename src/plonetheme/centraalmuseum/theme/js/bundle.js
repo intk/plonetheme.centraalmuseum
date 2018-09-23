@@ -277,6 +277,25 @@ jQuery(document).ready(function($) {
      document.documentElement.className+=' ie'+document.documentMode;
   }
 
+	if (jQuery('#masonry-grid').length) {
+	  imagesLoaded('#masonry-grid', function() {
+	    var elem = document.querySelector('#masonry-grid');
+	    /*var msnry = new Masonry(elem, {
+	       itemSelector: '#masonry-grid .grid-item',
+	       horizontalOrder: true,
+	       percentPosition: true
+	    });*/
+
+	    jQuery("#masonry-grid").masonry({
+	       itemSelector: '#masonry-grid .grid-item',
+	       horizontalOrder: true,
+	       percentPosition: true
+	    });
+	    
+	    $("#masonry-grid").addClass('init');
+	  });
+	}
+
    var is_chrome = !!window.chrome && !is_opera;
    var is_explorer= typeof document !== 'undefined' && !!document.documentMode && !isEdge;
    var is_firefox = typeof window.InstallTrigger !== 'undefined';

@@ -22,9 +22,15 @@
     <tal:results define="batch view/batch;
                          b_start python: request.get('b_start', 0);">
       <tal:listing condition="batch">
-        <div class="entries" metal:define-slot="entries">
+
+        <style>
+        html {
+          height: auto !important;
+        }
+        </style>
+        <div class="entries masonry-grid grid-sizer" id="masonry-grid" metal:define-slot="entries">
           <tal:repeat repeat="item batch" metal:define-macro="entries">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 listing-item" tal:define="
+            <div class="grid-item" tal:define="
                 item_url item/getURL;
                 item_id item/getId;
                 item_title item/Title;
@@ -52,7 +58,7 @@
                 
                      <div class="thumb-wrapper">         
                             <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: item_link"
-                              tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(item, 'mini')">
+                              tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(item, 'large')">
                               
                               <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.centraalmuseum">
                                 <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
@@ -109,17 +115,12 @@
                 </article>
               </metal:block>
             </div>
-                      <tal:clearfix condition="python: number % 3 == 0" tal:define="number repeat/item/number">
-                          <div class="clearfix visible-lg visible-md"></div>
-                        </tal:clearfix> 
-
-                        <tal:clearfixmd condition="python: number % 2 == 0" tal:define="number repeat/item/number">
-                          <div class="clearfix visible-sm"></div>
-                        </tal:clearfixmd>
           </tal:repeat>
         </div>
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+        <div class="plone-loader"><div class="loader"/></div>
 
       </tal:listing>
 

@@ -73,6 +73,7 @@
       <!--<replace
         css:theme-children="#website-nav"
         css:content-children="#portal-globalnav-wrapper" />-->
+        
 
       <replace
         css:theme-children=".cd-primary-nav"
@@ -91,6 +92,7 @@
         css:theme-children=".documentFirstHeading"
         css:content-children=".documentFirstHeading"
         method="raw" />
+      
       <replace
         css:theme=".documentDescription"
         css:content-children=".documentDescription"
@@ -115,6 +117,14 @@
       
       <drop css:theme="#object-header" css:if-not-content="body.portaltype-object"/>
 
+
+      <replace css:theme="span.subheading" css:if-content="#slickcarousel .carousel-item.portrait[data-index='0']" method="raw">
+          <span class="subheading portrait">
+            <xsl:copy-of select="//*[@class='documentDescription description']/text()"/>
+          </span>
+      </replace>
+      
+
       <replace
         css:theme-children="#nav-search-wrapper"
         css:content-children="#portal-searchbox"
@@ -122,7 +132,9 @@
 
       
 
-      <drop css:content="#title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
+      <drop css:content=".title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
+      <drop css:theme="#slickcarousel-controls" css:if-content="#slickcarousel.empty"/>
+      
       <!--<drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>-->
 
 

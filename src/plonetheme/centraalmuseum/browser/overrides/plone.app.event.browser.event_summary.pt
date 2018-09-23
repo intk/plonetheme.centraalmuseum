@@ -9,7 +9,8 @@
 
 <tal:def tal:define="data python:view.data; excludes view/excludes">
   
-  <ul class="event summary details" summary="Event details" i18n:attributes="summary summary_event_details">
+  <ul class="event summary details" summary="Event details" i18n:attributes="summary summary_event_details" tal:attributes="class python: 'event summary details' if not getattr(context, 'recurrence', None) else 'event summary details recurrence'">
+
     <tal:cond condition="python:'title' not in excludes">
       <li class="event-title">
         <strong i18n:translate="event_event">Event</strong>
@@ -53,7 +54,7 @@
 
       </textarea>
 
-      <li class="event-dates" style="display:none !important;">
+      <li class="event-dates" style="display:none;">
         <strong i18n:translate="">
           All dates
         </strong>
@@ -123,6 +124,19 @@
     </tal:cond>
 
     <tal:cond condition="python:'ical' not in excludes">
+      <li class="event-calendar">
+        <strong i18n:translate="heading_add_to_calendar">Add event to calendar</strong>
+        <tal:span tal:define="here_url context/@@plone_context_state/object_url;
+                        portal_url context/@@plone_portal_state/portal_url;">
+          <a href="#" rel="nofollow"
+             tal:attributes="href string:$here_url/ics_view"
+             title="Download this event in iCal format"
+             i18n:attributes="title title_add_to_ical;">
+            <img src="" alt="" width="14" height="14" class="icalIcon"
+                tal:attributes="src string:${portal_url}/++resource++plone.app.event/icon_export_ical.png"/>
+            <span i18n:translate="label_add_to_ical">iCal</span></a>
+        </tal:span>
+      </li>
     </tal:cond>
 
   </ul>
