@@ -27,10 +27,45 @@ from bs4 import BeautifulSoup as BSHTML
 import re
 YEAR_LIMIT = 2024
 
+import json
+
 from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('plonetheme.centraalmuseum')
 
 class ContextToolsView(BrowserView):
+
+    def getObjectImages(self, item):
+        obj = item.getObject()
+        slideshow = getattr(obj, 'slideshow', None)
+
+        if slideshow:
+            if len(slideshow) > 1:
+                images = []
+                for img_id in slideshow:
+                    img = slideshow[img_id]
+                    if getattr(img, 'portal_type', None) == "Image":
+                        url = img.absolute_url()+"/@@images/image/large"
+                        description = getattr(img, 'description', None)
+
+                        new_image = {
+                            "url": url,
+                            "description": description
+                        }
+
+                        images.append(new_image)
+                    else:
+                        return []  
+
+                if len(images) > 1:   
+                    return images[1:]
+                else:
+                    return []
+            else:
+                return []
+
+        else:
+            return json.dumps([])
+
     def getCollectionItems(self, item):
         collection = item.getObject()
 
@@ -237,14 +272,21 @@ class ContextToolsView(BrowserView):
 
         return folder_contents
 
-    def getImageObject(self, item, scale="large"):
+    def getImageObject(self, item, scale="large", with_description=False):
         if item.portal_type == "Image":
             return item.getURL()+"/@@images/image/%s" %(scale)
         if item.leadMedia != None:
             uuid = item.leadMedia
             media_object = uuidToCatalogBrain(uuid)
             if media_object:
-                return media_object.getURL()+"/@@images/image/%s" %(scale)
+                if with_description:
+                    img_data = {
+                        "url": media_object.getURL()+"/@@images/image/%s" %(scale),
+                        "description": media_object.Description
+                    }
+                    return img_data
+                else:
+                    return media_object.getURL()+"/@@images/image/%s" %(scale)
             else:
                 return None
         else:

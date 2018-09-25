@@ -280,12 +280,6 @@ jQuery(document).ready(function($) {
 	if (jQuery('#masonry-grid').length) {
 	  imagesLoaded('#masonry-grid', function() {
 	    var elem = document.querySelector('#masonry-grid');
-	    /*var msnry = new Masonry(elem, {
-	       itemSelector: '#masonry-grid .grid-item',
-	       horizontalOrder: true,
-	       percentPosition: true
-	    });*/
-
 	    jQuery("#masonry-grid").masonry({
 	       itemSelector: '#masonry-grid .grid-item',
 	       horizontalOrder: true,
@@ -295,6 +289,29 @@ jQuery(document).ready(function($) {
 	    $("#masonry-grid").addClass('init');
 	  });
 	}
+
+	if (jQuery('body.portaltype-portlet-page').length) {
+		jQuery(".frontpage-portlet-collection .thumb-wrapper").each(function() {
+			var imagescount = jQuery(this).data('imagescount');
+			if (imagescount > 1) {
+				jQuery(this).slickLightbox({
+				    itemSelector: 'img.tileImage',
+				    src: function(element) {
+				    	$elem = jQuery(element);
+				    	return $elem.data('lazy');
+				    },
+				    lazy: false,
+				    caption: 'caption',
+				    useHistoryApi: 'true',
+				    slick: {
+				    	fade:true,
+				    	speed: 50
+				    }
+				});
+			}
+		});
+	};
+
 
    var is_chrome = !!window.chrome && !is_opera;
    var is_explorer= typeof document !== 'undefined' && !!document.documentMode && !isEdge;

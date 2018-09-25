@@ -77,16 +77,66 @@
 
       <tal:not_collection tal:condition="not:item_is_collection">
         <div tal:attributes="class portlet_class" tal:condition="not:item_is_collection">
-          <div class="thumb-wrapper">         
-            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: itemUrl"
-              tal:define="img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
-                          item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, img_scale)">
 
-              <div class="on-display-wrapper" tal:condition="python:item_on_display" i18n:domain="plonetheme.centraalmuseum">
-                <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
-              </div>
-              <img tal:define="images_src python:item_img;" src="" alt="" tal:attributes="src images_src; class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+          <div class="thumb-wrapper" tal:define="item_images python:context.restrictedTraverse('@@context_tools').getObjectImages(obj) if not view.data.show_news else []; item_images_total python: len(item_images)+1;" 
+            tal:attributes="data-imagescount python: item_images_total; class python: 'thumb-wrapper extra-images' if item_images_total > 0 else 'thumb-wrapper'">
+
+            <tal:not_extra tal:condition="python: view.data.show_news">
+            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" tal:attributes="href python: itemUrl"
+              tal:define="img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+                          item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, img_scale, True)">
+
+              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+
+
+              <span class="inline-expand-image" tal:condition="python: item_images_total > 1 and not view.data.show_news">
+                <svg width="22" height="22" viewBox="0 0 22 22">
+                <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                </svg>
+              </span>
             </a> 
+            </tal:not_extra>
+            
+            <tal:not_extra tal:condition="python: not view.data.show_news and item_images_total > 1">
+            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')"
+              tal:define="img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+                          item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, img_scale, True)">
+
+              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+
+
+              <span class="inline-expand-image" tal:condition="python: item_images_total > 1 and not view.data.show_news">
+                <svg width="22" height="22" viewBox="0 0 22 22">
+                <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                </svg>
+              </span>
+            </a> 
+            </tal:not_extra>
+
+            <tal:not_extra tal:condition="python: not view.data.show_news and item_images_total == 1">
+            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')"
+              tal:define="img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+                          item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, img_scale, True)"
+              tal:attributes="href python: itemUrl">
+
+              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+
+
+              <span class="inline-expand-image" tal:condition="python: item_images_total > 1 and not view.data.show_news">
+                <svg width="22" height="22" viewBox="0 0 22 22">
+                <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                </svg>
+              </span>
+            </a> 
+            </tal:not_extra>
+
+            <tal:more_images tal:repeat="extra_image item_images" tal:condition="not:view/data/show_news">
+              <div tal:define="extra_image_number repeat/extra_image/number;
+                               item_count python: '%s/%s' %(extra_image_number+1, item_images_total);
+                               item_img_description python: '%s' %(item_count) if not extra_image.get('description', '') else '%s - %s' %(item_count, extra_image.get('description', ''))">
+                <img tal:attributes="data-lazy python: extra_image.get('url', ''); data-caption item_img_description" class="tileImage lazy-img" />
+              </div>
+            </tal:more_images>
           </div>
           
           <div class="entry-wrapper">
@@ -114,7 +164,7 @@
             </div>
           </div>
         </div>
-      <tal:not_collection tal:condition="not:item_is_collection">
+      </tal:not_collection>
 
       <tal:is_collection tal:condition="item_is_collection">
         <tal:collectionitems tal:define="colitems python: context.restrictedTraverse('@@context_tools').getCollectionItems(obj)">
@@ -127,16 +177,72 @@
                   col_item_wf_state_class python:'state-' + plone_view.normalizeString(col_item_wf_state);
                   col_item_type colitem/portal_type;
                   col_item_is_event python: col_item_type in ['Event'];
-                  col_item_is_news_item python:col_item_type in ['News Item'];">
+                  col_item_is_news_item python:col_item_type in ['News Item'];
+                  col_item_images python:context.restrictedTraverse('@@context_tools').getObjectImages(colitem) if not view.data.show_news else [];
+                  col_extra_total python: len(col_item_images)+1;">
 
                   <div tal:attributes="class portlet_class" tal:condition="item_is_collection">
-                    <div class="thumb-wrapper">
-                      <a class="thumb-image" tal:condition="python: ((col_has_media != None and col_has_media != '' and 'Missing' not in str([col_has_media])) or col_item_type == 'Image')" href="" tal:attributes="href python: col_itemUrl"
-                        tal:define="col_img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
-                                    col_item_img python:context.restrictedTraverse('@@context_tools').getImageObject(colitem, col_img_scale)">
-                                    
-                        <img tal:define="col_images_src python:col_item_img;" src="" alt="" tal:attributes="src col_images_src; class python:'tileImage'; alt colitem/Title; title colitem/Title;" /> 
-                      </a> 
+                    <div class="thumb-wrapper" tal:attributes="data-imagescount python: col_extra_total; class python: 'thumb-wrapper extra-images' if col_extra_total > 0 else 'thumb-wrapper'">
+                      
+                      <tal:not_extra tal:condition="view/data/show_news">
+                        <a class="thumb-image" tal:condition="python: ((col_has_media != None and col_has_media != '' and 'Missing' not in str([col_has_media])) or col_item_type == 'Image')" 
+                        tal:attributes="href col_itemUrl;"
+                          tal:define="col_img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+                                      col_item_img python:context.restrictedTraverse('@@context_tools').getImageObject(colitem, col_img_scale, True);
+                                      ">
+                                      
+                          <img tal:define="col_images_src python:col_item_img.get('url', '');" src="" alt="" tal:attributes="src col_images_src; data-lazy col_images_src; data-caption python: '%s/%s - %s' %('1', col_extra_total, col_item_img.get('description', '')) if col_item_img.get('description', '') else '%s/%s' %('1', col_extra_total); class python:'tileImage'; alt colitem/Title; title colitem/Title;" /> 
+
+                          <span class="inline-expand-image" tal:condition="python: col_extra_total > 1 and not view.data.show_news">
+                            <svg width="22" height="22" viewBox="0 0 22 22">
+                            <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                            </svg>
+                          </span>
+                        </a> 
+                      </tal:not_extra>
+
+                      <tal:not_extra tal:condition="python: not view.data.show_news and col_extra_total > 1">
+                        <a class="thumb-image" tal:condition="python: ((col_has_media != None and col_has_media != '' and 'Missing' not in str([col_has_media])) or col_item_type == 'Image')" 
+                          tal:define="col_img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+                                      col_item_img python:context.restrictedTraverse('@@context_tools').getImageObject(colitem, col_img_scale, True);
+                                      ">
+                                      
+                          <img tal:define="col_images_src python:col_item_img.get('url', '');" src="" alt="" tal:attributes="src col_images_src; data-lazy col_images_src; data-caption python: '%s/%s - %s' %('1', col_extra_total, col_item_img.get('description', '')) if col_item_img.get('description', '') else '%s/%s' %('1', col_extra_total); class python:'tileImage'; alt colitem/Title; title colitem/Title;" /> 
+
+                          <span class="inline-expand-image" tal:condition="python: col_extra_total > 1 and not view.data.show_news">
+                            <svg width="22" height="22" viewBox="0 0 22 22">
+                            <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                            </svg>
+                          </span>
+                        </a> 
+                      </tal:not_extra>
+
+                      <tal:not_extra tal:condition="python: not view.data.show_news and col_extra_total == 1">
+                        <a class="thumb-image" tal:condition="python: ((col_has_media != None and col_has_media != '' and 'Missing' not in str([col_has_media])) or col_item_type == 'Image')" 
+                          tal:define="col_img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
+                                      col_item_img python:context.restrictedTraverse('@@context_tools').getImageObject(colitem, col_img_scale, True);
+                                      "
+                          tal:attributes="href col_itemUrl;">
+                                      
+                          <img tal:define="col_images_src python:col_item_img.get('url', '');" src="" alt="" tal:attributes="src col_images_src; data-lazy col_images_src; data-caption python: '%s/%s - %s' %('1', col_extra_total, col_item_img.get('description', '')) if col_item_img.get('description', '') else '%s/%s' %('1', col_extra_total); class python:'tileImage'; alt colitem/Title; title colitem/Title;" /> 
+
+                          <span class="inline-expand-image" tal:condition="python: col_extra_total > 1 and not view.data.show_news">
+                            <svg width="22" height="22" viewBox="0 0 22 22">
+                            <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                            </svg>
+                          </span>
+                        </a> 
+                      </tal:not_extra>
+
+                      <tal:more_images tal:repeat="col_extra_image col_item_images" tal:condition="not:view/data/show_news">
+                        <div tal:define="col_extra_image_number repeat/col_extra_image/number;
+                                         col_extra_item_count python: '%s/%s' %(col_extra_image_number+1, col_extra_total);
+                                         col_extra_item_description python: '%s' %(col_extra_item_count) if not col_extra_image.get('description', '') else '%s - %s' %(col_extra_item_count, col_extra_image.get('description', ''))">
+
+                          <img tal:attributes="data-lazy python: col_extra_image.get('url', '');data-caption col_extra_item_description" class="tileImage lazy-img"/>
+                        </div>
+                      </tal:more_images>
+
                     </div>
 
                     <div class="entry-wrapper">

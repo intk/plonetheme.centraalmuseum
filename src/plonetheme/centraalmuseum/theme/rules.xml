@@ -16,6 +16,7 @@
     <theme href="index_empty.html" css:if-content="body.portaltype-folder"/>
     <theme href="index_empty.html" css:if-content="body.portaltype-collection"/>
     <theme href="index_empty.html" css:if-content="body.portaltype-portlet-page.subsection-nu-te-zien"/>
+    <theme href="index_empty.html" css:if-content="body.portaltype-portlet-page.subsection-now-in-the-museum"/>
     <theme href="index_empty.html" css:if-content="#slickcarousel.empty"/>
     <theme href="index.html" css:if-content="body.frontend"/>
 

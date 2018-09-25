@@ -1546,7 +1546,7 @@ body.frontend, body#tinymce {
     	}
     }
 
-    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event):not(.portaltype-occurrence):not(.portaltype-news-item) {
+    &:not(.portaltype-document):not(.portaltype-collection):not(.portaltype-folder):not(.portaltype-formfolder):not(.portaltype-event):not(.portaltype-occurrence):not(.portaltype-news-item):not(.portaltype-person) {
     	.separator-wrapper:not(.kasteel) {
     		display: none;
     	}
@@ -1865,6 +1865,7 @@ body.frontend, body#tinymce {
 	/* Multiple content page */
 	&.portaltype-collection, 
 	&.portaltype-folder,
+	&.portaltype-person,
 	.portletCollection,
 	&.portaltype-person.template-listing_view {
 		.title-container {
@@ -1994,7 +1995,7 @@ body.frontend, body#tinymce {
 			width: 100%;
 			padding-bottom: 10px;
 
-			img {
+			img:not(.lazy-img) {
 				width: 100%;
 				padding: 0px;
 				margin-bottom: 20px;
@@ -2095,7 +2096,6 @@ body.frontend, body#tinymce {
 
 			li {
 				padding-bottom: 0px;
-				margin-top: 30px;
 			}
 		}
 	}
@@ -2121,7 +2121,20 @@ body.frontend, body#tinymce {
 			}
 		}
 
+		&:not(.subsection-now-in-the-museum) {
+			.title-container {
+				display: none;
+			}
+		}
+
 		&.subsection-nu-te-zien {
+			.title-container {
+				margin-right: auto;
+				margin-left: auto;
+			}
+		}
+
+		&.subsection-now-in-the-museum {
 			.title-container {
 				margin-right: auto;
 				margin-left: auto;
@@ -2159,6 +2172,14 @@ body.frontend, body#tinymce {
 		}
 
 		&.subsection-nu-te-zien {
+			h1 {
+				@media (max-width: 991px) {
+					font-size: 35px;
+				}
+			}
+		}
+
+		&.subsection-now-in-the-museum {
 			h1 {
 				@media (max-width: 991px) {
 					font-size: 35px;
@@ -2563,6 +2584,7 @@ body.frontend, body#tinymce {
 			}*/
 
 			select.blurrable,
+			select,
 			select[name='tijdstip'],
 			select[name='betaalwijze'],
 			select[name='alternatief-tijdstip'] {
@@ -2574,6 +2596,7 @@ body.frontend, body#tinymce {
 			}
 
 			select[name='tijdstip'],
+			select,
 			select[name='betaalwijze'],
 			select[name='alternatief-tijdstip'] {
 				font-size: 15px;
@@ -2670,7 +2693,8 @@ body.frontend, body#tinymce {
 			}
 
 			div.field.ArchetypesSelectionWidget {
-				select {
+				select[name='tijdstip'],
+				select[name='alternatief-tijdstip'] {
 					max-width: 187px;
 				}
 			}
@@ -2709,7 +2733,8 @@ body.frontend, body#tinymce {
 		}
 
 
-		div.field.ArchetypesSelectionWidget[data-fieldname="aanhef"] {
+		div.field.ArchetypesSelectionWidget[data-fieldname="aanhef"],
+		div.field.ArchetypesSelectionWidget[data-fieldname="betaalwijze"] {
 			@media(min-width: 992px) {
 				div.formQuestion {
 					float: left;
@@ -3178,6 +3203,7 @@ footer, body.mce-content-body {
 
 body.portaltype-folder,
 body.portaltype-collection,
+body.portaltype-person,
 body.portaltype-person.template-listing_view,
 body:not(.portaltype-document):not(.portaltype-event):not(.portaltype-news-item):not(.portaltype-occurrence) {
 	footer {
@@ -5259,6 +5285,7 @@ body.frontend:not(.portaltype-occurrence) {
 }
 
 body.frontend.portaltype-collection,
+body.frontend.portaltype-person,
 body.portaltype-person.template-listing_view,
 body.frontend.portaltype-folder {
     .title-container {
@@ -5842,6 +5869,7 @@ body.frontend.mobile {
 
 body.frontend {
 	&.portaltype-collection,
+	&.portaltype-person,
 	&.portaltype-person.template-listing_view,
 	&.portaltype-folder {
 		#content-core {
@@ -6346,11 +6374,16 @@ body.frontend {
 			display: none !important;
 		}
 	}
-	#below-content {
-		.portlet-rrssb {
-			/*display: none !important;*/
-		}
 
+	&:not(.subsection-verhalen) {
+		#below-content {
+			.portlet-rrssb {
+				display: none !important;
+			}
+		}
+	}
+
+	#below-content {
 		.portletCollection {
 			display: none !important;
 		}
@@ -6875,18 +6908,21 @@ th.header-titleAuthorImprintCollation_imprint_year {
 body.portaltype-event .event.summary,
 body.portaltype-occurrence .event.summary {
 
-	/*&:not(.recurrence) {
+	&:not(.recurrence) {
 		display: none;
-	}*/
-
-	display: none !important;
+	}
 
 	&.recurrence {
 		.event-date {
 			text-align: left;
+			padding-top: 12px;
 
 			.event-date-title {
 				display: block;
+			}
+
+			span {
+				display: none !important;
 			}
 		}
 
@@ -6901,6 +6937,10 @@ body.portaltype-occurrence .event.summary {
 		li.event-dates {
 			display: block !important;
 			text-align: left;
+
+			strong {
+				display: none !important;
+			}
 
 			a {
 				border-bottom: 1px solid #494a51;
@@ -6924,7 +6964,7 @@ body.portaltype-occurrence .event.summary {
 		}
 
 		li.event-calendar {
-			display: block;
+			display: none !important;
 			margin-top: 20px;
 			text-align: left;
 
@@ -6938,6 +6978,19 @@ body.portaltype-occurrence .event.summary {
 				}
 			}
 		}
+	}
+}
+
+body.portaltype-occurrence .event.summary {
+	&.recurrence { 
+		.event-date > span {
+			display: block !important;
+
+			&> span.datedisplay {
+				display: inline !important;
+			}
+		}
+
 	}
 }
 
@@ -6991,13 +7044,13 @@ body.frontend {
 	}
 }
 
-body.frontend #below-content .portlet-rrssb {
+body.frontend:not(.subsection-verhalen) #below-content .portlet-rrssb {
 	.sharing-buttons-wrapper {
 		border: 0px !important;
 	}
 
 	@media (min-width: 992px) {
-		/*display: none !important;*/
+		display: none !important;
 	}
 }
 
@@ -8632,13 +8685,15 @@ body.frontend.userrole-authenticated .portlet-rrssb {
 		}
 	}
 
-	body.portaltype-portlet-page.subsection-nu-te-zien .main-container .title-container {
+	body.portaltype-portlet-page.subsection-nu-te-zien .main-container .title-container,
+	body.portaltype-portlet-page.subsection-now-in-the-museum .main-contaier .title-container {
 		h1.brand-name {
 			display: block !important;
 		}
 	}
 
-	body.portaltype-portlet-page.subsection-zien-en-doen .main-container .title-container {
+	body.portaltype-portlet-page.subsection-zien-en-doen .main-container .title-container, 
+	body.portaltype-portlet-page.subsection-now-in-the-museum .main-container .title-container {
 		h1.brand-name {
 			display: block !important;
 		}
@@ -8832,6 +8887,7 @@ body.template-search {
 
 body.portaltype-folder,
 body.portaltype-collection,
+body.portaltype-person,
 body.portaltype-portlet-page,
 body.template-listing_view {
 	#slickcarousel:before {
@@ -8849,6 +8905,7 @@ body.template-listing_view {
 
 	body.portaltype-folder,
 	body.portaltype-collection,
+	body.portaltype-person,
 	body.portaltype-portlet-page,
 	body.template-listing_view {
 
@@ -8928,7 +8985,8 @@ body.template-listing_view {
 		padding-right: 55px;
 	}
 
-	body.portaltype-portlet-page.subsection-nu-te-zien .title-container {
+	body.portaltype-portlet-page.subsection-nu-te-zien .title-container,
+	body.portaltype-portlet-page.subsection-now-in-the-museum .title-container {
 		padding-left: 60px;
 		padding-right: 60px;
 	}
@@ -8945,6 +9003,11 @@ body.template-listing_view {
 	}
 
 	body.portaltype-collection #website-wrapper.empty-slideshow .page-container {
+		padding-left: 55px;
+		padding-right: 55px;
+	}
+
+	body.portaltype-person #website-wrapper.empty-slideshow .page-container {
 		padding-left: 55px;
 		padding-right: 55px;
 	}
@@ -8972,6 +9035,7 @@ body.template-listing_view {
 
 	body.portaltype-folder,
 	body.portaltype-collection,
+	body.portaltype-person,
 	body.portaltype-portlet-page,
 	body.template-listing_view {
 		#slickcarousel:before {
@@ -8999,6 +9063,7 @@ body:not(.frontend) {
 @media (max-width: 480px) {
 	body.portaltype-folder,
 	body.portaltype-collection,
+	body.portaltype-person,
 	body.portaltype-portlet-page,
 	body.template-listing_view {
 		#slickcarousel:before {
@@ -9020,6 +9085,7 @@ body:not(.frontend) {
 
 	body.portaltype-folder,
 	body.portaltype-collection,
+	body.portaltype-person,
 	body.portaltype-portlet-page,
 	body.template-listing_view {
 
@@ -9100,7 +9166,17 @@ body:not(.frontend) {
 		padding-right: 15px;
 	}
 
+	body.portaltype-person #website-wrapper .page-container, body.portaltype-folder #website-wrapper .page-container {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
 	body.portaltype-collection #website-wrapper.empty-slideshow .page-container {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	body.portaltype-person #website-wrapper.empty-slideshow .page-container {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
@@ -9125,6 +9201,7 @@ body:not(.frontend) {
 
 	body.portaltype-folder,
 	body.portaltype-collection,
+	body.portaltype-person,
 	body.portaltype-portlet-page,
 	body.template-listing_view {
 
@@ -9141,6 +9218,7 @@ body:not(.frontend) {
 
 	body.portaltype-folder,
 	body.portaltype-collection,
+	body.portaltype-person,
 	body.portaltype-portlet-page,
 	body.template-listing_view {
 
@@ -10295,7 +10373,7 @@ body.frontend:not(.mobile) #below-content .portlet-rrssb {
 	}
 
 	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp {
-		
+		display: none !important;
 	}
 }
 
@@ -11262,6 +11340,7 @@ body.frontend.portaltype-portlet-page.section-home-page {
 body.frontend.portaltype-portlet-page.section-frontpage,
 body.frontend.portaltype-portlet-page.section-home-page,
 body.frontend.portaltype-portlet-page.subsection-nu-te-zien,
+body.frontend.portaltype-portlet-page.subsection-now-in-the-museum,
 body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
 	#content-core .portletCollection.frontpage-news {
 		.show-more-header {
@@ -11373,7 +11452,8 @@ body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
 }
 
 body.frontend.portaltype-portlet-page.subsection-nu-te-zien,
-body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
+body.frontend.portaltype-portlet-page.subsection-zien-en-doen,
+body.frontend.portaltype-portlet-page.subsection-now-in-the-museum {
 
 	@media screen and (min-width: 992px) {
 		#slickcarousel {
@@ -11521,8 +11601,10 @@ body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
 
 body.frontend.portaltype-folder,
 body.frontend.portaltype-collection,
+body.frontend.portaltype-person,
 body.frontend.portaltype-portlet-page.subsection-zien-en-doen,
-body.frontend.portaltype-portlet-page.subsection-nu-te-zien {
+body.frontend.portaltype-portlet-page.subsection-nu-te-zien,
+body.frontend.portaltype-portlet-page.subsection-now-in-the-museum {
 
 	#website-wrapper.empty-slideshow {
 		.title-container {

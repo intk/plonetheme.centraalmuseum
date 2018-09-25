@@ -46,7 +46,7 @@
     </tal:cond>
 
     <tal:cond condition="python:'occurrences' not in excludes">
-    <tal:cond define="next_occs view/next_occurrences;
+    <tal:cond define="next_occs view/next_occurrences_today;
                       all_occs view/num_more_occurrences"
               condition="python:len(next_occs) > 1 or all_occs > 1">
 
@@ -67,12 +67,12 @@
           </a>
           </tal:def>
         </span>
-        <span tal:condition="view/num_more_occurrences">
+        <!--<span tal:condition="view/num_more_occurrences">
           <a tal:attributes="href string:${view/event_context/absolute_url}/@@event_listing"
               tal:content="view/more_occurrences_text">
             There are 12 more occurrences.
           </a>
-        </span>
+        </span>-->
       </li>
     </tal:cond>
     </tal:cond>
