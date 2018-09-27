@@ -42,7 +42,7 @@
           ">
 
           <div id="search-page-header">
-            <h1 class="documentFirstHeading" i18n:translate="label_advanced_search">Advanced search</h1>
+            <h1 class="documentFirstHeading" i18n:translate="advanced_search" i18n:domain="plonetheme.centraalmuseum">Advanced search</h1>
               
               <input class="main-search form-control search-input"
                name="SearchableText"

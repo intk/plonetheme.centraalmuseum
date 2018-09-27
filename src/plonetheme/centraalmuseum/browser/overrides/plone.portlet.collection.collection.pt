@@ -36,7 +36,7 @@
             <div class="collection-slide-wrapper" tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(obj, 'large')" tal:condition="has_media">
               <div class="collection-slide-img-wrapper">
                 <div class="slide-inner-img-wrapper">
-                  <a tal:attributes="href python: itemUrl"><img tal:define="images_src python: item_img" tal:attributes="src images_src; alt obj/Title; title obj/Title;"></a>
+                  <img tal:define="images_src python: item_img" tal:attributes="src images_src; alt obj/Title; title obj/Title;">
                   <div class="slide-inner-title">
                     <h4>
                       <a href="#"

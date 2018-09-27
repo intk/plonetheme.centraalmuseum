@@ -206,3 +206,43 @@ msgstr "Permanent collection"
 #: ../object.py
 msgid "label_toggle_search"
 msgstr "Only in the collection"
+
+
+#: ../object.py
+msgid "creator_qualifier"
+msgstr "Qualifier"
+
+#: ../object.py
+msgid "creator_place"
+msgstr "Place"
+
+#: ../object.py
+msgid "content_motifs"
+msgstr "Motive"
+
+#: ../object.py
+msgid "object_collection"
+msgstr "Collection"
+
+#: ../object.py
+msgid "object_technique"
+msgstr "Material / Technique"
+
+#: ../object.py
+msgid "inscriptions_markings"
+msgstr "Inscriptions/markings"
+
+#: ../object.py
+msgid "object_association_subject"
+msgstr "Associated subject"
+
+#: ../object.py
+msgid "object_association_person"
+msgstr "Associated person"
+
+#: ../object.py
+msgid "object_association_period"
+msgstr "Associated period"
+
+
+

@@ -1307,7 +1307,7 @@ body.frontend, body#tinymce {
 		padding-right: 10px;
 
 		@media (max-width: 768px) {
-			width: 100%;
+			/*width: 100%;*/
 			padding: 10px;
 			padding-left: 0px;
 			padding-top: 0px;
@@ -1319,7 +1319,7 @@ body.frontend, body#tinymce {
 		padding-right: 0px;
 
 		@media (max-width: 768px) {
-			width: 100%;
+			/*width: 100%;*/
 			padding: 10px;
 			padding-left: 0px;
 			padding-top: 0px;
@@ -2101,7 +2101,8 @@ body.frontend, body#tinymce {
 	}
 
 	/* PORTLET PAGE */
-	&.portaltype-portlet-page {
+	&.portaltype-portlet-page,
+	&.portaltype-event #below-content {
 
 		#column-collective-portletpage-toprow-portlet-slideshow,
 		#column-collective-portletpage-toprow-portlet-ontdek,
@@ -2109,19 +2110,7 @@ body.frontend, body#tinymce {
 			display: none;
 		}
 
-		&:not(.subsection-nu-te-zien) {
-			.title-container {
-				display: none;
-			}
-		}
-
-		&:not(.subsection-zien-en-doen) {
-			.title-container {
-				display: none;
-			}
-		}
-
-		&:not(.subsection-now-in-the-museum) {
+		&:not(.subsection-nu-te-zien):not(.subsection-zien-en-doen):not(.subsection-now-in-the-museum) {
 			.title-container {
 				display: none;
 			}
@@ -2912,13 +2901,13 @@ body.frontend, body#tinymce {
 
     			a {
     				padding: 8px 12px;
-    				border: 2px solid @brand-primary-titles;
-    				border-radius: 0px;
+    				border: 1px solid @brand-primary-titles;
+    				border-radius: 50%;
 
     				&:hover,
     				&:focus {
-    					border: 2px solid @brand-primary-titles;
-    					border-radius: 0px;
+    					border: 1px solid @brand-primary-titles;
+    					border-radius: 50%;
     					background: @brand-primary-titles !important;
 
     					svg {
@@ -5320,7 +5309,7 @@ body#tinymce {
 /* Below content */
 body.frontend {
 	#below-content .portletCollection .portletHeader {
-		padding-bottom: 0px;
+		/*padding-bottom: 0px;
 		text-align: center;
 
 		h1 {
@@ -5342,13 +5331,13 @@ body.frontend {
 		    margin-top: 5px;
 		    margin-left: 25px;
 		    vertical-align: middle;
-		}
+		}*/
 	}
 
 	#below-content {
-		dt.portletTitle {
+		/*dt.portletTitle {
 			text-align: center;
-		}
+		}*/
 
 
 	}
@@ -5413,18 +5402,18 @@ body.frontend {
 
 	#below-content {
 		.portletWrapper {
-			padding-left: 40px;
-			padding-right: 40px;
+			padding-left: 0px;
+			padding-right: 0px;
 		}
 
-		.portletWrapper:nth-last-child(odd) {
+		/*.portletWrapper:nth-last-child(odd) {
 			background: #ffffff;
 		}
 
 		p.item-description {
 			line-height: 30px;
 			font-size: 1.063em;
-		}
+		}*/
 	}
 
 	#below-content section.portletCollection {
@@ -6912,6 +6901,10 @@ body.portaltype-occurrence .event.summary {
 		display: none;
 	}
 
+	li.event-url {
+		display: none !important;
+	}
+
 	&.recurrence {
 		.event-date {
 			text-align: left;
@@ -6922,7 +6915,13 @@ body.portaltype-occurrence .event.summary {
 			}
 
 			span {
+				text-align: left;
 				display: none !important;
+			}
+
+			strong {
+				color: #282931;
+				text-align: left;
 			}
 		}
 
@@ -6952,6 +6951,10 @@ body.portaltype-occurrence .event.summary {
 					border-bottom: 0px solid #494a51;
 				}
 			}
+		}
+
+		li.event-url {
+			display: none !important;
 		}
 
 		li.event-location {
@@ -10277,7 +10280,7 @@ body.frontend #below-content {
     			display: inline-block !important;
 
     			a {
-    				padding: 10px 12px !important; 
+    				padding: 11px 14px !important; 
     				border-radius: 50%;
 
     				.rrssb-icon svg {
@@ -10494,10 +10497,32 @@ body.frontend.portaltype-portlet-page.section-home-page {
 
 	#top-left-header-below {
 		padding: 30px;
+    	
+    	background-color: #faf8ef;
+
+
+    	@media(max-width: 991px) {
+    		padding-bottom: 30px;
+    	}
+    	
+
     	padding-left: 45px;
     	padding-bottom: 15px;
-    	background-color: #faf8ef;
     	
+
+    	@media(max-width: 768px) {
+    		padding-top: 73px;
+    		padding-bottom: 30px;
+
+    		ul.arrow-lists {
+    			z-index: 4;
+
+    			li {
+    				z-index: 4;
+    			}
+    		}
+    	}
+
 		p {
 			display: none;
 		}
@@ -10525,6 +10550,11 @@ body.frontend.portaltype-portlet-page.section-home-page {
 
 			 ul.arrow-lists li {
 				margin-bottom: 15px;
+
+				@media(min-width: 767px) and (max-width: 991px) {
+					display: inline-block;
+					margin-right: 20px;
+				}
 			}
 
 			ul.arrow-lists {
@@ -11341,8 +11371,10 @@ body.frontend.portaltype-portlet-page.section-frontpage,
 body.frontend.portaltype-portlet-page.section-home-page,
 body.frontend.portaltype-portlet-page.subsection-nu-te-zien,
 body.frontend.portaltype-portlet-page.subsection-now-in-the-museum,
-body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
-	#content-core .portletCollection.frontpage-news {
+body.frontend.portaltype-portlet-page.subsection-zien-en-doen,
+body.frontend.portaltype-event {
+	#content-core .portletCollection.frontpage-news,
+	#below-content .portletCollection.frontpage-news {
 		.show-more-header {
 			display: none;
 		}
@@ -11362,6 +11394,10 @@ body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
 				&:active:focus {
 					text-decoration: underline;
 				}
+			}
+
+			.arrow-title {
+				display: none !important;
 			}
 
 		}
@@ -11398,7 +11434,7 @@ body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
 				float: right;
 
 				h1 {
-					max-width: 160px;
+					max-width: 170px;
 				    font-size: 4.5vw;
 				    line-height: 4.0vw;
 				    margin-top: 0.8vw;
@@ -11449,6 +11485,47 @@ body.frontend.portaltype-portlet-page.subsection-zien-en-doen {
 		}
 
 	}
+
+	#below-content .portletCollection.frontpage-news {
+		p.item-description {
+			display: block !important;
+		}
+
+		.portletHeader {
+			a:not(.show-more-a) {
+				&:hover,
+				&:focus,
+				&:active,
+				&:active:focus {
+					color: #282931;
+				}
+			}
+		}
+
+		a.show-more-a {
+			color: #494a51;
+			text-decoration: none;
+			border-bottom: 1px solid #494a51;
+			&:hover,
+			&:active,
+			&:focus,
+			&:active:focus {
+				text-decoration: none;
+				color: #494a51;
+				border-bottom: 0px;
+			}
+		}
+
+		background: #fbf9f2 !important;
+
+		@media(max-width: 768px) {
+			margin-left: -15px;
+		    margin-right: -15px;
+		    padding-left: 30px;
+		    padding-right: 30px;
+		}
+	}
+
 }
 
 body.frontend.portaltype-portlet-page.subsection-nu-te-zien,
@@ -11522,10 +11599,6 @@ body.frontend.portaltype-portlet-page.subsection-now-in-the-museum {
 	}
 
 	#content-core .portletCollection.frontpage-news {
-
-
-		
-
 		p.item-description {
 			display: block;
 		}
@@ -11950,4 +12023,9 @@ body.template-infinite_collection_view {
 			width: 33.3333333%;
 		}
 	}
+}
+
+
+body.frontend.portaltype-collection.subsection-collectie-bekijk-de-collectie-online .plone-loader {
+	display: none !important;
 }

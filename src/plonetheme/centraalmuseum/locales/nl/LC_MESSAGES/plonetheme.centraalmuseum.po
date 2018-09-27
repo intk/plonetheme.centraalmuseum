@@ -104,7 +104,7 @@ msgstr "Vervaardiger"
 
 #: ../object.py
 msgid "label_text"
-msgstr "Tekst"
+msgstr "Beschrijving"
 
 #: ../object.py
 msgid "object_name"
@@ -112,11 +112,23 @@ msgstr "Objectnaam"
 
 #: ../object.py
 msgid "technique"
-msgstr "Techniek"
+msgstr "Materiaal/Techniek"
 
 #: ../object.py
 msgid "association_subject"
 msgstr "Geassocieerd onderwerp"
+
+#: ../object.py
+msgid "object_association_subject"
+msgstr "Geassocieerd onderwerp"
+
+#: ../object.py
+msgid "object_association_period"
+msgstr "Geassocieerde periode"
+
+#: ../object.py
+msgid "object_association_person"
+msgstr "Geassocieerd persoon"
 
 #: ../object.py
 msgid "acquisition_method"
@@ -171,6 +183,9 @@ msgstr "Vervaardiging begindatum"
 msgid "production_date_end"
 msgstr "Vervaardiging einddatum"
 
+#: ../object.py
+msgid "inscriptions_markings"
+msgstr "Opschriften/merken"
 
 #: ../object.py
 msgid "object_work"
@@ -200,6 +215,25 @@ msgstr "Vervaardiger"
 msgid "sortable_production_date"
 msgstr "Datering"
 
+#: ../object.py
+msgid "object_technique"
+msgstr "Materiaal/Techniek"
+
+#: ../object.py
+msgid "creator_qualifier"
+msgstr "Kwalificatie"
+
+#: ../object.py
+msgid "creator_place"
+msgstr "Land/plaats"
+
+#: ../object.py
+msgid "content_motifs"
+msgstr "Meer van hetzelfde motief"
+
+#: ../object.py
+msgid "object_collection"
+msgstr "Collectie"
 
 #: ../object.py
 msgid "explore_the_house"
@@ -259,8 +293,9 @@ msgstr "Vaste collectie"
 msgid "label_toggle_search"
 msgstr "Alleen in de collectie"
 
-
-
+#: ../object.py
+msgid "advanced_search"
+msgstr "Geavanceerd zoeken"
 
 
 

@@ -314,6 +314,7 @@ jQuery(document).ready(function($) {
 
 
    var is_chrome = !!window.chrome && !is_opera;
+   var isEdge = navigator.userAgent.indexOf('Edge') > 0;
    var is_explorer= typeof document !== 'undefined' && !!document.documentMode && !isEdge;
    var is_firefox = typeof window.InstallTrigger !== 'undefined';
    var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

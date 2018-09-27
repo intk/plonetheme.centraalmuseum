@@ -372,6 +372,11 @@ class ContextToolsView(BrowserView):
 
     def isEventPast(self, event):
         """ Checks if the event is already past """
+
+        rec = getattr(event, 'recurrence', None)
+        if rec:
+            return False
+
         if event.portal_type != 'Event':
             return False
         else:
