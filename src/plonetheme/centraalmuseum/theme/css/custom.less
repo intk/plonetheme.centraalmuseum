@@ -8792,10 +8792,9 @@ body.frontend #slickcarousel .carousel-item.portrait {
 		.carousel-image-wrapper {
 			width: 50%;
 			float: right;
-			background: #fbf9f2 !important;
+			background-color: #fbf9f2 !important;
+			background-position: right center;
 		}
-
-		
 	}
 
 	&:not([data-index='0']) .carousel-image-wrapper {
@@ -12028,4 +12027,10 @@ body.template-infinite_collection_view {
 
 body.frontend.portaltype-collection.subsection-collectie-bekijk-de-collectie-online .plone-loader {
 	display: none !important;
+}
+
+#website-wrapper.empty-slideshow {
+	#above-content div.portlet-rrssb {
+		display: none !important;
+	}
 }

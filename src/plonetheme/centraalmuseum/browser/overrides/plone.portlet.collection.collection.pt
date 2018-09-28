@@ -1,6 +1,7 @@
 <section class="portlet portletCollection"
     i18n:domain="plone"
     tal:define="collection_url python: view.collection_url;
+                header_url python: view.header_url;
                 collection_item python: view.collection();
                 collection_id python:collection_item.UID();
                 plone_view python: context.restrictedTraverse('@@plone');
@@ -9,17 +10,17 @@
     tal:attributes="class string:portlet portletCollection ${view/css_class}">
     <header class="portletHeader">
         <span class="portletTopLeft"></span>
-        <a tal:attributes="href collection_url" tal:omit-tag="python: not view.data.show_more and not view.data.link_header">
+        <a tal:attributes="href python: collection_url() if not header_url() else header_url()" tal:omit-tag="python: not view.data.show_more and not view.data.link_header">
             <h1 tal:content="view/data/header"></h1><h1 class="arrow-title"><span class="fa fa-chevron-right"></span></h1>
         </a>
-        <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/link_description">
+        <a tal:attributes="href python: collection_url() if not header_url() else header_url()" tal:omit-tag="not:view/data/link_description">
           <h2 tal:content="collection_item/Description" tal:condition="collection_item/Description"></h2>
         </a>
 
         <span class="portletTopRight"></span>
 
         <tal:news tal:condition="python: view.data.show_news">
-          <a tal:attributes="href collection_url" class="show-more-a">
+          <a tal:attributes="href python: collection_url() if not header_url() else header_url()" class="show-more-a">
            <span i18n:translate="more_url" class="show-more-header">More&hellip;</span>
           </a>
         </tal:news>
