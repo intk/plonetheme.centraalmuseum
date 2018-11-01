@@ -28,7 +28,8 @@
           height: auto !important;
         }
         </style>
-        <div class="entries masonry-grid grid-sizer" id="masonry-grid" metal:define-slot="entries">
+        
+        <div class="entries masonry-grid grid-sizer" id="masonry-grid" metal:define-slot="entries" tal:attributes="class python: 'entries masonry-grid grid-sizer' if not context.Subject() else 'entries masonry-grid grid-sizer overview'">
           <tal:repeat repeat="item batch" metal:define-macro="entries">
             <div class="grid-item" tal:define="
                 item_url item/getURL;
@@ -61,8 +62,9 @@
                               tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(item, 'large')">
                               
                               <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.centraalmuseum">
-                                <!--<div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>-->
+                                <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
                               </div>
+                                    
                               <img tal:define="images_src python:item_img;
                                                  "
                                      src="" alt=""
@@ -71,18 +73,6 @@
                           </div>
 
                           <div class="entry-wrapper">
-                          <tal:event condition="python: item_is_event or item_is_news_item"
-                             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
-                              <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-                              
-                              <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(item)" tal:condition="item_is_event"/>
-                              <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(item.getObject())" tal:condition="item_is_news_item"/>
-
-                              
-                              </p>
-                            </tal:event>
-                            
-                            
                               <h4 class="item-title">
                                 <a href="#"
                                  tal:attributes="href python: item_link;"

@@ -135,6 +135,10 @@ msgid "acquisition_method"
 msgstr "Verwervingsmethode"
 
 #: ../object.py
+msgid "object_acquisition_method"
+msgstr "Verwervingsmethode"
+
+#: ../object.py
 msgid "acquisition_date"
 msgstr "Verwervingswijze datum"
 
@@ -228,6 +232,10 @@ msgid "creator_place"
 msgstr "Land/plaats"
 
 #: ../object.py
+msgid "collection"
+msgstr "Collectie"
+
+#: ../object.py
 msgid "content_motifs"
 msgstr "Meer van hetzelfde motief"
 
@@ -246,8 +254,6 @@ msgstr "Tickets"
 #: ../object.py
 msgid "more_url"
 msgstr "Meer info"
-
-
 
 #: ../object.py
 msgid "DAILY"
@@ -297,5 +303,16 @@ msgstr "Alleen in de collectie"
 msgid "advanced_search"
 msgstr "Geavanceerd zoeken"
 
+#: ../object.py
+msgid "search_nu_te_zien"
+msgstr "Nu te zien"
+
+#: ../object.py
+msgid "search_only_images"
+msgstr "Alleen met beeld"
+
+#: ../object.py
+msgid "only_in_the_website"
+msgstr "Alleen in de website"
 
 

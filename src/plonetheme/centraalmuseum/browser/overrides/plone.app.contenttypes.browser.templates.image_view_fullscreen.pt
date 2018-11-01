@@ -10,11 +10,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title tal:content="context/Title">Title</title>
   <style type="text/css" media="screen">
+
+    @font-face {
+      font-family: 'FranklinBook';
+      src: url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Book.eot?#iefix'),
+           url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Book.woff') format('woff'),
+           url('++resource++plonetheme.centraalmuseum/ITCFranklinGothicStd-Book.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       background-color: white;
       color: black;
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 14px;
+      font-family: 'FranklinBook', Helvetica, Arial, sans-serif;
+      font-size: 1.000m;
       padding:0;
       margin:0;
     }
@@ -24,15 +34,15 @@
         }
     }
     a {
-      color: #08c;
-      text-decoration: none;
+      color: #9d9d9d;
+      text-decoration: underline;
       text-align:center;
     }
 
     p {
       text-align: center;
     }
-    a:hover {text-decoration:underline;}
+    a:hover {text-decoration:none;color: #000000;}
     a span {
       display:block;
       line-height:1.5em;
@@ -43,6 +53,10 @@
       display:block;
       margin:0 auto;
       max-width: 100%; height: auto;
+    }
+
+    span.rights {
+      font-style: italic;
     }
   </style>
 </head>
@@ -68,8 +82,8 @@
       </p>
 
       <p tal:condition="rights">
-        <span tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bij gebruik deze gegevens vermelden: </span><span tal:content="rights" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"></span>
-        <span tal:condition="python: getattr(context, 'language', 'nl') == 'en'">When using this information please state: </span><span tal:condition="python: getattr(context, 'language', 'nl') == 'en'" tal:content="rights"></span>
+        <span tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bij gebruik deze gegevens vermelden: </span><span class="rights"  tal:content="rights" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"></span>
+        <span tal:condition="python: getattr(context, 'language', 'nl') == 'en'">When using this information please state: </span><span class="rights" tal:condition="python: getattr(context, 'language', 'nl') == 'en'" tal:content="rights"></span>
       </p>
 
       <a tal:attributes="href request/HTTP_REFERER"
@@ -94,6 +108,11 @@
 
       <p tal:condition="python: getattr(context, 'language', 'nl') == 'en'">
         <span>Not what you are looking for?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
+      </p>
+
+      <p tal:condition="rights">
+        <span tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bij gebruik deze gegevens vermelden: </span><span class="rights"  tal:content="rights" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"></span>
+        <span tal:condition="python: getattr(context, 'language', 'nl') == 'en'">When using this information please state: </span><span class="rights" tal:condition="python: getattr(context, 'language', 'nl') == 'en'" tal:content="rights"></span>
       </p>
 
       <a tal:attributes="href context/portal_url"

@@ -31,8 +31,10 @@ class AdvancedSearchView(BrowserView, Search):
             advancedfields = list(searchFiltersRecord)
             advancedfields.append("SearchableText")
             """advancedfields.append("sort_on")"""
-            
-            q = "&".join(["%s=%s" %(param,value.decode('utf-8').encode('ascii', 'ignore')) for param,value in params if param in advancedfields and value])
+            try:
+                q = "&".join(["%s=%s" %(param,value.decode('utf-8').encode('ascii', 'ignore')) for param,value in params if param in advancedfields and value])
+            except:
+                pass
 
         return q
 
@@ -60,7 +62,7 @@ class AdvancedSearchView(BrowserView, Search):
         extra_filters = []
 
         # Needs fix
-        widget_fields = ['object_name', 'association_subject', 'acquisition_method', 'creator_role', 'object_qualifier']
+        widget_fields = ['object_name', 'association_subject', 'acquisition_method', 'creator_role', 'object_qualifier', 'sortable_creator_name']
 
 
         new_params = []
@@ -144,6 +146,12 @@ class AdvancedSearchView(BrowserView, Search):
             'creator_place': {
                 'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.creatorplace", "initialValues": {}, "separator": "_"}' % (context_url)
             },
+            'sortable_creator_name': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.creatorname", "initialValues": {}, "separator": "_"}' % (context_url)
+            },
+            'collection': {
+                'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.collection", "initialValues": {}, "separator": "_"}' % (context_url)
+            }
         }
         
         searchFilters = []

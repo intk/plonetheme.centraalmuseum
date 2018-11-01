@@ -787,12 +787,13 @@ body.portaltype-object {
 	    left: 50%;
 	    width: 100px;
 	    height: 100px;
-	    background: url("../img/play.svg") no-repeat;
+	    background-image: url("../img/play.svg");
+	    background-repeat: no-repeat;
 	    background-size: 100% 100%;
 	    z-index: 10;
 	    margin-left: 0px;
 	    margin-top: 0px;
-	    opacity: 0.50;
+	    opacity: 0.75 !important;
 	    transition: opacity 0.2s ease-in;
 	    cursor: pointer;
 	    pointer-events: all !important;
@@ -800,7 +801,7 @@ body.portaltype-object {
 
 	    &:hover,
 	    &:focus {
-	    	opacity: 0.75 !important;
+	    	opacity: 1 !important;
 	    	transition: opacity 0.2s ease-in;
 	    }
 

@@ -104,6 +104,10 @@ msgid "acquisition_method"
 msgstr "Acquisition method"
 
 #: ../object.py
+msgid "object_acquisition_method"
+msgstr "Acquisition method"
+
+#: ../object.py
 msgid "acquisition_date"
 msgstr "Acquisition date"
 
@@ -243,6 +247,10 @@ msgstr "Associated person"
 #: ../object.py
 msgid "object_association_period"
 msgstr "Associated period"
+
+#: ../object.py
+msgid "collection"
+msgstr "Collection"
 
 
 

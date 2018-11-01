@@ -1552,7 +1552,7 @@ body.frontend, body#tinymce {
     	}
     }
 
-    .page-container {
+    &:not(.portaltype-object) .page-container {
     	@media (max-width: 768px) {
     		padding-left: 15px;
     		padding-right: 15px;
@@ -2646,7 +2646,7 @@ body.frontend, body#tinymce {
 
 			div.field:not(.ArchetypesBooleanWidget) {
 				.fieldErrorBox {
-					float:left;
+					float:none;
 				}
 			}
 
@@ -2722,8 +2722,7 @@ body.frontend, body#tinymce {
 		}
 
 
-		div.field.ArchetypesSelectionWidget[data-fieldname="aanhef"],
-		div.field.ArchetypesSelectionWidget[data-fieldname="betaalwijze"] {
+		div.field.ArchetypesSelectionWidget[data-fieldname="aanhef"] {
 			@media(min-width: 992px) {
 				div.formQuestion {
 					float: left;
@@ -2748,8 +2747,30 @@ body.frontend, body#tinymce {
 				}
 			}
 
-			@media(max-width: 991px) {
+			
+		}
 
+		div.field.ArchetypesSelectionWidget[data-fieldname="betaalwijze"] {
+			@media(min-width: 991px) {
+				div.formQuestion {
+					display: none !important;
+				}
+
+				input[type="radio"] {
+					display: inline-block;
+				    width: auto !important;
+				    float: none;
+				}
+
+				br {
+					display: block !important;
+				}
+
+				label {
+					margin-right: 50px;
+				    margin-bottom: 0px;
+				    line-height: 25px;
+				}
 			}
 		}
 	}
@@ -3897,6 +3918,12 @@ body.frontend.template-search,
 body.frontend.template-advancedsearch {
 	.extra-fields p {
     	display: inline-block;
+	}
+
+	@media(min-width: 992px) {
+		.search-item-right {
+			padding-left: 40px !important;
+		}
 	}
 
 	.select2-container {
@@ -6364,8 +6391,8 @@ body.frontend {
 		}
 	}
 
-	&:not(.subsection-verhalen) {
-		#below-content {
+	&:not(.subsection-verhalen):not(.subsection-world-of-utrecht) {
+		#website-wrapper:not(.presentation) #below-content {
 			.portlet-rrssb {
 				display: none !important;
 			}
@@ -6826,6 +6853,7 @@ body.frontend {
 	section.portletSearch {
 		box-shadow: none;
 		.portletHeader {
+			display: none;
 			background: none;
 			border: 0px;
 			padding-top: 60px;
@@ -6835,6 +6863,7 @@ body.frontend {
 		}
 
 		.portletContent {
+			padding-top: 50px;
 			border: 0px;
 			padding-bottom: 40px;
 		}
@@ -6845,6 +6874,11 @@ body.frontend {
 
 		.searchButton {
 			.buttonField();
+		}
+
+		input.searchField {
+			padding: 18px !important;
+			padding-bottom: 13px !important;
 		}
 
 		@media (min-width: 992px) {
@@ -6881,6 +6915,22 @@ body.frontend {
 					margin-bottom: 15px;
 				}
 			}
+		}
+	}
+}
+
+
+@media(max-width: 992px) {
+	#below-title-above-content .abovecontent-portlets > .col-xs-12:first-child {
+		padding:0px !important;
+
+		section.portletSearch .portletContent {
+			padding: 0px !important;
+			padding-top: 50px !important;
+		}
+
+		.portletContent #searchform {
+			padding: 0px !important;
 		}
 	}
 }
@@ -7047,7 +7097,7 @@ body.frontend {
 	}
 }
 
-body.frontend:not(.subsection-verhalen) #below-content .portlet-rrssb {
+body.frontend:not(.subsection-verhalen):not(.subsection-world-of-utrecht) #website-wrapper:not(.presentation) #below-content .portlet-rrssb {
 	.sharing-buttons-wrapper {
 		border: 0px !important;
 	}
@@ -11062,7 +11112,7 @@ body.frontend.portaltype-portlet-page.section-home-page {
 						padding-right: 55px;
 
 						img {
-							float: left;
+							float: right;
 						}
 
 					}
@@ -11798,9 +11848,8 @@ body.frontend {
 				border-color: #ffffff;
 
 				&:hover,
-				&:active,
 				&:focus,
-				&:active:focus {
+				&:active {
 					border-color: #282931;
 					background: #282931;
 				}
@@ -11827,8 +11876,7 @@ body.frontend {
 
 				&:hover,
 				&:active,
-				&:focus,
-				&:active:focus {
+				&:focus {
 					border-color: #282931;
 					background: #282931;
 				}
@@ -11924,6 +11972,21 @@ body.frontend {
 }
 
 
+body.frontend.portaltype-object {
+	#slickcarousel-controls {
+		.slide-prev:before
+		{
+		    content: url('++resource++plonetheme.centraalmuseum/arrow-big-left-object.svg');
+		}
+
+		.slide-next:before
+		{
+		    content: url('++resource++plonetheme.centraalmuseum/arrow-big-right-object.svg');
+		}
+	}
+}
+
+
 body.portaltype-portlet-page,
 body.portaltype-object {
 	#slickcarousel-controls {
@@ -11934,8 +11997,9 @@ body.portaltype-object {
 
 /* Infinite collectoin view */
 
-body.template-infinite_collection_view {
-	h4.item-title {
+body.template-infinite_collection_view,
+body.portaltype-object .search-results-portlet-container {
+	.entries.masonry-grid:not(.overview) h4.item-title {
 		font-size: 15px !important;
 		line-height: 22px !important;
 		.FranklinBook() !important;
@@ -12025,7 +12089,8 @@ body.template-infinite_collection_view {
 }
 
 
-body.frontend.portaltype-collection.subsection-collectie-bekijk-de-collectie-online .plone-loader {
+body.frontend.portaltype-collection.subsection-collectie-bekijk-de-collectie-online .plone-loader,
+body.frontend.portaltype-collection.subsection-collection-collection-online .plone-loader {
 	display: none !important;
 }
 
@@ -12034,3 +12099,111 @@ body.frontend.portaltype-collection.subsection-collectie-bekijk-de-collectie-onl
 		display: none !important;
 	}
 }
+
+body:not(.portaltype-collection) {
+	#below-title-above-content {
+		display: none !important;
+	}
+}
+
+
+body.portaltype-object .search-results-portlet-container,
+.search-results-portlet-container {
+	padding-left: 20px;
+	padding-right: 20px;
+
+	@media(min-width: 992px) {
+		padding-left: 150px;
+		padding-right: 150px;
+		max-width: 1250px;
+		margin: 0 auto;
+	}
+
+	width: 100%;
+
+	.search-results-portlet-wrapper {
+		
+		.portlet-item {
+			margin-bottom: 15px;
+
+			@media(min-width: 992px) {
+				margin-bottom: 30px;
+			}
+
+			@media(max-width: 991px) {
+				p.item-description {
+					margin-bottom: 20px !important;
+				}
+			}
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		.masonry-grid .grid-item {
+			width: 50%;
+		}
+	}
+
+	@media screen and (min-width: 991px) {
+		.masonry-grid .grid-item {
+			width: 50%;
+		}
+	}
+
+	@media(max-width: 768px) {
+		p.item-description {
+			margin-bottom: 0px !important;
+		}
+	}
+
+
+}
+
+.portletHeader.search-results-portlet h2 {
+	text-align: center;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+
+	@media(min-width: 992px) {
+		padding-bottom: 30px;
+		padding-top: 50px;
+	}
+}
+
+.portletCollection.search-results-portlet {
+	background: #fbf9f2;
+	padding-bottom: 40px;
+	margin-top: 30px;
+}
+
+
+div.on-display-wrapper {
+  position: absolute;
+  left: calc(~"100% - 15px");
+  color: @brand-primary;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  width: auto;
+}
+
+div.on-display-wrapper .label_inner {
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-size: 0.850em;
+  font-weight: bold;
+  padding: 2px 7pt 1px;
+  border: 1px solid @brand-primary;
+  border-bottom: 0px;
+}
+
+body.template-infinite_collection_view,
+body.portaltype-portlet-page .portletCollection #masonry-grid {
+	div.on-display-wrapper {
+		left: 100%;
+	}
+}
+

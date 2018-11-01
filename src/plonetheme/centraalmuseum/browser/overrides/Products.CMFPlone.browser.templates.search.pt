@@ -89,21 +89,55 @@
               <fieldset class="noborder">
                 <h3 i18n:translate="label_new_items_since" i18n:translate="narrow_search_options">Filter the results</h3>
                   
+                  
+                  <div class="field"
+                       tal:define="all_checked python: request.get('hasMedia', None) == True;
+                                   toggle_select_state python:all_checked and 'true' or 'false';" style="margin-bottom: 0px">
+                    
+                    <div class="onViewOptionsToggle">
+                      <input type="checkbox" onchange="" name="only_images_toggle" value="#" id="only_images_toggle" class="noborder" checked="checked"
+                             tal:attributes="checked python:all_checked and 'checked' or '';" />
+                      <label for="only_images_toggle" i18n:translate="search_only_images" i18n:domain="plonetheme.centraalmuseum">Only images</label>
+                    </div>
+                    
+                    <div class="only-images-options" style="display: none !important;"
+                      tal:define="is_checked python:((request.get('hasMedia', None) == True)) and 'checked' or ''">
+                      <div>
+                        <input type="checkbox" name="hasMedia:boolean" value="False" class="noborder" checked="checked"
+                             tal:attributes="id python: 'hasMedia';
+                                             checked python:((request.get('hasMedia', None) == True)) and 'checked' or '';
+                                             value python: True if is_checked else False"/>
+
+                        <label for="only-images-options">Only images</label>
+                      </div>
+                    </div>
+                  </div>
+
+
                   <div class="field"
                        tal:define="portal_types portal/portal_types;
                                    types_list view/types_list;
-                                   all_checked python: 'Object' in request.get('portal_type', []);
-                                   toggle_select_state python:all_checked and 'true' or 'false';">
+                                   object_checked python: 'Object' in request.get('portal_type', []) and len(request.get('portal_type', [])) == 1;
+                                   all_but_object_checked python: 'Object' not in request.get('portal_type', []) and len(request.get('portal_type', [])) == len(types_list)-1;
+                                   " style="margin-bottom: 0px">
+                    
+                    <div class="optionsToggle">
+                      <input type="checkbox" onchange="" name="only_website_toggle" value="#" id="only_website_toggle" class="noborder" checked="checked"
+                             tal:attributes="checked python:all_but_object_checked and 'checked' or '';" />
+                      <label for="only_website_toggle" i18n:translate="only_in_the_website" i18n:domain="plonetheme.centraalmuseum">Only in the website</label>
+                    </div>
+
                     <div class="optionsToggle">
                       <input type="checkbox" onchange="" name="pt_toggle" value="#" id="pt_toggle" class="noborder" checked="checked"
-                             tal:attributes="checked python:all_checked and 'checked' or '';" />
+                             tal:attributes="checked python:object_checked and 'checked' or '';" />
                       <label for="pt_toggle" i18n:translate="label_toggle_search" i18n:domain="plonetheme.centraalmuseum">Only in the collection</label>
                     </div>
+
+                    
                     
                     <div class="search-type-options">
                       <div tal:repeat="type types_list">
-
-                        <tal:is_object tal:condition="python: type in ['Object']">
+                        
                           <input type="checkbox" name="portal_type:list" value="#" class="noborder" checked="checked"
                                  tal:attributes="value type;
                                                  id string:portal_type_${repeat/type/number};
@@ -112,10 +146,34 @@
                                    tal:attributes="for string:portal_type_${repeat/type/number}"
                                    tal:content="python: portal_types.getTypeInfo(type).Title()" />
 
-                        </tal:is_object>
+                        
                       </div>
                     </div>
 
+                  </div>
+
+
+                  <div class="field"
+                       tal:define="all_checked python: request.get('object_on_display', None) == True;
+                                   toggle_select_state python:all_checked and 'true' or 'false';" style="margin-bottom: 0px">
+                    
+                    <div class="onViewOptionsToggle">
+                      <input type="checkbox" onchange="" name="on_view_toggle" value="#" id="on_view_toggle" class="noborder" checked="checked"
+                             tal:attributes="checked python:all_checked and 'checked' or '';" />
+                      <label for="on_view_toggle" i18n:translate="search_nu_te_zien" i18n:domain="plonetheme.centraalmuseum">Now on view</label>
+                    </div>
+                    
+                    <div class="on-view-options" style="display: none !important;"
+                      tal:define="is_checked python:((request.get('object_on_display', None) == True)) and 'checked' or ''">
+                      <div>
+                        <input type="checkbox" name="object_on_display:boolean" value="False" class="noborder" checked="checked"
+                             tal:attributes="id python: 'object_on_display';
+                                             checked python:((request.get('object_on_display', None) == True)) and 'checked' or '';
+                                             value python: True if is_checked else False"/>
+
+                        <label for="on-view-options">Nu te zien</label>
+                      </div>
+                    </div>
                   </div>
 
 
@@ -283,7 +341,7 @@
                                   </tal:leadmedia>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 search-item-right">
                                   
                                   <a href="#" tal:define="item_url item/getURL;item_type item/PortalType"
                                      tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
@@ -323,7 +381,7 @@
         <div class="visualClear"><!-- --></div>
     </form>
 
-    <script type="text/javascript" src="${context/portal_url}/++resource++search.js">
+    <script type="text/javascript" src="${context/portal_url}/++resource++plonetheme.centraalmuseum/search.js">
     </script>
   </div>
 

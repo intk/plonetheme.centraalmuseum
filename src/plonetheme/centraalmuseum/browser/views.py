@@ -118,6 +118,7 @@ class ContextToolsView(BrowserView):
                     details['url'] = obj.absolute_url()
                     details['creator'] = self.getObjectCreator(obj)
                     details['title'] = getattr(obj, 'title', '')
+                    details['_id'] = getattr(obj, 'id', '')
                     
                     return details
             else:
@@ -259,7 +260,7 @@ class ContextToolsView(BrowserView):
                 else:
                     return True
         except:
-            raise
+            pass
 
         return False
 
