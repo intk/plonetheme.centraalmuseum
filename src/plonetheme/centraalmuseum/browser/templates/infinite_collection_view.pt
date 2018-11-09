@@ -20,7 +20,8 @@
 
   <metal:listingmacro define-macro="listing">
     <tal:results define="batch view/batch;
-                         b_start python: request.get('b_start', 0);">
+                         b_start python: request.get('b_start', 0);
+                         context_tools python:context.restrictedTraverse('@@context_tools')">
       <tal:listing condition="batch">
 
         <style>
@@ -58,8 +59,8 @@
                 <article class="entry">
                 
                      <div class="thumb-wrapper">         
-                            <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: item_link"
-                              tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(item, 'large')">
+                            <a class="thumb-image" tal:condition="python: has_media or item_type == 'Image'" href="" tal:attributes="href python: item_link"
+                              tal:define="item_img python:context_tools.getImageObject(item, 'large')">
                               
                               <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.centraalmuseum">
                                 <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>

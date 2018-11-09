@@ -12006,18 +12006,29 @@ body.portaltype-object .search-results-portlet-container {
 	}
 
 	.plone-loader {
-		position: initial !important;
-		display: block !important;
-	}
+            position: initial !important;
+            display: block !important;
+            padding-bottom: 80px;
 
-	#infscr-loading {
-		display: none !important;
-	}
+            .loader {
+                    display: none;
+            }
 
-	nav.pagination {
-		visibility: hidden;
-	}
+            #infscr-loading {
+                    img {
+                            display: none !important;
+                    }
 
+                    div {
+                            display: none !important;
+                    }
+            }
+    }
+
+    nav.pagination {
+            visibility: hidden;
+    }
+        
 	p.item-description {
 		line-height: 16px !important;
 		font-size: 0.750em !important;
