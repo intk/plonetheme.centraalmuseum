@@ -62,7 +62,7 @@ class AdvancedSearchView(BrowserView, Search):
         extra_filters = []
 
         # Needs fix
-        widget_fields = ['object_name', 'association_subject', 'acquisition_method', 'creator_role', 'object_qualifier', 'sortable_creator_name']
+        widget_fields = ['object_name', 'objectname', 'association_subject', 'acquisition_method', 'creator_role', 'object_qualifier', 'sortable_creator_name']
 
 
         new_params = []
@@ -128,7 +128,7 @@ class AdvancedSearchView(BrowserView, Search):
         context_url = self.context.absolute_url()
 
         advanced_widgets = {
-            'object_name': {
+            'objectname': {
                 'data':'{"orderable": true, "vocabularyUrl": "%s/@@getVocabulary?name=collective.object.objectname", "initialValues": {}, "separator": "_"}' % (context_url)
             },
             'association_subject': {

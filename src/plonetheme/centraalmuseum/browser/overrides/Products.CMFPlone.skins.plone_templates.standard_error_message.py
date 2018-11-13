@@ -42,9 +42,9 @@ else:
 
 def getImageObject(item):
     if item:
-        if item.portal_type == "Image":
+        if getattr(item, 'portal_type', None) == "Image":
             return item.getURL()+"/@@images/image/mini"
-        if item.hasMedia and item.leadMedia != None:
+        if getattr(item, 'leadMedia', None):
             uuid = item.leadMedia
             catalog = getToolByName(context, 'portal_catalog')
             brains = catalog(UID=uuid)
@@ -53,13 +53,6 @@ def getImageObject(item):
                 if media_object:
                     return media_object.getURL()+"/@@images/image/mini"
 
-
-"""def formatted_date(item):
-    provider = getMultiAdapter(
-        (context, context, context),
-        IContentProvider, name='formatted_date'
-    )
-    return provider(item)"""
 
 no_actions = {'folder': [], 'user': [], 'global': [], 'workflow': []}
 error_page = context.default_error_message(

@@ -40,20 +40,8 @@
                 item_objects_count item/objects_count|nothing;
                 item_type item/PortalType;
                 item_on_display item/object_on_display|nothing;
-                item_modified item/ModificationDate;
-                item_created item/CreationDate;
-                collection_id python: context.UID() if context.portal_type == 'Collection' else '';
-                item_type_class python:'contenttype-' + view.normalizeString(item_type);
-                item_wf_state item/review_state;
-                item_wf_state_class python:'state-' + view.normalizeString(item_wf_state);
-                item_creator item/Creator;
                 has_media nocall:item/leadMedia;
-                item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;                
-                item_is_event python:item_type in ['Event', 'Exhibition'];
-                item_is_news_item python:item_type in ['News Item'];
-                item_has_image python:item.getIcon;
-                context_portal_type context/portal_type|nothing;
-                item_index repeat/item/index;"
+                item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;"
                 >
               <metal:block define-slot="entry">
                 <article class="entry">

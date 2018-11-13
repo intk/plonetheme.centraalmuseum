@@ -13,7 +13,7 @@
                                   is_presentation python:context.restrictedTraverse('@@context_tools').hasPresentation(context);">
 
 
-    <div id="presentation" tal:condition="is_presentation">
+    <div id="presentation" tal:condition="python:is_presentation">
       <style>
       body {
         overflow-y: auto !important;
@@ -34,7 +34,7 @@
 
       </style>
       <tal:presentation_items tal:define="items python:context.restrictedTraverse('@@context_tools').getPresentationItems(context);">
-        <tal:render_items tal:condition="items">
+        <tal:render_items tal:condition="python:items">
           <tal:items tal:repeat="presentation_item items">
 
             <tal:item tal:define="obj presentation_item/getObject;
@@ -71,7 +71,7 @@
       </tal:presentation_items>
     </div>
 
-    <tal:render_body tal:condition="not:is_presentation">
+    <tal:render_body tal:condition="python: not is_presentation">
       <div id="parent-fieldname-text"
           tal:condition="context/text"
           tal:content="structure python:context.text.output_relative_to(view.context)"

@@ -111,6 +111,10 @@ msgid "object_name"
 msgstr "Objectnaam"
 
 #: ../object.py
+msgid "objectname"
+msgstr "Objectnaam"
+
+#: ../object.py
 msgid "technique"
 msgstr "Materiaal/Techniek"
 

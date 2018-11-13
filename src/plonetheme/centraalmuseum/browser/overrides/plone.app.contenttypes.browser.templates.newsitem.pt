@@ -19,7 +19,7 @@
       toLocalizedTime nocall: context/@@plone/toLocalizedTime;
     "
   >
-    <tal:name tal:condition="item_creator">
+    <tal:name tal:condition="python: item_creator">
       <span i18n:translate="label_by_author">
       by
         <a tal:attributes="href string:${navigation_root_url}/author/${item_creator}"

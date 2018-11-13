@@ -20,7 +20,8 @@
 
   <metal:listingmacro define-macro="listing">
     <tal:results define="batch view/batch;
-                         b_start python: request.get('b_start', 0);">
+                         b_start python: request.get('b_start', 0);
+                         context_tools python: context.restrictedTraverse('@@context_tools')">
       <tal:listing condition="batch">
         <div class="entries" metal:define-slot="entries">
           <tal:repeat repeat="item batch" metal:define-macro="entries">
@@ -28,7 +29,7 @@
                 item_url item/getURL;
                 item_id item/getId;
                 item_title item/Title;
-                item_description python:context.restrictedTraverse('@@context_tools').trimText(item.Description(), 160);
+                item_description python:context_tools.trimText(item.Description(), 160);
                 item_objects_count item/objects_count|nothing;
                 item_type item/PortalType;
                 item_on_display item/object_on_display|nothing;
@@ -52,9 +53,9 @@
                 
                      <div class="thumb-wrapper">         
                             <a class="thumb-image" tal:condition="python: ((has_media != None and has_media != '' and 'Missing' not in str([has_media])) or item_type == 'Image')" href="" tal:attributes="href python: item_link"
-                              tal:define="item_img python:context.restrictedTraverse('@@context_tools').getImageObject(item, 'mini')">
+                              tal:define="item_img python:context_tools.getImageObject(item, 'mini')">
                               
-                              <div class="on-display-wrapper" tal:condition="item_on_display" i18n:domain="plonetheme.centraalmuseum">
+                              <div class="on-display-wrapper" tal:condition="python: item_on_display" i18n:domain="plonetheme.centraalmuseum">
                                 <div i18n:translate="object_on_display" class="label_inner">Nu te zien</div>
                               </div>
                               <img tal:define="images_src python:item_img;
@@ -66,11 +67,11 @@
 
                           <div class="entry-wrapper">
                           <tal:event condition="python: item_is_event or item_is_news_item"
-                             tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(item)">
+                             tal:define="is_past python: context_tools.isEventPast(item)">
                               <p class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
                               
-                              <tal:date tal:replace="structure python:context.restrictedTraverse('@@context_tools').formatted_date(item)" tal:condition="item_is_event"/>
-                              <tal:news_item_date tal:replace="python:context.restrictedTraverse('@@context_tools').get_pub_date(item.getObject())" tal:condition="item_is_news_item"/>
+                              <tal:date tal:replace="structure python:context_tools.formatted_date(item)" tal:condition="python:item_is_event"/>
+                              <tal:news_item_date tal:replace="python:context_tools.get_pub_date(item.getObject())" tal:condition="python:item_is_news_item"/>
 
                               
                               </p>
