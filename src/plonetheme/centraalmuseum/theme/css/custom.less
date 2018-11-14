@@ -11959,7 +11959,7 @@ body.frontend {
 		
 		.slide-prev:before
 		{
-		    content: url('/nl/intk/images/arrow-big-left.svg');
+		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-left.svg');
 		}
 
 		.slide-next
@@ -11968,7 +11968,7 @@ body.frontend {
 		}
 		.slide-next:before
 		{
-		    content: url('/nl/intk/images/arrow-big-right.svg');
+		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-right.svg');
 		}
 	}
 }
@@ -11978,12 +11978,12 @@ body.frontend.portaltype-object {
 	#slickcarousel-controls {
 		.slide-prev:before
 		{
-		    content: url('++resource++plonetheme.centraalmuseum/arrow-big-left-object.svg');
+		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-left-object.svg');
 		}
 
 		.slide-next:before
 		{
-		    content: url('++resource++plonetheme.centraalmuseum/arrow-big-right-object.svg');
+		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-right-object.svg');
 		}
 	}
 }
@@ -12261,6 +12261,31 @@ p.object-expandable-trigger {
     	margin: 0 auto;
     	margin-left: auto !important;
     	margin-right: auto !important;
+	}
+}
+
+body.template-facetednavigation_view {
+	.faceted-widget.section-zoeken {
+		input[type="text"] {
+			width: 100% !important;
+		}
+	}
+}
+
+body.frontend.portaltype-collection.section-collectionfilter {
+	@media(min-width: 991px) {
+		.main-container {
+			width: 75% !important;
+			padding-right: 0px !important;
+			float:left !important;
+			.main-content > div.col-sm-9 {
+				width: 100% !important;
+			}
+		}
+
+		footer {
+			clear: both;
+		}
 	}
 }
 
