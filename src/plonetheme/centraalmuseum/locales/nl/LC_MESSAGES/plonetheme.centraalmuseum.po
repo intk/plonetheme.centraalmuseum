@@ -241,7 +241,7 @@ msgstr "Collectie"
 
 #: ../object.py
 msgid "content_motifs"
-msgstr "Meer van hetzelfde motief"
+msgstr "Motief"
 
 #: ../object.py
 msgid "object_collection"
@@ -292,6 +292,10 @@ msgid "slide_buy"
 msgstr "Tickets"
 
 #: ../object.py
+msgid "slide_information"
+msgstr "Praktisch"
+
+#: ../object.py
 msgid "slide_photos"
 msgstr "Fotos"
 
@@ -318,5 +322,18 @@ msgstr "Alleen met beeld"
 #: ../object.py
 msgid "only_in_the_website"
 msgstr "Alleen in de website"
+
+#: ../object.py
+msgid "like_exhibition"
+msgstr "Zin in deze tentoonstelling?"
+
+#: ../object.py
+msgid "share_with_friend"
+msgstr "Nodig een vriend uit"
+
+#: ../object.py
+msgid "practical_info"
+msgstr "Praktische informatie"
+
 
 

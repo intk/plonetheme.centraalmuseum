@@ -72,6 +72,71 @@
         </tal:render_items>
 
       </tal:presentation_items>
+
+      <div class="extra-info-wrapper col-xs-12" tal:define="item_images python:context_tools.getObjectImages(context, True); 
+                                                    item_images_total python: len(item_images);
+                                                    nextimages python:item_images[1:] if item_images_total > 0 else []">
+          
+          <div class="thumb-wrapper" tal:attributes="data-imagescount python: item_images_total; class python: 'thumb-wrapper extra-images' if item_images_total > 0 else 'thumb-wrapper'">
+            
+            <tal:renderimages tal:condition="python: item_images_total > 0">
+              <tal:leadimage tal:define="leadimage python: item_images[0]">
+                <a class="thumb-image">
+
+                <img tal:define="images_src python:leadimage.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, leadimage.get('description', '')) if leadimage.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt context/Title; title context/Title;"/>
+                <span class="inline-expand-image" tal:condition="python: item_images_total > 1">
+                  <svg width="22" height="22" viewBox="0 0 22 22">
+                  <path d="M3.4 20.2L9 14.5 7.5 13l-5.7 5.6L1 14H0v7.5l.5.5H8v-1l-4.6-.8M18.7 1.9L13 7.6 14.4 9l5.7-5.7.5 4.7h1.2V.6l-.5-.5H14v1.2l4.7.6"></path>
+                  </svg>
+                </span>
+
+                </a>
+              </tal:leadimage>
+              
+              <tal:more_images tal:repeat="extra_image nextimages" tal:condition="python: item_images_total > 1">
+                <div tal:define="extra_image_number repeat/extra_image/number;
+                                 item_count python: '%s/%s' %(extra_image_number+1, item_images_total);
+                                 item_img_description python: '%s' %(item_count) if not extra_image.get('description', '') else '%s - %s' %(item_count, extra_image.get('description', ''))">
+                  <img tal:attributes="data-lazy python: extra_image.get('url', ''); data-caption item_img_description" class="tileImage lazy-img" />
+                </div>
+              </tal:more_images>
+            <tal:renderimages>
+
+          </div>
+
+          <div class="entry-wrapper">
+                <p class="event-date">
+                  <span i18n:translate="practical_info" i18n:domain="plonetheme.centraalmuseum">Practical information</span>
+                </p>
+
+                <h4 class="item-title">
+                  <span tal:content="context/Title">Title</span>
+                </h4>
+
+                <div class="portlet-item-description">
+                  <p class="item-description"><span tal:replace="python:context_tools.trimText(context.Description(), 190)"></span></p>
+                </div>
+
+                <div class="show-more-btn-wrapper">
+                  <a>
+                    <input i18n:domain="plonetheme.centraalmuseum" type="submit" class="btn-default show-more" id="event-preview-btn" value="Preview"/>
+                  </a>
+                </div>
+          </div>
+
+        </div>
+
+      <div id="content-core" class="presentation">
+        
+
+        
+
+
+        <div id="parent-fieldname-text" tal:condition="data/text">
+          <tal:text content="structure data/text" />
+        </div>
+      </div>
+
     </div>
 
   <tal:render_body tal:condition="not:is_presentation">              

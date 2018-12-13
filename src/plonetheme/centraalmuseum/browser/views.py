@@ -33,9 +33,21 @@ from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('plonetheme.centraalmuseum')
 
 class ContextToolsView(BrowserView):
+    def render_belowcontent_portlets(self):
+        portlet_manager = getMultiAdapter(
+            (self.context, self.request, self.__parent__),
+            name='collective.belowcontentportlets'
+        )
+        portlet_manager.update()
+        return portlet_manager.render()
+        
 
-    def getObjectImages(self, item):
-        obj = item.getObject()
+    def getObjectImages(self, item, event_view=False):
+        if event_view:
+            obj = item
+        else:
+            obj = item.getObject()
+            
         slideshow = getattr(obj, 'slideshow', None)
 
         if slideshow:
@@ -56,8 +68,11 @@ class ContextToolsView(BrowserView):
                     else:
                         return []  
 
-                if len(images) > 1:   
-                    return images[1:]
+                if len(images) > 1:
+                    if event_view:   
+                        return images
+                    else:
+                        return images[1:]
                 else:
                     return []
             else:
@@ -252,13 +267,20 @@ class ContextToolsView(BrowserView):
 
     def hasPresentation(self, item):
         try:
-            if 'presentation' in item:
-                presentation_folder = item['presentation']
-                state = plone.api.content.get_state(obj=presentation_folder)
-                if state != 'published':
-                    return False
-                else:
+
+            if not plone.api.user.is_anonymous():
+                if 'presentation' in item:
                     return True
+            else:
+                if 'presentation' in item:
+                    presentation_folder = item['presentation']
+                    state = plone.api.content.get_state(obj=presentation_folder)
+                    if state != 'published':
+                        return False
+                    else:
+                        return True
+                else:
+                    return False
         except:
             pass
 

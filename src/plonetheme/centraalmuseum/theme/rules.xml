@@ -20,7 +20,6 @@
     <theme href="index_empty.html" css:if-content="#slickcarousel.empty"/>
     <theme href="index.html" css:if-content="body.frontend"/>
 
-
     <notheme css:if-not-content="#visual-portal-wrapper" />
       <rules css:if-content="#portal-top">
         <!-- Attributes -->
@@ -37,8 +36,6 @@
         <after css:theme-children="head" css:content="head link" />
         <!-- Script -->
         <after css:theme-children="head" css:content="head script" />
-
-        
       </rules>
 
       <!-- Copy over the id/class attributes on the body tag.
@@ -131,15 +128,9 @@
         css:content-children="#portal-searchbox"
         />
 
-      
-
       <drop css:content=".title-carousel-wrapper" css:if-content="#slickcarousel.empty"/>
       <drop css:theme="#slickcarousel-controls" css:if-content="#slickcarousel.empty"/>
       
-      <!--<drop css:theme=".main-container .title-container" css:if-not-content="#slickcarousel.empty"/>-->
-
-
-
       <!-- viewlet-above-content -->
       <replace
         css:theme-children="#above-content"
@@ -260,12 +251,10 @@
         css:theme-children="#online-experience-container"
         css:content-children="#parent-fieldname-text"
         css:if-content="body.template-online_experience"
-        />
-
+      />
 
       <!-- Central column -->
       <replace css:theme="#content-container" method="raw">
-
           <xsl:variable name="central">
             <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-6</xsl:if>
             <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-9</xsl:if>
@@ -281,13 +270,6 @@
                 <div class="clearfix"></div>
             </div>
             
-            <!--<section id="viewlet-below-content-body" class="row">
-                <div class="col-xs-12 col-sm-12 no-padding">
-                 <xsl:copy-of css:select="#viewlet-below-content" />
-                </div>
-                <div class="clearfix"></div>
-            </section>-->
-
           </div><!--/row-->
       </replace>
 
@@ -314,43 +296,7 @@
       </rules>
 
       <replace css:theme-children="footer .container" css:content-children="#portal-footer-wrapper" />
-      <!--<after css:theme-children=".main-content" css:content=".portlet-rrssb" method="raw"/>
-      <drop css:content="footer .portlet-rrssb"/>-->
-
-      <!-- Mailchimp portlet -->
-      <!--<replace css:content-children=".portletMailChimp">
-        
-          <xsl:copy-of select="dt[@class='portletTitle']"/>
-          <xsl:copy-of select="dt[@class='portletHeader']"/>
-
-          <dd class="portletItem odd">
-
-          <form id="newsletter-subscriber-form" class="form-inline" role="form" method="post"><xsl:attribute name="action"><xsl:value-of select="div/dl/dd/form/@action"/></xsl:attribute>
-            <div class="input-group">
-              <input type="text"
-                class="text-widget required form-control input-lg textline-field" placeholder="Email" id="form-widgets-email" name="form.widgets.email"></input>
-              <span class="input-group-btn">
-                <button class="submit-button" name="form.buttons.subscribe" id="form-buttons-subscribe" type="submit" role="submit">
-                  <span class="mailchimp-btn-text">Inschrijven</span>
-                  <span class="fa fa-chevron-right"></span>
-                </button>
-              </span>
-            </div>
-
-            <xsl:copy-of css:select=".portletMailChimp input[type='hidden']"/>
-            <xsl:copy-of select="div/dl//p"/>
-            <xsl:for-each css:select=".portletMailChimp .fieldErrorBox">
-              <xsl:if test="position()=1">
-                <xsl:copy-of select="." />
-              </xsl:if>
-            </xsl:for-each>
-
-          </form>
-          </dd>
-        
-      </replace>-->
-
-
+      
       <replace css:content="#form-widgets-email" css:if-content="body.site-nl">
         <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres"/>
       </replace>
