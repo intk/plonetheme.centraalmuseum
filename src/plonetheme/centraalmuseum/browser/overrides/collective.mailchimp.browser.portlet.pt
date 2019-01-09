@@ -20,6 +20,7 @@
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
         <input type="hidden" value="42702e9770" name="id" tal:attributes="value view/list_id|nothing"/>
+        <input type="hidden" value="1" name="group[15905][16]"/>
 
         <div class="formControls">
           <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Inschrijven" type="submit" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">

@@ -165,6 +165,13 @@
         method="raw"
         />
 
+      <replace
+        css:theme-children="#top-alert-message"
+        css:content=".top-alert-wrapper"
+        method="raw"
+        />
+
+      <drop css:content=".top-alert-wrapper"/>
       <drop css:content=".top-left-header-portlets"/>
       <drop css:content="#column-collective-portletpage-toprow-portlet-top-left-header"/>
       <drop css:content="#viewlet-below-content-body"/>
