@@ -40,7 +40,35 @@ class ContextToolsView(BrowserView):
         )
         portlet_manager.update()
         return portlet_manager.render()
-        
+    
+    def getFixedLastWord(self, text):
+
+        text_split = text.split(" ")
+        if len(text_split) > 1:
+            last_word = text_split[-1]
+            before_last_word = text_split[len(text_split)-2]
+            word_to_replace = "%s&nbsp;%s" %(before_last_word, last_word)
+            text_split[len(text_split)-2] = word_to_replace
+            text_split[-1] = ''
+        else:
+            return text
+
+        text = " ".join(text_split)
+        return text
+
+    def getPortraitDescription(self, item):
+        description = item.Description()
+
+        description_split = description.split(" ")
+        if len(description_split) > 1:
+            last_word = description_split[-1]
+            before_last_word = description_split[len(description_split)-2]
+            word_to_replace = "%s&nbsp;%s" %(before_last_word, last_word)
+            description_split[len(description_split)-2] = word_to_replace
+            description_split[-1] = ''
+
+        description = " ".join(description_split)
+        return description
 
     def getObjectImages(self, item, event_view=False):
         if event_view:
