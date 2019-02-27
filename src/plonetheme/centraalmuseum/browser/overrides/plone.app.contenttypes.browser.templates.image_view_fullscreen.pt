@@ -78,7 +78,7 @@
       </p>
 
       <p tal:condition="python: getattr(context, 'language', 'nl') == 'en'">
-        <span>Not what you are looking for?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
+        <span>Not what you are looking for?</span> <a href="/en/orderimage" tal:attributes="href python: '/en/orderimage?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
       </p>
 
       <p tal:condition="rights">
@@ -107,7 +107,7 @@
       </p>
 
       <p tal:condition="python: getattr(context, 'language', 'nl') == 'en'">
-        <span>Not what you are looking for?</span> <a href="/nl/beeldaanvraag" tal:attributes="href python: '/nl/beeldaanvraag?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
+        <span>Not what you are looking for?</span> <a href="/en/orderimage" tal:attributes="href python: '/en/orderimage?url=%s&object_number=%s&creator=%s&object_title=%s' %(object_details.get('url', ''), object_details.get('object_number', ''), object_details.get('creator', ''), object_details.get('title', ''))">Order form</a>
       </p>
 
       <p tal:condition="rights">

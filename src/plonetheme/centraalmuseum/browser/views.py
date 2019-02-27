@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from Acquisition import aq_inner, aq_parent
 from Products.Five import BrowserView
 from plone.app.multilingual.subscriber import createdEvent
@@ -19,9 +21,10 @@ import plone.api
 from zope.component import getMultiAdapter
 from plone.event.interfaces import IEvent
 from zope.contentprovider.interfaces import IContentProvider
-
+from zope.schema import getFields, getFieldsInOrder
 
 from Products.CMFCore.utils import getToolByName
+from collective.behavior.exhibition.behavior import IExhibition
 
 from bs4 import BeautifulSoup as BSHTML
 import re
@@ -32,7 +35,416 @@ import json
 from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('plonetheme.centraalmuseum')
 
+
+NOT_ALLOWED = [None, '', ' ', 'None']
+NOT_ALLOWED_FIELDS = ['priref', 'nummer_cm', 'cm_nummer', 'start_date', 'end_date', 'notes', 'show_notes', 'alternative_title']
+
+
+class ExhibitionArchiveView(BrowserView):
+
+    # # # # # #
+    # Utils   #
+    # # # # # #
+    def get_schema(self, item):
+        return getFieldsInOrder(IExhibition)
+
+    def final_text(self, value):
+        return self.context.translate(_(value))
+
+    # # # # # # # # # # # #
+    # Exhibition fields   # 
+    # # # # # # # # # # # #
+    def object_templates(self, template=None, value=""):
+        TEMPLATES = {
+            "label":"<div class='col-lg-4 col-md-4 col-sm-4 col-xs-12 object-label'><p>%s</p></div>",
+            "value":"<div class='col-lg-8 col-md-8 col-sm-8 col-xs-12 object-value'><p>%s</p></div>"
+        }
+        if not template:
+            return TEMPLATES
+        else:
+            if not value:
+                return TEMPLATES.get(template, '')
+            else:
+                template = TEMPLATES.get(template, '')
+                return template % (value)
+
+    def get_custom_fields(self):
+        CUSTOM_FIELDS = {
+            "documentation": self.generate_documentation_value,
+            "persistent_url": self.generate_handle_url_value,
+            "designer": self.generate_designer_value
+        }
+        return CUSTOM_FIELDS
+
+    def get_datagrid_subfield(self, field):
+
+        DATAGRID_SUBFIELDS = {}
+
+        SEPARATORS = {
+            "notes":"<br>",
+            "associated_person": "<br>",
+        }
+
+        SEARCHABLE = {}
+
+        is_searchable = False
+
+        separator = ", "
+        if field in SEPARATORS:
+            separator = SEPARATORS[field]
+
+        if field in SEARCHABLE:
+            is_searchable = SEARCHABLE[field]
+
+        if field in DATAGRID_SUBFIELDS:
+            return DATAGRID_SUBFIELDS[field], separator, is_searchable
+        else:
+            return None, separator, is_searchable
+
+    def generate_handle_url_value(self, field, item):
+        handle_url = getattr(item, field, None)
+        
+        if handle_url:
+            value = "%s: <a href='%s' target='_blank'>%s</a>" %(self.context.translate(_("Handle url desc")), handle_url, handle_url)
+            return value
+
+        return ""
+
+    def generate_designer_value(self, field, item):
+        designer_value = getattr(item, field, None)
+        
+        if designer_value:
+            designer_value_fixed = self.fix_author_name(designer_value)
+            return designer_value_fixed
+        return ""
+
+    def generate_regular_datagrid(self, field, item, subfield, separator=', ', is_searchable=False):
+        value = getattr(item, field, None)
+
+        values = []
+
+        if subfield:
+            if value:
+                for subitem in value:
+                    if subfield in subitem:
+                        subfield_value = subitem.get(subfield, '')
+                        if subfield_value:
+                            if separator == "<br>":
+                                if not is_searchable:
+                                    values.append("<span>%s</span>" %(subfield_value))
+                                else:
+                                    subfield_value = "<a href='/%s/@@search?%s=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), is_searchable, url_quote(subfield_value),subfield_value)
+                                    values.append("<span>%s</span>" %(subfield_value))
+                            else:
+                                if not is_searchable:
+                                    values.append("%s" %(subfield_value))
+                                else:
+                                    if is_searchable == "content_motif":
+                                        subfield_value = "<a href='/%s/@@search?content_motifs=%s*'>%s</a>" %(getattr(self.context, 'language', 'nl'), url_quote(subfield_value), subfield_value)
+                                    else:
+                                        subfield_value = "<a href='/%s/@@search?%s=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), is_searchable, url_quote(subfield_value), subfield_value)
+                                    values.append("%s" %(subfield_value))
+                        else:
+                            pass
+                    else:
+                        pass
+            else:
+                return None
+
+            final_value = separator.join(values)
+            return final_value
+        else:
+            return None
+
+    def fix_author_name(self, value):
+        author = value
+        if value:
+            try:
+                author_split = value.split(',')
+                if len(author_split) > 1:
+                    firstname = author_split[1]
+                    lastname = author_split[0]
+                    firstname = firstname.strip()
+                    lastname = lastname.strip()
+                    author = "%s %s" %(firstname, lastname)
+                    return author
+            except:
+                return value
+
+        return author
+
+
+    def generate_relateditems_value(self, field, item):
+        value = getattr(item, field, None)
+        related_objects = []
+        final_value = ""
+        catalog = plone.api.portal.get_tool('portal_catalog')
+
+        if value:
+            for related_item in value:
+                brains = catalog(path={'query': related_item.to_path, 'depth': 0})
+                if brains:
+                    brain = brains[0]
+                    title = brain.Title
+                    description = brain.Description
+                    url = brain.getURL()
+                    new_rel = "%s" %(title)
+
+                    if description:
+                        new_rel = "%s, %s" %(new_rel, description)
+
+                    if new_rel:
+                        if "In deze tentoonstelling waren geen objecten uit de collectie van het Centraal Museum te zien" not in title:
+                            new_rel_html = "<li><a href='%s'><span>%s</span></a></li>" %(url, new_rel)
+                        else:
+                            new_rel_html = "<li><span>%s</span></li>" %(new_rel)
+                        related_objects.append(new_rel_html)
+
+        if len(related_objects) > 3:
+
+            text_en = ["Show more +", "Show less -"]
+            text_nl = ["Toon alles +", "Toon minder -"]
+
+            text_expand = text_nl
+            if getattr(self.context, 'language', 'nl') == 'en':
+                text_expand = text_en
+
+            related_objects_show = related_objects[:3]
+            related_objects_hide = related_objects[3:]
+            trigger = "<p><a href='javascript:void();' class='doc-more-info-obj' data-toggle='collapse' data-target='#doc-list-obj' aria-expanded='false'><span class='notariaexpanded'>%s</span><span class='ariaexpanded'>%s</span></a></p>" %(text_expand[0], text_expand[1])
+            related_objects_show_html = "<ul>"+"".join(related_objects_show)+"</ul>"
+            related_objects_hide_html = "<ul>"+"".join(related_objects_hide)+"</ul>"
+            related_objects_hide_div = "<div id='doc-list-obj' class='collapse' aria-expanded='false'><p>%s</p></div>" %(related_objects_hide_html)
+
+            final_value = related_objects_show_html + trigger + related_objects_hide_div
+            
+            return final_value
+
+        if related_objects:
+            final_value = "<ul>"+"".join(related_objects)+"</ul>"
+        else:
+            final_value = ""
+
+        return final_value
+
+    def generate_documentation_value(self, field, item):
+        value = getattr(item, field, None)
+        documentations = []
+
+        if value:
+            try:
+                value_sorted = sorted(list(value), key=lambda a: a.get('title', '').lower() if a.get('title', '') else a.get('title', ''))
+            except:
+                value_sorted = value
+
+            # Check if DataGridField
+            for doc in value_sorted:
+
+                new_doc = ""
+
+                title = doc.get('title', '')
+                lead_word = doc.get('lead_word', '')
+                author = doc.get('authors', '')
+                publisher = doc.get('publishers', '')
+                year_of_publication = doc.get('year_of_publication', '')
+                pagination = doc.get('pagination', '')
+
+                authors = []
+
+                for name in author:
+                    final_name = self.fix_author_name(name)
+                    if final_name:
+                        authors.append(final_name)
+
+                authors_final = ", ".join(authors)
+
+                if lead_word and title:
+                    new_doc = "%s %s" %(lead_word, title)
+                elif not lead_word and title:
+                    new_doc = "%s" %(title)
+                elif lead_word and not title:
+                    new_doc = "%s" %(lead_word)
+                else:
+                    new_doc = new_doc
+
+                if authors:
+                    new_doc = "%s, %s" %(new_doc, authors_final)
+
+                if publisher:
+                    all_publishers = ", ".join(publisher)
+                    new_doc = "%s, %s" %(new_doc, all_publishers)
+
+                if year_of_publication:
+                    new_doc = "%s (%s)" %(new_doc, year_of_publication)
+
+                if pagination:
+                    new_doc = "%s (%s)" %(new_doc, pagination)
+
+                if new_doc:
+                    documentations.append("<li><span>"+new_doc+"</span></li>")
+
+
+        if len(documentations) > 3:
+
+            text_en = ["Show more +", "Show less -"]
+            text_nl = ["Toon alles +", "Toon minder -"]
+
+            text_expand = text_nl
+            if getattr(self.context, 'language', 'nl') == 'en':
+                text_expand = text_en
+
+            documentation_show = documentations[:3]
+            documentation_hide = documentations[3:]
+            trigger = "<p><a href='javascript:void();' class='doc-more-info' data-toggle='collapse' data-target='#doc-list' aria-expanded='false'><span class='notariaexpanded'>%s</span><span class='ariaexpanded'>%s</span></a></p>" %(text_expand[0], text_expand[1])
+            documentation_show_html = "<ul>"+"".join(documentation_show)+"</ul>"
+            documentation_hide_html = "<ul>"+"".join(documentation_hide)+"</ul>"
+            documentation_hide_div = "<div id='doc-list'class='collapse' aria-expanded='false'><p>%s</p></div>" %(documentation_hide_html)
+
+            final_value = documentation_show_html + trigger + documentation_hide_div
+            return final_value
+
+        if documentations:
+            final_value = "<ul>"+"".join(documentations)+"</ul>"
+        else:
+            final_value = ""
+        return final_value
+
+    def generate_handle_url_value(self, field, item):
+        handle_url = getattr(item, field, None)
+        
+        if handle_url:
+            value = "%s: <a href='%s' target='_blank'>%s</a>" %(self.context.translate(_("Handle url desc")), handle_url, handle_url)
+            return value
+
+        return ""
+
+    def generate_production_value(self, field, item):
+        production_value = getattr(item, field, None)
+        productions = []
+
+        if production_value:
+            for production in production_value:
+                date_start = production.get('date_start', '')
+                date_start_precision = production.get('date_start_precision', '')
+                date_end = production.get('date_end', '')
+                date_end_precision = production.get('date_end_precision', '')
+                notes = production.get('notes', '')
+
+                new_production = ""
+
+                start_date = ""
+
+                if date_start_precision:
+                    start_date = "%s" %(date_start_precision)
+
+                if date_start:
+                    date_start_split =  date_start.split("-")
+                    if date_start_split:
+                        date_start_year = date_start_split[0]
+                        start_date = "%s %s" %(start_date, date_start_year)
+                    else:
+                        start_date = ""
+                else:
+                    start_date = ""
+                start_date = start_date.strip()
+
+                end_date = ""
+
+                if date_end_precision:
+                    end_date = "%s" %(date_end_precision)
+
+                if date_end:
+                    date_end_split =  date_end.split("-")
+                    if date_end_split:
+                        date_end_year = date_end_split[0]
+                        end_date = "%s %s" %(end_date, date_end_year)
+                    else:
+                        end_date = ""
+                else:
+                    end_date = ""
+                end_date = end_date.strip()
+
+
+                if start_date and end_date:
+                    if start_date == end_date:
+                        new_production = "%s" %(start_date)
+                    else:
+                        new_production = "%s - %s" %(start_date, end_date)
+                if not start_date and end_date:
+                    new_production = "%s" %(end_date)
+                elif start_date and not end_date:
+                    new_production = "%s" %(start_date)
+                else:
+                    new_production = new_production
+
+                if new_production:
+                    if notes:
+                        new_production = "%s (%s)" %(new_production, notes)
+ 
+                if new_production:
+                    new_production = new_production.strip()
+                    productions.append(new_production)
+
+
+        final_value = "<br>".join(productions)
+        return final_value
+        
+
+    def generate_regular_value(self, field, item):
+        value = getattr(self.context, field, None)
+        if field in ['organiser'] and value == 'Centraal Museum':
+            value = ''
+
+        if value and type(value) == list:
+
+            subfield, separator, is_searchable = self.get_datagrid_subfield(field)
+
+            if subfield:
+                value = self.generate_regular_datagrid(field, item, subfield, separator, is_searchable)
+                return value
+            else:
+                return None
+            return None
+        else:
+            return value
+
+    def get_fields(self):
+        result = {"fields":[]}
+
+        custom_fields = self.get_custom_fields()
+        fields = self.get_schema(self.context)
+
+        for field, fieldschema in fields:
+            # Check if field is allowed
+            if field not in NOT_ALLOWED_FIELDS:
+                title = fieldschema.title
+                
+                # Check if field as a custom generator
+                if field in custom_fields:
+                    value = custom_fields[field](field, self.context)
+                else:
+                    value = self.generate_regular_value(field, self.context)
+                
+                if field == 'persistent_url':
+                    related_items = self.generate_relateditems_value('relatedItems', self.context)
+                    if related_items:
+                        related_items_title = 'related_objects'
+                        new_related_field = {"label": self.object_templates('label', self.final_text(related_items_title)), "value": self.object_templates('value', related_items)}
+                        result['fields'].append(new_related_field)
+
+                if value:
+                    new_field = {"label": self.object_templates('label', self.final_text(title)), "value": self.object_templates('value', value)}
+                    result['fields'].append(new_field)
+            else:
+                # Field is not allowed
+                pass
+
+        return result
+
+
+
 class ContextToolsView(BrowserView):
+
     def render_belowcontent_portlets(self):
         portlet_manager = getMultiAdapter(
             (self.context, self.request, self.__parent__),
@@ -359,6 +771,28 @@ class ContextToolsView(BrowserView):
         else:
             return None
 
+    def getImageBrainSearch(self, item):
+        if item:
+            item_uid = item.UID()
+            item_brain = uuidToCatalogBrain(item_uid)
+
+            if item_brain:
+                if item_brain.portal_type == "Image":
+                        return item
+                if getattr(item_brain, 'leadMedia', None) not in [None, '']:
+                    uuid = item_brain.leadMedia
+                    media_object = uuidToCatalogBrain(uuid)
+                    if media_object:
+                        return media_object
+                    else:
+                        return None
+                else:
+                    return None
+            else:
+                return None
+        else:
+            return None
+
     def is_event(self, obj):
         if getattr(obj, 'getObject', False):
             obj = obj.getObject()
@@ -370,6 +804,48 @@ class ContextToolsView(BrowserView):
             return False
 
         return annon
+
+    def formatted_date_search(self, obj):
+        item = obj
+        provider = getMultiAdapter(
+            (self.context, self.request, self),
+            IContentProvider, name='formatted_date'
+        )
+
+        rec = getattr(item, 'recurrence', None)
+        if rec:
+            if "FREQ=DAILY" in rec:
+                return self.context.translate(_("DAILY"))
+            elif "FREQ=MONDAYFRIDAY" in rec:
+                return self.context.translate(_("MONDAYFRIDAY"))
+            elif "FREQ=WEEKDAYS" in rec:
+                return self.context.translate(_("WEEKDAYS"))
+            elif "FREQ=WEEKLY" in rec:
+                return self.context.translate(_("WEEKLY"))
+            elif "FREQ=MONTHLY" in rec:
+                return self.context.translate(_("MONTHLY"))
+            elif "FREQ=YEARLY" in rec:
+                return self.context.translate(_("YEARLY"))
+            else:
+                return provider(item)
+        else:
+            end_date = getattr(item, 'end', None)
+            if end_date:
+                end = DateTime(end_date)
+                if end.year() > YEAR_LIMIT:
+                    return self.context.translate(_("permanent_collection"))
+                else:
+                    return provider(item)
+            else:
+                end_date = getattr(item, 'end', None)
+                if end_date:
+                    end = DateTime(end_date)
+                    if end.year() > YEAR_LIMIT:
+                        return self.context.translate(_("permanent_collection"))
+                    else:
+                        return provider(item)
+                else:
+                    return provider(item)
 
     def formatted_date(self, obj):
         item = obj.getObject()

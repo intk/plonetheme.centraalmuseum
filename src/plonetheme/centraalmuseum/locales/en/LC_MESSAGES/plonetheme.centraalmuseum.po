@@ -239,7 +239,7 @@ msgstr "Inscriptions/markings"
 #: ../object.py
 msgid "object_association_subject"
 msgstr "Associated subject"
-
+p
 #: ../object.py
 msgid "object_association_person"
 msgstr "Associated person"
@@ -252,5 +252,31 @@ msgstr "Associated period"
 msgid "collection"
 msgstr "Collection"
 
+#: ../object.py
+msgid "alternative_title"
+msgstr "Alternative title"
 
+#: ../object.py
+msgid "organisation"
+msgstr "Location"
+
+#: ../object.py
+msgid "designer"
+msgstr "Designer"
+
+#: ../object.py
+msgid "documentation"
+msgstr "Documentation"
+
+#: ../object.py
+msgid "persistent_url"
+msgstr "Persistent url"
+
+#: ../object.py
+msgid "Handle url desc"
+msgstr "To refer to this object please use the following persistent URL"
+
+#: ../object.py
+msgid "related_objects"
+msgstr "Collection in this exhibition"
 

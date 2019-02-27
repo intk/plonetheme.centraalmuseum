@@ -41,7 +41,8 @@
                 item_type item/PortalType;
                 item_on_display item/object_on_display|nothing;
                 has_media nocall:item/leadMedia;
-                item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;"
+                item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;
+                item_is_event python: item_type in ['Event'];"
                 >
               <metal:block define-slot="entry">
                 <article class="entry">
@@ -62,6 +63,15 @@
                           </div>
 
                           <div class="entry-wrapper">
+
+                            <tal:event condition="python: item_is_event">
+                              <p class="event-date">
+                              
+                              <tal:date tal:replace="structure python:context_tools.formatted_date(item)" tal:condition="python:item_is_event"/>
+                          
+                              </p>
+                            </tal:event>
+
                               <h4 class="item-title">
                                 <a href="#"
                                  tal:attributes="href python: item_link;"

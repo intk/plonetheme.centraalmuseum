@@ -126,21 +126,17 @@
 
         </div>
 
+      
       <div id="content-core" class="presentation">
-        
-
-        
-
-
         <div id="parent-fieldname-text" tal:condition="data/text">
           <tal:text content="structure data/text" />
         </div>
       </div>
-
     </div>
 
   <tal:render_body tal:condition="not:is_presentation">              
-  <div class="event clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
+  <div class="event clearfix" itemscope itemtype="http://data-vocabulary.org/Event"
+    tal:define="is_past python: context_tools.isEventPast(context)">
 
     <ul class="hiddenStructure">
       <li><a itemprop="url" class="url" href="" tal:attributes="href data/url" tal:content="data/url">url</a></li>
@@ -155,6 +151,33 @@
     <div id="parent-fieldname-text" tal:condition="data/text">
       <tal:text content="structure data/text" />
     </div>
+
+    <tal:is_past_check tal:condition="python: is_past and context.show_notes">
+      <div id="parent-fieldname-text" tal:condition="context/notes">
+        <tal:text content="structure python: context.notes.output_relative_to(context)" />
+      </div>
+    </tal:is_past_check>
+
+    <tal:check_text_fields 
+      tal:define="text_field python: getattr(context, 'text', '');
+                  notes_field python: getattr(context, 'notes', '');
+                  has_text_field python: True if text_field and text_field.raw else False;
+                  has_notes_field python: True if notes_field and notes_field.raw else False;">
+
+    <div id="exhibition-archive-fields" tal:condition="python: is_past" class="object-fieldset row" tal:attributes="class python: 'object-fieldset row no-text' if not has_text_field and not has_notes_field else 'object-fieldset row'">
+
+          <tal:exhibitionfields tal:define="fields python: context.restrictedTraverse('@@exhibition_archive').get_fields(); fieldvalues python: fields['fields']">
+            <tal:block repeat="field fieldvalues">
+                <tal:definefield 
+                  tal:define="fieldlabel python: field.get('label', ''); 
+                              fieldvalue python: field.get('value', '')">
+                  <tal:fieldlabel tal:content="structure fieldlabel"></tal:fieldlabel>
+                  <tal:fieldvalue tal:content="structure fieldvalue"></tal:fieldvalue>
+                </tal:definefield>
+            </tal:block>
+          </tal:exhibitionfields> 
+        </div>
+    </tal:check_text_fields>
 
   </div>
   </tal:render_body>

@@ -7,8 +7,13 @@
       tal:omit-tag="">
 <body tal:omit-tag="">
 
-<tal:def tal:define="data python:view.data; excludes view/excludes">
+<tal:def tal:define="data python:view.data; excludes view/excludes;
+                     is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context);">
   
+  <ul class="event summary details is_past" tal:condition="is_past">
+    <li class="event-date is_past"><strong i18n:domain="plonetheme.centraalmuseum" i18n:translate="event_past_text">Past</strong></li>
+  </ul>
+
   <ul class="event summary details" summary="Event details" i18n:attributes="summary summary_event_details" tal:attributes="class python: 'event summary details' if not getattr(context, 'recurrence', None) else 'event summary details recurrence'">
 
     <tal:cond condition="python:'title' not in excludes">
@@ -28,7 +33,6 @@
     </tal:cond>
 
     <tal:cond condition="python:'date' not in excludes"
-     tal:define="is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context)" 
     >
 
       <li class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
@@ -36,6 +40,7 @@
         <span tal:define="start_tzname data/timezone;
                       start_utcdelta python:data.start.tzinfo.utcoffset(data.start);
                       start_utcoffset python:(start_utcdelta.days*86400+start_utcdelta.seconds)*100/60/60;">
+          
           <tal:date replace="structure python:view.formatted_date(context)" />
           <span class="timezone"
               tal:condition="start_tzname">

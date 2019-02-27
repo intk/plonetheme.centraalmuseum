@@ -288,6 +288,10 @@ msgid "slide_images"
 msgstr "Preview"
 
 #: ../object.py
+msgid "slide_images_see"
+msgstr "Bekijk"
+
+#: ../object.py
 msgid "slide_buy"
 msgstr "Tickets"
 
@@ -334,6 +338,42 @@ msgstr "Nodig een vriend uit"
 #: ../object.py
 msgid "practical_info"
 msgstr "Praktische informatie"
+
+#: ../object.py
+msgid "alternative_title"
+msgstr "Alternatieve titel"
+
+#: ../object.py
+msgid "organisation"
+msgstr "Locatie"
+
+#: ../object.py
+msgid "designer"
+msgstr "Vormgever"
+
+#: ../object.py
+msgid "documentation"
+msgstr "Documentatie"
+
+#: ../object.py
+msgid "persistent_url"
+msgstr "Duurzame url"
+
+#: ../object.py
+msgid "Handle url desc"
+msgstr "Als u naar dit object wilt verwijzen gebruik dan de duurzame URL"
+
+#: ../object.py
+msgid "related_objects"
+msgstr "Collectie in deze tentoonstelling"
+
+#: ../object.py
+msgid "event_past_text"
+msgstr "Tentoonstelling is afgelopen"
+
+
+
+
 
 
 
