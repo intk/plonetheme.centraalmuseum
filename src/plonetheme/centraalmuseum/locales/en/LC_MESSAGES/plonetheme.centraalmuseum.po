@@ -280,3 +280,7 @@ msgstr "To refer to this object please use the following persistent URL"
 msgid "related_objects"
 msgstr "Collection in this exhibition"
 
+#: ../object.py
+msgid "privacy_statement"
+msgstr "Privacy statement"
+

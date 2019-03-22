@@ -246,6 +246,8 @@ class ExhibitionArchiveView(BrowserView):
                 lead_word = doc.get('lead_word', '')
                 author = doc.get('authors', '')
                 publisher = doc.get('publishers', '')
+                statement_of_responsibility = doc.get('statement_of_responsibility', '')
+                place_of_publication = doc.get('place_of_publication', '')
                 year_of_publication = doc.get('year_of_publication', '')
                 pagination = doc.get('pagination', '')
 
@@ -258,6 +260,17 @@ class ExhibitionArchiveView(BrowserView):
 
                 authors_final = ", ".join(authors)
 
+                dates = ""
+
+                if place_of_publication and year_of_publication:
+                    dates = "%s, %s" %(place_of_publication, year_of_publication)
+                elif not place_of_publication and year_of_publication:
+                    dates = "%s" %(year_of_publication)
+                elif not year_of_publication and place_of_publication:
+                    dates = "%s" %(place_of_publication)
+                else:
+                    dates = dates
+
                 if lead_word and title:
                     new_doc = "%s %s" %(lead_word, title)
                 elif not lead_word and title:
@@ -267,15 +280,21 @@ class ExhibitionArchiveView(BrowserView):
                 else:
                     new_doc = new_doc
 
-                if authors:
+                if authors_final and not statement_of_responsibility:
                     new_doc = "%s, %s" %(new_doc, authors_final)
+                elif statement_of_responsibility and not authors_final:
+                    new_doc = "%s, %s" %(new_doc, statement_of_responsibility)
+                elif statement_of_responsibility and authors_final:
+                    new_doc = "%s, %s" %(new_doc, statement_of_responsibility)
+                else:
+                    new_doc = new_doc
 
                 if publisher:
                     all_publishers = ", ".join(publisher)
                     new_doc = "%s, %s" %(new_doc, all_publishers)
 
-                if year_of_publication:
-                    new_doc = "%s (%s)" %(new_doc, year_of_publication)
+                if dates:
+                    new_doc = "%s (%s)" %(new_doc, dates)
 
                 if pagination:
                     new_doc = "%s (%s)" %(new_doc, pagination)

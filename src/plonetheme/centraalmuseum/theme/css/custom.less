@@ -2162,7 +2162,8 @@ body.frontend, body#tinymce {
 
 	/* PORTLET PAGE */
 	&.portaltype-portlet-page,
-	&.portaltype-event #below-content {
+	&.portaltype-event #below-content,
+	&.portaltype-person #below-content {
 
 		#column-collective-portletpage-toprow-portlet-slideshow,
 		#column-collective-portletpage-toprow-portlet-ontdek,
@@ -12072,7 +12073,8 @@ body.frontend.portaltype-portlet-page.section-home-page,
 body.frontend.portaltype-portlet-page.subsection-nu-te-zien,
 body.frontend.portaltype-portlet-page.subsection-now-in-the-museum,
 body.frontend.portaltype-portlet-page.subsection-zien-en-doen,
-body.frontend.portaltype-event {
+body.frontend.portaltype-event,
+body.frontend.portaltype-person {
 	#content-core .portletCollection.frontpage-news,
 	#below-content .portletCollection.frontpage-news {
 		.show-more-header {
@@ -12179,7 +12181,8 @@ body.frontend.portaltype-event {
 			}
 
 			p.item-description {
-				font-size: 1.100em;
+				font-size: 1.100em !important;
+				line-height: 30px !important;
 				display: none;
 			}
 		}
@@ -13473,7 +13476,8 @@ body.portaltype-event {
 	}
 }
 
-body.frontend.portaltype-event #below-content {
+body.frontend.portaltype-event #below-content,
+body.frontend.portaltype-person #below-content {
 	.belowcontent-portlets .col-xs-12 > div:nth-child(even) .portletCollection.frontpage-news {
 		background: #ffffff !important;
 		margin-bottom: 0px;

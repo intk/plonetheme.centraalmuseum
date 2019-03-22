@@ -371,9 +371,9 @@ msgstr "Collectie in deze tentoonstelling"
 msgid "event_past_text"
 msgstr "Tentoonstelling is afgelopen"
 
-
-
-
+#: ../object.py
+msgid "privacy_statement"
+msgstr "Privacyreglement"
 
 
 

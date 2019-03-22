@@ -599,14 +599,16 @@ body.frontend {
 		margin-left: 0px;
 		margin-right: 0px;
 
-		.carousel-item {
-			pointer-events: none;
-		}
-
 		.slideshow-btn-wrapper {
 			pointer-events: all;
 			z-index: 4;
 		}
+	}
+
+	&:not(.portaltype-object) {
+		#slickcarousel .carousel-item {
+			pointer-events: none;
+		};
 	}
 }
 
@@ -769,6 +771,11 @@ body.portaltype-object {
 
 	#content-core {
 		padding-top: 10px;
+
+		@media(max-width: 768px) {
+			padding-top: 0px !important;
+			padding-bottom: 0px !important;
+		}
 	}
 }
 
@@ -792,12 +799,16 @@ body.portaltype-object {
 		overflow: hidden;
 	}
 
+	
+
+}
+
+body:not(.portaltype-object) #slickcarousel {
 	.slick-track {
 		@media(max-width: 767px) {
 			pointer-events: none !important;
 		}
 	}
-
 }
 
 #slickcarousel {

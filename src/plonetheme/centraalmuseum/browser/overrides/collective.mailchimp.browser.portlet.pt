@@ -27,13 +27,16 @@
           <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Subscribe" type="submit" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">
         </div>
 
+        <div id="privacy-statement-wrapper" style="margin-top: 10px;" tal:condition="view/privacy_statement|nothing">
+          <a href="https://www.centraalmuseum.nl/nl/over-het-museum/voorwaarden/privacy/privacyreglement_stichting_centraal_museum.pdf" target="_blank" tal:attributes="href view/privacy_statement" i18n:domain="plonetheme.centraalmuseum" i18n:translate="privacy_statement">Privacy statement</a>
+        </div>
+
         <div id="subscribe-result">
           <p class="error-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">Could not subscribe to newsletter. Either the email is already subscribed or something else is wrong. Try again later.</p>
           <p class="error-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Aanmelden op nieuwsbrief mislukt.</p>
           
           <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
-          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">We moeten uw email adres bevestigen om de nieuwsbrief inschrijving af te ronden. Klik op de link in de email die we u zojuist hebben verstuurd.</p>
-
+          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bedankt voor uw aanmelding. U ontvangt een e-mail waarin uw inschrijving wordt bevestigd.</p>
         </div>
       </form>
     </dd>
