@@ -7,7 +7,8 @@
           role="search"
           tal:attributes="action string:${navigation_root_url}/@@search;
                           data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;
-                          class python: view.livesearch and 'pat-livesearch' or ''">
+                          class python: view.livesearch and 'pat-livesearch' or '';
+                          facetedaction string:${navigation_root_url}/zoeken;">
 
         <div class="LSBox">
         <label class="hiddenStructure"

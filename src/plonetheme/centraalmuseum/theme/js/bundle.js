@@ -611,6 +611,24 @@ function do_ecommerce_transactions() {
 };
 
 $(document).ready(function () {
+
+  var $search_form = jQuery('#searchform.search-form-faceted').submit(function(e) {
+  	e.preventDefault();
+  	
+  	var searchable_text = $search_form.find('input[name="c5"]').val();
+  	var only_archive = $search_form.find('input[name="c12"]').val();
+
+  	window.location.href = $search_form.attr('action')+"#c5="+searchable_text+"&c12="+only_archive;
+  });
+
+  var $main_search_form = jQuery('#searchGadget_form').submit(function(e) {
+  	e.preventDefault();
+  	var searchable_text = $main_search_form.find('input[name="SearchableText"]').val();
+  	window.location.href = $main_search_form.attr('facetedaction')+"#c5="+searchable_text;
+  });
+
+
+
   var $form = $('#newsletter-subscriber-form');
   if ($form.length > 0) {
   	$form.each(function(index, value) {
