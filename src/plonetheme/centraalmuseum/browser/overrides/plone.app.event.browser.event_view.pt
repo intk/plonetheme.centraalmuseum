@@ -132,6 +132,8 @@
           <tal:text content="structure data/text" />
         </div>
       </div>
+
+      
     </div>
 
   <tal:render_body tal:condition="not:is_presentation">              

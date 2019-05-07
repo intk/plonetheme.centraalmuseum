@@ -1467,8 +1467,8 @@ body.frontend, body#tinymce {
     	#row-items {
     		padding-left: 0px;
     		padding-right: 0px;
-    		margin-left: -15px;
-    		margin-right: -15px;
+    		/*margin-left: -15px;
+    		margin-right: -15px;*/
     	}
 
     	.tileImage {
@@ -1793,7 +1793,6 @@ body.frontend, body#tinymce {
 			border: 0px;
 			width: 100%;
 			height: 100%;
-			position: absolute;
 			top: 0;
 			left: 0;
 		}
@@ -1825,6 +1824,12 @@ body.frontend, body#tinymce {
 				margin-right: 0px;
 				margin-bottom: 65px;
 			}
+		}
+	}
+
+	#website-wrapper:not(.presentation) div#parent-fieldname-text {
+		iframe {
+			position: absolute;
 		}
 	}
 
@@ -2071,9 +2076,21 @@ body.frontend, body#tinymce {
 
 	&.template-facetednavigation_view {
 		.main-container {
+
+
+
 			@media (min-width: 480px) {
 				padding-right: 75px;
 				padding-left: 75px;
+			}
+
+			@media (max-width: 768px) {
+				padding-right: 0px;
+				padding-left: 0px;
+
+				.faceted-sections-buttons {
+					display: none;
+				}
 			}
 
 			@media (min-width: 767px) {
@@ -3491,7 +3508,7 @@ footer {
 				left: 0;
 				width: 300px;
 				height: 145px;
-				/*background: url('++resource++plonetheme.centraalmuseum/footer-topleft.svg');*/
+				/*background: url('c');*/
 			}
 
 			.bottom-left-background {
@@ -6584,6 +6601,12 @@ body.frontend.template-advancedsearch {
 		font-weight: 400;
 	}
 
+	&.mobile {
+		input {
+			-webkit-appearance: none;
+		}
+	}
+
 	.select2-container-multi .select2-choices {
 		.inputField();
 		background-image: none;
@@ -6606,12 +6629,6 @@ body.frontend.template-advancedsearch {
 		border: 0px !important;
 		padding: 0px !important;
 		line-height: 34px;
-	}
-
-	&.mobile {
-		input {
-			-webkit-appearance: none;
-		}
 	}
 
 	.select2-container-multi .select2-choices .select2-search-choice {
@@ -12350,15 +12367,26 @@ body.frontend.portaltype-portlet-page.subsection-now-in-the-museum {
 
 		@media(min-width: 992px) {
 			#row-items {
-				float: right;
+				float: left;
 			}
 
 			.portletHeader {
 				float: left;
+				width: auto;
+				max-width: 25%;
+				min-width: 160px;
 			}
 
 		}
+	}
 
+	#column-collective-portletpage-toprow-portlet-verwacht {
+		@media(min-width: 992px) {
+			.portletHeader {
+				min-width: 246px !important;
+			}
+
+		}
 	}
 
 	#content-core #portletPageTopRow > div:last-child .portletCollection.frontpage-news {
@@ -13319,16 +13347,37 @@ body.template-facetednavigation_view {
 		}
 
 		.faceted-checkbox-widget,
-		.faceted-boolean-widget {
+		.faceted-boolean-widget,
+		.faceted-radio-widget {
 			form ul {
 				padding: 0;
 				font-size: 15px;
 			}
 		}
 
+		.faceted-radio-widget {
+			input[type="radio"] {
+				margin-top: 0px;
+			}
+		}
+
+		.faceted-radio-widget {
+			input#c12_all {
+				display: none;
+			}
+
+			label[for="c12_all"] {
+				display: none;
+			}
+		}
+
+
 		.faceted-boolean-widget.section-nu-te-zien,
+		.faceted-boolean-widget.section-collectie-nu-te-zien,
 		.faceted-boolean-widget.section-alleen-met-beeld,
-		.faceted-boolean-widget.section-alleen-in-het-tentoonstellingsarchief
+		.faceted-boolean-widget.section-alleen-in-het-tentoonstellingsarchief,
+		.faceted-radio-widget.section-filter-de-resultaten,
+		.faceted-checkbox-widget.section-filter-de-resultaten
 		 {
 			legend {
 				display: none;
@@ -13457,13 +13506,20 @@ body.template-facetednavigation_view {
 }
 
 body.portaltype-collection .div-advanced-search {
-	padding-top: 10px;
+	padding-top: 16px;
+	a {
+		border-bottom: 1px solid #494a51;
+		text-decoration: none;
+		font-size: 16px;
+		letter-spacing: 0.05em;
+	}
 
 	a:hover,
 	a:active,
 	a:focus,
 	a:focus:active {
-		text-decoration: underline;
+		border-bottom: 0px;
+		text-decoration: none;
 	}
 }
 
@@ -13520,6 +13576,183 @@ body.frontend.portaltype-person #below-content {
 		text-align: left !important;
 	}
 }
+
+
+body.template-facetednavigation_view {
+	.faceted-criteria a {
+	    color: #000000 !important;
+	    text-decoration: none !important;
+	    border: none !important;
+	}
+
+	.faceted-criteria a:visited {
+	    color: #000000 !important;
+	    text-decoration: none !important;
+	    border: none !important;
+	}
+
+	.faceted-widget-loading {
+	    background: url('++resource++plonetheme.centraalmuseum/loading-spokes.svg') no-repeat 95% 2.5em;
+		background-size: 20px;
+	}
+
+	.faceted_loading {
+	    background: url('++resource++plonetheme.centraalmuseum/loading-spokes.svg') no-repeat 50% 1.5em;
+	    height: 200px;
+	}
+
+	#top---advanced---widgets {
+
+		&> .faceted-widget:not(:first-child) fieldset {
+			padding-top: 0px;
+			padding-bottom: 0px;
+		}
+
+		&> .faceted-widget:first-child fieldset {
+			padding-top: 1em;
+		}
+		.faceted-text-widget {
+
+			@media(min-width: 992px){
+				legend {
+					width: 30%;
+				    display: inline-block;
+				    float: left;
+				    border-bottom: 0px;
+				    font-family: 'FranklinBook', 'Helvetica Neue', Helvetica, sans-serif;
+				    font-size: 16px;
+				    color: #404040;
+				    line-height: 50px;
+				    margin-bottom: 0px;
+				}
+
+				form {
+					width: 70%;
+				    display: inline-block;
+				    float: left;
+				}
+			}
+
+			@media(max-width: 991px) {
+				legend {
+					display: none;
+				}
+			}
+
+			div.input-group {
+				width: 100%;
+
+				input[type="text"] {
+					width: 100%;
+					padding-left: 30px;
+				}
+				span.input-group-btn {
+					display: none;
+				}
+			}
+		}
+
+		.faceted-select2-widget {
+			.input-prepend {
+				button.btn {
+					display: none;
+				}
+			}
+
+			legend {
+				display: none;
+			}
+
+			form {
+				@media(min-width: 992px) {
+					label {
+						    width: 30%;
+						    float: left;
+						    line-height: 55px;
+						    margin-bottom: 0px;
+						    font-weight: 400;
+					}
+
+					div.input-prepend {
+						width: 70%;
+					    display: inline-block;
+					    float: left;
+					}
+				}
+			}
+		}
+	}
+
+	#faceted-form .faceted-sections-buttons a {
+		color: #494a51;
+	}
+
+	#faceted-form .faceted-sections-buttons {
+		float: none;
+	}
+
+	.search-results-bar-wrapper {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.select2-container-multi .select2-choices {
+		.inputField();
+		background-image: none;
+		padding: 9px;
+		padding-bottom: 8px;
+		padding-left: 5px !important;
+		padding-right: 28px;
+
+		input.select2-input {
+			padding-left: 28px !important;
+			padding-top: 2px !important;
+		}
+	}
+
+	input:not(.search-btn):not([type="radio"]):not([type="checkbox"]), select, .select2-container {
+
+		width: 100% !important;
+	}
+
+	.select2-input {
+		border: 0px !important;
+		padding: 0px !important;
+		line-height: 34px;
+	}
+
+	.select2-container-multi .select2-choices .select2-search-choice {
+		line-height: 22px;
+	}
+
+	.select2-search-choice {
+		padding-right: 8px;
+		
+		&> div {
+			line-height: 18px;
+    		padding-top: 4px;
+		}
+
+		a.select2-search-choice-close {
+			border-bottom: 0px !important;
+			left: 4px;
+			margin-top: 3px;
+		}
+	}
+
+	.select2-container-multi .select2-choices .select2-search-field input.select2-active {
+		background: none !important;
+	}
+
+	.select2-result-label {
+		font-size: 0.8em;
+	}
+
+	span.select2-hidden-accessible {
+		font-size: 0.8em;
+	}
+}
+
 
 
 
