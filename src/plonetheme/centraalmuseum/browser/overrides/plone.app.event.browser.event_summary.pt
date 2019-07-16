@@ -1,3 +1,4 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -11,7 +12,7 @@
                      is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context);">
   
   <ul class="event summary details is_past" tal:condition="is_past">
-    <li class="event-date is_past"><strong i18n:domain="plonetheme.centraalmuseum" i18n:translate="event_past_text">Past</strong></li>
+    <li class="event-date is_past"><strong i18n:domain="plonetheme.centraalmuseum" i18n:translate="event_past_text">Past Exhibition</strong></li>
   </ul>
 
   <ul class="event summary details" summary="Event details" i18n:attributes="summary summary_event_details" tal:attributes="class python: 'event summary details' if not getattr(context, 'recurrence', None) else 'event summary details recurrence'">

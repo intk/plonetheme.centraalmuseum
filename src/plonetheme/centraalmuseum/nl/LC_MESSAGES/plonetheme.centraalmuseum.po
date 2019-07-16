@@ -301,7 +301,7 @@ msgstr "Praktisch"
 
 #: ../object.py
 msgid "slide_photos"
-msgstr "Foto's"
+msgstr "Fotos"
 
 #: ../object.py
 msgid "permanent_collection"

@@ -40,6 +40,29 @@ NOT_ALLOWED = [None, '', ' ', 'None']
 NOT_ALLOWED_FIELDS = ['priref', 'nummer_cm', 'cm_nummer', 'start_date', 'end_date', 'notes', 'show_notes', 'alternative_title']
 
 
+def is_event_past(event):
+    """ Checks if the event is already past """
+
+    rec = getattr(event, 'recurrence', None)
+    if rec:
+        return False
+
+    if event.portal_type != 'Event':
+        return False
+    else:
+        try:
+            t = DateTime(time.time())
+            if event.end is not None:
+                end = DateTime(event.end)
+                return end.year() < t.year() or (end.year() == t.year() and end.month() < t.month()) or(end.year() == t.year() and end.month() == t.month() and end.day() < t.day())
+            else:
+                start = DateTime(event.start)
+                return start.year() < t.year() or (start.year() == t.year() and start.month() < t.month()) or(start.year() == t.year() and start.month() == t.month() and start.day() < t.day())
+        except:
+            return False
+    return True
+
+
 class ExhibitionArchiveView(BrowserView):
 
     # # # # # #
@@ -223,7 +246,10 @@ class ExhibitionArchiveView(BrowserView):
         if related_objects:
             final_value = "<ul>"+"".join(related_objects)+"</ul>"
         else:
-            final_value = ""
+            text_no_value = "In deze tentoonstelling waren geen objecten uit de collectie van het Centraal Museum te zien"
+            if getattr(self.context, 'language', 'nl') == 'en':
+                text_no_value = "No objects from the Centraal Museum collection were shown in this exhibition"
+            final_value = "<ul><li><span>%s</span></li></ul>" %(text_no_value)
 
         return final_value
 
@@ -471,6 +497,31 @@ class ContextToolsView(BrowserView):
         )
         portlet_manager.update()
         return portlet_manager.render()
+
+
+    def get_creators_data(self, item):
+
+        membership_tool = getToolByName(
+            self.context, 'portal_membership'
+        )
+
+        creators = item.creators
+        creator_name = ""
+        for creator_id in creators:
+            groups = plone.api.group.get_groups(username=creator_id)
+            for group in groups:
+                if 'Blog' == group.id:
+                    creator_info = membership_tool.getMemberInfo(creator_id)
+                    portrait = membership_tool.getPersonalPortrait(creator_id)
+            
+                    return {
+                        'info': creator_info, 
+                        'portrait': portrait
+                    }
+        return {
+            'info': '',
+            'portrait': ''
+        }
     
     def getFixedLastWord(self, text):
 
@@ -586,7 +637,7 @@ class ContextToolsView(BrowserView):
                 if obj.portal_type == "Object":
 
                     details = {}
-
+                    details['freeofcopyright'] = getattr(obj, 'freeofcopyright', '')
                     details['rights'] = getattr(obj, 'rights', '')
                     details['object_number'] = getattr(obj, 'object_number', '')
                     details['url'] = obj.absolute_url()
