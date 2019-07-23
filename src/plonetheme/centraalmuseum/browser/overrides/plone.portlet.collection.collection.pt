@@ -38,7 +38,7 @@
             <div class="collection-slide-wrapper" tal:define="item_img python:context_tools.getImageObject(obj, 'large')" tal:condition="python: has_media">
               <div class="collection-slide-img-wrapper">
                 <div class="slide-inner-img-wrapper">
-                  <img tal:define="images_src python: item_img" tal:attributes="src images_src; alt obj/Title; title obj/Title;">
+                  <img tal:define="images_src python: item_img" tal:attributes="data-lazy images_src; alt obj/Title; title obj/Title;">
                   <div class="slide-inner-title">
                     <h4>
                       <a href="#"
@@ -88,7 +88,7 @@
               tal:define="img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
                           item_img python:context_tools.getImageObject(obj, img_scale, True)">
 
-              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage lazy-images'; alt obj/Title; title obj/Title;" /> 
 
 
               <span class="inline-expand-image" tal:condition="python: item_images_total > 1 and not view.data.show_news">
@@ -104,7 +104,7 @@
               tal:define="img_scale python: 'large' if (view.data.show_collection_online or view.data.show_frontpage) else 'mini';
                           item_img python:context_tools.getImageObject(obj, img_scale, True)">
 
-              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage lazy-images'; alt obj/Title; title obj/Title;" /> 
 
 
               <span class="inline-expand-image" tal:condition="python: item_images_total > 1 and not view.data.show_news">
@@ -121,7 +121,7 @@
                           item_img python:context_tools.getImageObject(obj, img_scale, True)"
               tal:attributes="href python: itemUrl">
 
-              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt obj/Title; title obj/Title;" /> 
+              <img tal:define="images_src python:item_img.get('url', '');" src="" alt="" tal:attributes="data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, item_img.get('description', '')) if item_img.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage lazy-images'; alt obj/Title; title obj/Title;" /> 
 
 
               <span class="inline-expand-image" tal:condition="python: item_images_total > 1 and not view.data.show_news">

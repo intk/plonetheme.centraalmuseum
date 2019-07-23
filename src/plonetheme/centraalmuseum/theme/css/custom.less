@@ -10879,7 +10879,7 @@ body.frontend {
 	    left: 50%;
 	    width: 100px;
 	    height: 100px;
-	    background: url("../img/play.svg") no-repeat;
+	    background: url("/nl/intk/images/play.svg") no-repeat;
 	    background-size: 100% 100%;
 	    z-index: 10;
 	    margin-left: 0px;
@@ -12655,7 +12655,7 @@ body.frontend {
 		
 		.slide-prev:before
 		{
-		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-left.svg');
+		    content: url('/nl/intk/images/arrow-big-left.svg');
 		}
 
 		.slide-next
@@ -12664,7 +12664,7 @@ body.frontend {
 		}
 		.slide-next:before
 		{
-		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-right.svg');
+		    content: url('/nl/intk/images/arrow-big-right.svg');
 		}
 	}
 }
@@ -12674,12 +12674,12 @@ body.frontend.portaltype-object {
 	#slickcarousel-controls {
 		.slide-prev:before
 		{
-		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-left-object.svg');
+		    content: url('/nl/intk/images/arrow-big-left-object.svg');
 		}
 
 		.slide-next:before
 		{
-		    content: url('/++theme++plonetheme.centraalmuseum/images/arrow-big-right-object.svg');
+		    content: url('/nl/intk/images/arrow-big-right-object.svg');
 		}
 	}
 }
@@ -14027,3 +14027,20 @@ body.frontend {
 		}
 	}
 }
+
+/*
+Avoid empty images to appear as broken
+*/
+img:not([src]):not([srcset]) {
+    visibility: hidden;
+}
+
+/* 
+Fixes the Firefox anomaly while images are loading
+*/
+@-moz-document url-prefix() {
+    img:-moz-loading {
+        visibility: hidden;
+    }
+}
+

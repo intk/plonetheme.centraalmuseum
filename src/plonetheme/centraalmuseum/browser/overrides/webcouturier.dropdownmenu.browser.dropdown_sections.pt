@@ -85,7 +85,7 @@
 
             <div class="logo-nav-wrapper">
                 <a href="/">
-                    <img id="nav-logo" src="++theme++plonetheme.centraalmuseum/images/logo-footer.svg">
+                    <img id="nav-logo" src="/nl/intk/images/logo-footer.svg">
                 </a>    
             </div>
 

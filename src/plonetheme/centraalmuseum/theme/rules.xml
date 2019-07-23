@@ -323,4 +323,12 @@
         </div>
       </replace>
 
+      <xsl:template match="//script[contains(@src, 'centraalmuseum-bundle')]">
+        <xsl:copy>
+          <xsl:attribute name="async">true</xsl:attribute>
+          <xsl:copy-of select="@*" />
+          <xsl:apply-templates />
+        </xsl:copy>
+      </xsl:template>
+
 </rules>
