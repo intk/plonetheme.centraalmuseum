@@ -80,7 +80,7 @@
           <div class="thumb-wrapper" tal:attributes="data-imagescount python: item_images_total; class python: 'thumb-wrapper extra-images' if item_images_total > 0 else 'thumb-wrapper'">
             
             <tal:renderimages tal:condition="python: item_images_total > 0">
-              <tal:leadimage tal:define="leadimage python: item_images[0]">
+              <tal:leadimage tal:define="leadimage python: item_images[0]" tal:on-error="nothing">
                 <a class="thumb-image">
 
                 <img tal:define="images_src python:leadimage.get('url', '');" src="" alt="" tal:attributes="src images_src; data-lazy images_src; data-caption python: '%s/%s - %s' %('1', item_images_total, leadimage.get('description', '')) if leadimage.get('description', '') else '%s/%s' %('1', item_images_total); class python:'tileImage'; alt context/Title; title context/Title;"/>

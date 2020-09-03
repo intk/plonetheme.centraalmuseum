@@ -95,7 +95,8 @@ class ExhibitionArchiveView(BrowserView):
         CUSTOM_FIELDS = {
             "documentation": self.generate_documentation_value,
             "persistent_url": self.generate_handle_url_value,
-            "designer": self.generate_designer_value
+            "designer": self.generate_designer_value,
+            "handle_url": self.generate_handle_url_value
         }
         return CUSTOM_FIELDS
 
@@ -470,7 +471,7 @@ class ExhibitionArchiveView(BrowserView):
                 else:
                     value = self.generate_regular_value(field, self.context)
                 
-                if field == 'persistent_url':
+                if field in ['handle_url']:
                     related_items = self.generate_relateditems_value('relatedItems', self.context)
                     if related_items:
                         related_items_title = 'related_objects'

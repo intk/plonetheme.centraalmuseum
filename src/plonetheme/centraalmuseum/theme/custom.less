@@ -1141,8 +1141,8 @@ body:not(.frontend) {
 		top: 15px;
 
 		img {
-			margin-left: -117px;
-			width: 253px;
+			margin-left: -144px;
+			width: 300px;
 		}
 	}
 
@@ -1151,8 +1151,8 @@ body:not(.frontend) {
 		top: 15px;
 
 		img {
-			margin-left: -84px;
-			width: 189px;
+			margin-left: -144px;
+			width: 300px;
 		}
 	}
 }
@@ -1828,30 +1828,10 @@ body.frontend, body#tinymce {
 	}
 
 	#website-wrapper:not(.presentation) div#parent-fieldname-text {
-		.iframe-wrapper iframe {
+		iframe {
 			position: absolute;
 		}
 	}
-
-	#website-wrapper:not(.presentation) div#parent-fieldname-text {
-                .iframe-wrapper .iframe-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin-left: 0;
-    margin-bottom: 0;
-    margin-right: 0;
-    margin-top: 0;
-}
-                }
-
-#website-wrapper.presentation #content-core div#parent-fieldname-text {
-                .iframe-wrapper iframe {
-                        position: absolute;
-                }
-        }
 
 	&.userrole-authenticated {
 		div#parent-fieldname-text .iframe-wrapper {
@@ -11735,6 +11715,8 @@ body.frontend.portaltype-portlet-page.section-home-page {
 
 			#row-items {
 
+
+
 				padding-left: 0px !important;
     			padding-right: 0px !important;
 
@@ -11769,7 +11751,7 @@ body.frontend.portaltype-portlet-page.section-home-page {
     					padding-top: 70px;
     				}
 
-					h4 {
+					h3 {
 						font-size: 70px;
     					line-height: 65px;
 
@@ -11901,7 +11883,7 @@ body.frontend.portaltype-portlet-page.section-home-page {
 					    	padding-top: 60px;
 					    }
 
-						h4 {
+						h3 {
 							font-size: 4.5vw;
 							line-height: 0.85;
 
@@ -13810,7 +13792,7 @@ body.template-facetednavigation_view {
 	@media (min-width: 1105px) {
 		width: auto;
 		top: 25px;
-		margin-left: -113px;
+		margin-left: -93px;
 		position: absolute;
 	}
 }
@@ -13820,7 +13802,7 @@ body.template-facetednavigation_view {
 		width: auto;
 		position: absolute;
 		top: 25px;
-		margin-left: -113px;
+		margin-left: -93px;
 	}
 }
 
@@ -14048,30 +14030,6 @@ body.frontend {
 	}
 }
 
-/*
-Avoid empty images to appear as broken
-*/
-img:not([src]):not([srcset]) {
-    visibility: hidden;
-}
-
-/* 
-Fixes the Firefox anomaly while images are loading
-*/
-@-moz-document url-prefix() {
-    img:-moz-loading {
-        visibility: hidden;
-    }
-}
-
-body.frontend.portaltype-news-item {
-	@media(min-width: 992px) {
-		.author-name a {
-			max-width: 100px;
-			width: 100px;
-		}
-	}	
-}
 
 /* Cookie statement */
 #CybotCookiebotDialog {
@@ -14090,14 +14048,14 @@ body.frontend.portaltype-news-item {
 }
 
 @media (min-width: 34.375em) {
-        #CybotCookiebotDialog {
-            right: auto!important;
-            left: 50%!important;
-            -webkit-transform: translateX(-50%)!important;
-            -ms-transform: translateX(-50%)!important;
-            transform: translateX(-50%)!important;
-            padding: 1.25vw!important;
-        }
+	#CybotCookiebotDialog {
+	    right: auto!important;
+	    left: 50%!important;
+	    -webkit-transform: translateX(-50%)!important;
+	    -ms-transform: translateX(-50%)!important;
+	    transform: translateX(-50%)!important;
+	    padding: 1.25vw!important;
+	}
 }
 
 #CybotCookiebotDialogBody, #CybotCookiebotDialogDetail {
@@ -14116,7 +14074,7 @@ body.frontend.portaltype-news-item {
 }
 
 #CybotCookiebotDialogPoweredbyLink {
-        display: none !important;
+	display: none !important;
 }
 
 #CybotCookiebotDialogBodyContent {
@@ -14135,18 +14093,18 @@ body.frontend.portaltype-news-item {
 }
 
 @media (min-width: 48em) {
-        #CybotCookiebotDialogBodyContentText {
-            font-size: 14px!important;
-            font-size: 1.4rem!important;
-        }
+	#CybotCookiebotDialogBodyContentText {
+	    font-size: 14px!important;
+	    font-size: 1.4rem!important;
+	}
 }
 
 @media (min-width: 48em) {
-        a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
-            margin: 0!important;
-            font-size: 22px!important;
-            font-size: 2.2rem!important;
-        }
+	a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
+	    margin: 0!important;
+	    font-size: 22px!important;
+	    font-size: 2.2rem!important;
+	}
 }
 
 #CybotCookiebotDialogBodyButtons {
@@ -14183,7 +14141,7 @@ a#CybotCookiebotDialogBodyButtonAccept:focus, a#CybotCookiebotDialogBodyButtonAc
 }
 
 #CybotCookiebotDialogBodyButtons {
-        padding-left: 0px !important;
+	padding-left: 0px !important;
 }
 
 #CybotCookiebotDialogBodyButtonDetails::after, #CybotCookiebotDialogBodyLevelDetailsButton::after {
@@ -14199,11 +14157,11 @@ a#CybotCookiebotDialogBodyButtonAccept:focus, a#CybotCookiebotDialogBodyButtonAc
 
 
 @media (min-width: 48em) {
-        a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
-            margin: 0!important;
-            font-size: 22px!important;
-            font-size: 2.2rem!important;
-        }
+	a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
+	    margin: 0!important;
+	    font-size: 22px!important;
+	    font-size: 2.2rem!important;
+	}
 }
 
 #CybotCookiebotDialogDetailBody, #CybotCookiebotDialogDetailBody a, #CybotCookiebotDialogDetailBody div {
@@ -14224,8 +14182,8 @@ a#CybotCookiebotDialogBodyButtonAccept:focus, a#CybotCookiebotDialogBodyButtonAc
 }
 
 .CookieDeclarationTypeHeader {
-        margin-bottom: 5px !important;
-        margin-bottom: 5px !important;
+	margin-bottom: 5px !important;
+	margin-bottom: 5px !important;
     margin-top: 5px !important;
     line-height: 20px !important;
 }
@@ -14235,110 +14193,65 @@ a#CybotCookiebotDialogBodyButtonAccept:focus, a#CybotCookiebotDialogBodyButtonAc
 }
 
 .CookieDeclarationTableHeader {
-        line-height: 16px !important;
+	line-height: 16px !important;
 }
 
 
 .CookieDeclarationTableCell {
-        line-height: 16px !important;
+	line-height: 16px !important;
     border: 0px !important;
     padding-top: 10px !important;
 }
 
 p.CookieDeclarationTypeDescription {
-        font-size: 14px !important;
-        line-height: 20px !important;
+	font-size: 14px !important;
+	line-height: 20px !important;
 }
 
 .CookieDeclarationTableHeader {
-        border: 0px;
+	border: 0px;
     border-bottom: 1px solid #e6e6e6;
 }
 
 .CookieDeclarationDialogText {
-        padding-top: 50px !important;
+	padding-top: 50px !important;
 }
 
 .CybotCookiebotDialogDetailBodyContentTab:first-child {
     border-radius: 0!important;
 }
 
-body.frontend #presentation div.video-slide #parent-fieldname-text {
-	position: relative !important;
-
-	iframe {
-		display: none !important;
-	}
+/*
+Avoid empty images to appear as broken
+*/
+img:not([src]):not([srcset]) {
+    visibility: hidden;
 }
 
-
-body.frontend.patterns-loaded {
-
-	#website-wrapper, #cd-nav, a.cd-nav-trigger {
-		opacity: 1 !important;
-	}
-}
-.video-embed__cookie-consent {
-    z-index: 65;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.video-embed__cookie-consent-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding: 32px;
-    background: rgba(10,10,10,.7);
-    color: #fff;
-    text-align: center;
-}
-
-.video-embed__cookie-consent-inner :last-child {
-    margin: 0;
-}
-
-
-.video-embed__cookie-consent-inner>p {
-    max-width: 17em;
-    color: #ffffff !important;
-
-    a {
-    	color: #ffffff !important;
-    	border-bottom: 1px solid #ffffff !important;
-
-    	&:hover,
-    	&:focus,
-    	&:active,
-    	&:active:focus {
-    		color: #ffffff !important;
-    		border-bottom: 0px solid #ffffff !important;
-    	}
+/* 
+Fixes the Firefox anomaly while images are loading
+*/
+@-moz-document url-prefix() {
+    img:-moz-loading {
+        visibility: hidden;
     }
 }
 
-body#tinymce.mce-content-body {
-        div.top-left-header-portlets .logo-nav-wrapper {
-                position: relative !important;
+body.frontend.portaltype-news-item {
+        @media(min-width: 992px) {
+                .author-name a {
+                        max-width: 100px;
+                        width: 100px;
+                }
         }
 }
+
+body#tinymce.mce-content-body {
+	div.top-left-header-portlets .logo-nav-wrapper {
+		position: relative !important;
+	}
+}
+
 
 body.frontend.section-agenda {
         .event-date.is-past {
@@ -14355,11 +14268,5 @@ display:none !important;
 
 
 }
-
-body.frontend.portaltype-portlet-page div.thumb-wrapper.extra-images div > img.tileImage {
-	display: none !important;
-}
-
-
 
 
