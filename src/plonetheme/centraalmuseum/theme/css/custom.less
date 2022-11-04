@@ -1018,19 +1018,19 @@ body:not(.frontend) {
 	    padding: 0; 
 	}
 
-	table:not(.picker__table) {
+	table:not(.picker__table):not(.CookieDeclarationTable) {
 		margin-top: 0px;
 		width: 100% !important;
 		max-width: 100% !important;
 		border: 0px;
 	}
 
-	table:not(.picker__table) > thead > tr > th,
-	table:not(.picker__table) > tbody > tr > th,
-	table:not(.picker__table) > tfoot > tr > th,
-	table:not(.picker__table) > thead > tr > td,
-	table:not(.picker__table) > tbody > tr > td,
-	table:not(.picker__table) > tfoot > tr > td {
+	table:not(.picker__table):not(.CookieDeclarationTable) > thead > tr > th,
+	table:not(.picker__table):not(.CookieDeclarationTable) > tbody > tr > th,
+	table:not(.picker__table):not(.CookieDeclarationTable) > tfoot > tr > th,
+	table:not(.picker__table):not(.CookieDeclarationTable) > thead > tr > td,
+	table:not(.picker__table):not(.CookieDeclarationTable) > tbody > tr > td,
+	table:not(.picker__table):not(.CookieDeclarationTable) > tfoot > tr > td {
 	  border: 0px;
 	}
 
@@ -1043,19 +1043,19 @@ body:not(.frontend) {
 		border-top: 0px;
 	}
 
-	table:not(.picker__table) tr {
+	table:not(.picker__table):not(.CookieDeclarationTable) tr {
 		border-bottom: 1px solid @brand-primary-lines;
 	}
 
-	table:not(.picker__table) tr:nth-child(even) {
+	table:not(.picker__table):not(.CookieDeclarationTable) tr:nth-child(even) {
 		background: #ffffff;
 	}
 
-	table:not(.picker__table) tr:nth-child(odd) {
+	table:not(.picker__table):not(.CookieDeclarationTable) tr:nth-child(odd) {
 		background: #ffffff;
 	}
 
-	table:not(.picker__table) td {
+	table:not(.picker__table):not(.CookieDeclarationTable) td {
 		padding: 0;
 		padding-left: 0px;
 		padding-right: 20px;
@@ -1085,7 +1085,7 @@ body:not(.frontend) {
     	}
 	}
 
-	table:not(.picker__table) tr:first-child td {
+	table:not(.picker__table):not(.CookieDeclarationTable) tr:first-child td {
 		.FranklinBook();
 		text-transform: uppercase;
 		font-size: 17px;
@@ -1122,7 +1122,7 @@ body:not(.frontend) {
 	overflow-x: hidden;
 
 	@media(max-height: 400px) {
-		top: 30px;
+		/*top: 30px;*/
 	}
 
 	img {
@@ -8444,7 +8444,9 @@ body.frontend.userrole-authenticated .portlet-rrssb {
 		display: block !important;
 
 		span.subheading {
-			display: none !important;
+			/*display: none !important;*/
+			text-align: center;
+    			line-height: 1.6;
 		}
 	}
 
@@ -8546,6 +8548,14 @@ body.frontend #slickcarousel .carousel-item.portrait {
 		.carousel-image-wrapper {
 			width: 50%;
 			float: right;
+			background-size: contain;
+    			background-position: right center;
+			background-color: #fbf9f2 !important;
+
+			img {
+				object-fit: contain;
+				object-position: right;
+			}
 		}
 	}
 
@@ -8595,9 +8605,9 @@ body.userrole-authenticated #website-wrapper.empty-slideshow .page-container {
 }
 
 body.userrole-authenticated:not(.frontend) #website-wrapper.empty-slideshow .page-container {
-	padding-top: 115px;
-  	padding-left: 40px;
-  	padding-right: 40px;
+	padding-top: 50px;
+  	padding-left: 0px;
+  	padding-right: 0px;
 }
 
 body.site-en h5.lang-link-nl {
@@ -8771,9 +8781,9 @@ body.template-listing_view {
 
 body:not(.frontend) {
 	#portal-logo {
-		top: 40px;
+		/*top: 40px;
 		width: 250px;
-		margin-left: -120px;
+		margin-left: -120px;*/
 	}
 }
 
@@ -9042,6 +9052,18 @@ body.frontend {
 	#subscribe-result p {
 		color: inherit !important;
 		margin-bottom: 0px !important;
+	}
+
+	#subscribe-result p.error-msg a {
+		color: rgb(231, 5, 24) !important;
+		border-bottom: 1px solid rgb(231, 5, 24) !important;
+
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus {
+			border-bottom: 0px !important;
+		}
 	}
 }
 
@@ -10079,5 +10101,352 @@ body.frontend:not(.mobile) #below-content .portlet-rrssb {
 	.sharing-buttons-wrapper .rrssb-buttons li.rrssb-whatsapp {
 		display: none !important;
 	}
+}
+
+body.frontend.portaltype-folder,
+body.frontend.portaltype-collection {
+
+	#portal-logo img {
+    	content: url(++resource++plonetheme.centraalmuseum/rsh-logo-black.svg) !important;
+	}
+	
+	#website-wrapper.empty-slideshow {
+		.title-container {
+			@media(max-width: 991px) {
+				h1.brand-name {
+					font-size: 45px !important;
+    				line-height: 42px;
+				}
+
+				span.subheading {
+					margin: 0 auto;
+					font-size: 1.180em;
+					line-height: 1.5;
+					color: @brand-primary-text;
+				}
+			}
+			@media(min-width: 992px) {
+				h1.brand-name {
+					font-size: 60px !important;
+					margin-bottom: 10px;
+				}
+
+				span.subheading {
+					max-width: 660px;
+					margin: 0 auto;
+					font-size: 1.500em;
+					line-height: 1.5;
+					color: @brand-primary-text;
+				}
+			}
+		}
+	}
+}
+
+body:not(.frontend).template-folder_contents {
+	font-family: "Helvetica Neue", Verdana,Arial,Helvetica,sans-serif;
+
+	#portal-logo img {
+    	content: url(++resource++plonetheme.centraalmuseum/rsh-logo-black.svg) !important;
+    	margin-left: -200px;
+	}
+
+	#portal-logo {
+		top: 15px;
+
+	}
+
+	.title-container {
+		span.subheading {
+			display: block;
+			padding-bottom: 15px;
+		}
+	}
+
+	@media (min-width: 1112px) {
+		&.plone-toolbar-left-expanded .container {
+		    width: 880px;
+		}
+	}
+
+	.portlet.portletMailChimp {
+		display: none;
+	}
+}
+
+/* Cookie statement */
+#CybotCookiebotDialog {
+    right: 0!important;
+    left: auto!important;
+    width: 100%!important;
+    max-width: 550px!important;
+    -webkit-transform: scale(1)!important;
+    -ms-transform: scale(1)!important;
+    transform: scale(1)!important;
+    padding: 0!important;
+    background: 0 0!important;
+    box-shadow: none!important;
+    font-size: 14px!important;
+    font-size: 1.4rem!important;
+}
+
+@media (min-width: 34.375em) {
+	#CybotCookiebotDialog {
+	    right: auto!important;
+	    left: 50%!important;
+	    -webkit-transform: translateX(-50%)!important;
+	    -ms-transform: translateX(-50%)!important;
+	    transform: translateX(-50%)!important;
+	    padding: 1.25vw!important;
+	}
+}
+
+#CybotCookiebotDialogBody, #CybotCookiebotDialogDetail {
+    max-width: 100%!important;
+    padding: 16px!important;
+    background: #282931!important;
+}
+
+#CybotCookiebotDialog a, #CybotCookiebotDialog div, #CybotCookiebotDialogBodyContentTitle {
+    .FranklinBook();
+    color: #fff!important;
+}
+
+#CybotCookiebotDialog a, #CybotCookiebotDialog br, #CybotCookiebotDialog div, #CybotCookiebotDialog td {
+    line-height: 1.231;
+}
+
+#CybotCookiebotDialogPoweredbyLink {
+	display: none !important;
+}
+
+#CybotCookiebotDialogBodyContent {
+    margin-bottom: 1.25vw!important;
+    padding: 0!important;
+}
+
+#CybotCookiebotDialog h2 {
+    margin: 0 0 .25em!important;
+    .FranklinBook();
+    font-size: 18px!important;
+    font-size: 1.8rem!important;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+@media (min-width: 48em) {
+	#CybotCookiebotDialogBodyContentText {
+	    font-size: 14px!important;
+	    font-size: 1.4rem!important;
+	}
+}
+
+@media (min-width: 48em) {
+	a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
+	    margin: 0!important;
+	    font-size: 22px!important;
+	    font-size: 2.2rem!important;
+	}
+}
+
+#CybotCookiebotDialogBodyButtons {
+    margin: 0!important;
+}
+
+
+a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    min-width: none!important;
+    background: #fff!important;
+    color: #282931!important;
+    margin: 1.25vw 0 0!important;
+    padding: .26562em .5em!important;
+    font-size: 18px!important;
+    font-size: 1.8rem!important;
+    line-height: 1!important;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+
+a#CybotCookiebotDialogBodyButtonAccept:focus, a#CybotCookiebotDialogBodyButtonAccept:hover, a#CybotCookiebotDialogBodyLevelButtonAccept:focus, a#CybotCookiebotDialogBodyLevelButtonAccept:hover {
+    background-color: #ebeae8!important;
+}
+
+#CybotCookiebotDialogBodyButtonDetails {
+    padding-right: 0!important;
+    background: 0 0!important;
+    font-size: inherit!important;
+}
+
+#CybotCookiebotDialogBodyButtons {
+	padding-left: 0px !important;
+}
+
+#CybotCookiebotDialogBodyButtonDetails::after, #CybotCookiebotDialogBodyLevelDetailsButton::after {
+    content: '+';
+    display: inline-block;
+    margin-left: .35em;
+    color: #fff;
+}
+
+.CybotCookiebotDialogBodyLevelDetailsButtonExpanded::after, .CybotCookiebotDialogBodyLinkExpanded::after {
+    content: '-'!important;
+}
+
+
+@media (min-width: 48em) {
+	a#CybotCookiebotDialogBodyButtonAccept, a#CybotCookiebotDialogBodyLevelButtonAccept {
+	    margin: 0!important;
+	    font-size: 22px!important;
+	    font-size: 2.2rem!important;
+	}
+}
+
+#CybotCookiebotDialogDetailBody, #CybotCookiebotDialogDetailBody a, #CybotCookiebotDialogDetailBody div {
+    color: #282931!important;
+}
+
+#CybotCookiebotDialogDetailFooter {
+    padding: 4px!important;
+    font-size: 12px!important;
+    font-size: 1.2rem!important;
+    text-align: center!important;
+}
+
+.CookieDeclarationType {
+    overflow: auto!important;
+    font-size: 12px!important;
+    font-size: 1.2rem!important;
+}
+
+.CookieDeclarationTypeHeader {
+	margin-bottom: 5px !important;
+	margin-bottom: 5px !important;
+    margin-top: 5px !important;
+    line-height: 20px !important;
+}
+
+.CookieDeclarationType table {
+    table-layout: auto!important;
+}
+
+.CookieDeclarationTableHeader {
+	line-height: 16px !important;
+}
+
+
+.CookieDeclarationTableCell {
+	line-height: 16px !important;
+    border: 0px !important;
+    padding-top: 10px !important;
+}
+
+p.CookieDeclarationTypeDescription {
+	font-size: 14px !important;
+	line-height: 20px !important;
+}
+
+.CookieDeclarationTableHeader {
+	border: 0px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.CookieDeclarationDialogText {
+	padding-top: 50px !important;
+}
+
+.CybotCookiebotDialogDetailBodyContentTab:first-child {
+    border-radius: 0!important;
+}
+
+body.frontend #presentation div.video-slide #parent-fieldname-text {
+  position: relative !important;
+}
+
+body.frontend #presentation div.video-slide #parent-fieldname-text iframe {
+  display: none !important;
+}
+
+
+body.frontend #top-alert-message {
+        margin-top: 25px;
+        margin-left: 30px;
+        margin-right: 30px;
+
+        @media(min-width: 992px) {
+                margin-left: 70px;
+                margin-right: 70px;
+                margin-top: 50px;
+		margin-bottom: 50px;
+        }
+
+        @media(min-width: 768px) and (max-width: 991px) {
+                margin-left: 40px;
+                margin-right: 25px;
+                margin-top: 50px;
+		margin-bottom: 50px;
+        }
+
+        .top-alert-wrapper {
+                padding-left: 40px;
+                padding-right: 40px;
+                padding-top: 30px;
+                padding-bottom: 25px;
+
+                background-color: #282931;
+                span.header {
+                        color: #ffffff;
+                        font-size: 1.180em;
+                }
+
+                p {
+                        margin-bottom: 5px;
+                	color: #ffffff !important;
+		}
+
+		h2 {
+			color: #ffffff !important;
+		}
+                a {
+			color: #ffffff !important;
+			border-bottom: 1px solid #ffffff !important;
+		}
+
+                a:hover,
+                a:focus,
+                a:active,
+                a:active:focus {
+                        border-bottom: 0px;
+			color: #ffffff !important;
+                }
+        }
+}
+
+
+/* VIMEO */
+body.frontend #slickcarousel .vimeo-container {
+    width: 100%;
+    height: 100%;
+}
+
+body.userrole-authenticated #slickcarousel .vimeo-slide iframe {
+	display: none;
+}
+
+body.frontend #slickcarousel .vimeo-slide iframe {
+    box-sizing: border-box;
+    height: 56.25vw;
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 177.77777778vh;
 }
 

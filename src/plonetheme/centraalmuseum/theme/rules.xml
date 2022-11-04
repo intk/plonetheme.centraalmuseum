@@ -13,6 +13,8 @@
     <theme href="index_empty.html" css:if-content="body.portaltype-file"/>
     <theme href="index_empty.html" css:if-content="body.template-login_form"/>
     <theme href="index_empty.html" css:if-content="body.template-login_success"/>
+    <theme href="index_empty.html" css:if-content="body.portaltype-folder"/>
+    <theme href="index_empty.html" css:if-content="body.portaltype-collection"/>
     <theme href="index_empty.html" css:if-content="#slickcarousel.empty"/>
     <theme href="index.html" css:if-content="body.frontend"/>
 
@@ -142,6 +144,13 @@
         css:content="#slickcarousel"
         method="raw"
       />
+
+	<replace
+        css:theme-children="#top-alert-message"
+        css:content=".top-alert-wrapper"
+        method="raw"
+        />
+<drop css:content=".top-alert-wrapper"/>
 
       <replace
         css:theme="#event-summary"

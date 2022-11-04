@@ -259,6 +259,10 @@ function register($form) {
         $form.find('#form-widgets-email').css('borderColor', '#e70518');
         $form.find('#subscribe-result').css('color', '#e70518');
         $form.find('#subscribe-result .success-msg').hide();
+
+        if (data.msg.indexOf("reeds geabonneerd op lijst") > 0) {
+       		$form.find('#subscribe-result .error-msg').html(data.msg);
+       	}
     	$form.find('#subscribe-result .error-msg').show();
     	$loader.hide();
       }
@@ -274,6 +278,7 @@ jQuery(document).ready(function($) {
   }
 
    var is_chrome = !!window.chrome && !is_opera;
+   var isEdge = navigator.userAgent.indexOf('Edge') > 0;
    var is_explorer= typeof document !== 'undefined' && !!document.documentMode && !isEdge;
    var is_firefox = typeof window.InstallTrigger !== 'undefined';
    var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

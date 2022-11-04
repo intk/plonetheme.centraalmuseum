@@ -19,7 +19,9 @@
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
         <input type="hidden" value="42702e9770" name="id" tal:attributes="value view/list_id|nothing"/>
+        <input type="hidden" value="1" name="group[15893][1]"/>
 
+        
         <div class="formControls">
           <input id="form-buttons-subscribe" name="form.buttons.subscribe" class="submit-widget button-field context" value="Inschrijven" type="submit">
         </div>
@@ -29,10 +31,11 @@
           <p class="error-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Aanmelden op nieuwsbrief mislukt.</p>
           
           <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
-          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">We moeten uw email adres bevestigen om de nieuwsbrief inschrijving af te ronden. Klik op de link in de email die we u zojuist hebben verstuurd.</p>
+          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bedankt voor je aanmelding. Je ontvangt een e-mail waarin je inschrijving wordt bevestigd.</p>
 
         </div>
       </form>
     </dd>
   </dl>
 </html>
+
