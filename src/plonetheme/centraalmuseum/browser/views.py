@@ -25,6 +25,7 @@ from zope.schema import getFields, getFieldsInOrder
 
 from Products.CMFCore.utils import getToolByName
 from collective.behavior.exhibition.behavior import IExhibition
+from urlparse import urlparse
 
 from bs4 import BeautifulSoup as BSHTML
 import re
@@ -95,7 +96,8 @@ class ExhibitionArchiveView(BrowserView):
         CUSTOM_FIELDS = {
             "documentation": self.generate_documentation_value,
             "persistent_url": self.generate_handle_url_value,
-            "designer": self.generate_designer_value
+            "designer": self.generate_designer_value,
+            "handle_url": self.generate_handle_url_value
         }
         return CUSTOM_FIELDS
 
@@ -277,6 +279,16 @@ class ExhibitionArchiveView(BrowserView):
                 year_of_publication = doc.get('year_of_publication', '')
                 pagination = doc.get('pagination', '')
 
+                source_day = doc.get('source_day', '')
+                source_issue = doc.get('source_issue', '')
+                source_month = doc.get('source_month', '')
+                source_pagination = doc.get('source_pagination', '')
+                source_publication_years = doc.get('source_publication_years', '')
+                source_title = doc.get('source_title', '')
+                source_lead_word = doc.get('source_lead_word', '')
+                source_volume = doc.get('source_volume', '')
+
+
                 authors = []
 
                 for name in author:
@@ -319,11 +331,45 @@ class ExhibitionArchiveView(BrowserView):
                     all_publishers = ", ".join(publisher)
                     new_doc = "%s, %s" %(new_doc, all_publishers)
 
-                if dates:
+                if dates and not source_title:
                     new_doc = "%s (%s)" %(new_doc, dates)
 
+                if source_title:
+
+                    sources = "%s" %(source_title)
+
+                    if source_lead_word:
+                        sources = "%s %s" %(source_lead_word, sources)
+
+                    if source_volume:
+                        sources = "%s, %s" %(sources, source_volume)
+
+                    if source_issue:
+                        sources = "%s, %s" %(sources, source_issue)
+
+                    source_dates = ""
+                    if source_day:
+                        source_dates = "%s" %(source_day)
+
+                    if source_month:
+                        source_dates = "%s %s" %(source_dates, source_month)
+
+                    if source_publication_years:
+                        source_dates = "%s %s" %(source_dates, source_publication_years)
+
+                    source_dates = source_dates.strip()
+
+                    if source_dates:
+                        sources = "%s, %s" %(sources, source_dates)
+
+                    if sources:
+                        new_doc = "%s, (%s)" %(new_doc, sources)
+
                 if pagination:
-                    new_doc = "%s (%s)" %(new_doc, pagination)
+                    new_doc = "%s, %s" %(new_doc, pagination)
+
+                if not pagination and source_pagination:
+                    new_doc = "%s, %s" %(new_doc, source_pagination)
 
                 if new_doc:
                     documentations.append("<li><span>"+new_doc+"</span></li>")
@@ -470,7 +516,7 @@ class ExhibitionArchiveView(BrowserView):
                 else:
                     value = self.generate_regular_value(field, self.context)
                 
-                if field == 'persistent_url':
+                if field in ['handle_url']:
                     related_items = self.generate_relateditems_value('relatedItems', self.context)
                     if related_items:
                         related_items_title = 'related_objects'
@@ -498,6 +544,15 @@ class ContextToolsView(BrowserView):
         portlet_manager.update()
         return portlet_manager.render()
 
+    def getVimeoID(self, video_url):
+        if video_url:
+            try:
+                video_id = urlparse(video_url).path.lstrip("/")
+                return video_id
+            except:
+                return None
+        else:
+            return None
 
     def get_creators_data(self, item):
 
@@ -918,7 +973,11 @@ class ContextToolsView(BrowserView):
                     return provider(item)
 
     def formatted_date(self, obj):
-        item = obj.getObject()
+        try:
+            item = obj.getObject()
+        except:
+            return None
+
         provider = getMultiAdapter(
             (self.context, self.request, self),
             IContentProvider, name='formatted_date'
@@ -969,8 +1028,10 @@ class ContextToolsView(BrowserView):
 
     def isEventPast(self, event):
         """ Checks if the event is already past """
-
-        rec = getattr(event, 'recurrence', None)
+        try:
+            rec = getattr(event, 'recurrence', None)
+        except:
+            return False
         if rec:
             return False
 
@@ -1268,49 +1329,51 @@ class CustomEventListingIcal(EventListingIcal):
     pass
 
 
+
 def objectTranslated(ob, event):
-    if ob:
-        if ITranslatable.providedBy(ob):
-            if getattr(ob, 'language', None) == "en" and getattr(ob, 'portal_type', None) in ["Document", "Event", "News Item"] and getattr(ob, 'id', '') not in ['slideshow']:
-                createdEvent(ob, event)
-                
-                if not hasattr(ob, 'slideshow'):
-                    if ITranslationManager(ob).has_translation('nl'):
-                        original_ob = ITranslationManager(ob).get_translation('nl')
+    import transaction
 
-                        if hasattr(original_ob, 'slideshow'):
-                            slideshow = original_ob['slideshow']
-                            ITranslationManager(slideshow).add_translation('en')
-                            slideshow_trans = ITranslationManager(slideshow).get_translation('en')
-                            slideshow_trans.title = slideshow.title
-                            slideshow_trans.portal_workflow.doActionFor(slideshow_trans, "publish", comment="Slideshow published")
+    TARGET_LANGUAGE = "en"
 
-                            for sitem in slideshow:
-                                if slideshow[sitem].portal_type == "Image":
-                                    ITranslationManager(slideshow[sitem]).add_translation('en')
-                                    trans = ITranslationManager(slideshow[sitem]).get_translation('en')
-                                    trans.image = slideshow[sitem].image
-                                    addCropToTranslation(slideshow[sitem], trans)
+    ALLOWED_LANGUAGES = ['en']
+    ALLOWED_SLIDESHOW_CONTENT_TYES = ['Image']
+    ALLOWED_PORTAL_TYPES = ['Document', 'Event', 'News Item']
+    original_object = event.object
+    target_object = event.target
+    language = event.language
 
-                            ob.reindexObject()
-                            ob.reindexObject(idxs=["hasMedia"])
-                            ob.reindexObject(idxs=["leadMedia"])
-                        else:
-                            # no slideshow folder
-                            pass
-                    else:
-                        # no translation
-                        pass
-                else:
-                    # has slideshow
-                    pass
-            else:
-                # wrong language
-                pass
+    object_type = getattr(original_object, 'portal_type', None)
+
+    # Check allowed portal types
+    if language in ALLOWED_LANGUAGES and object_type in ALLOWED_PORTAL_TYPES:
+        # Get the original slideshow folder
+        if 'slideshow' in original_object:
+            slideshow = original_object['slideshow']
+            # translate the original slideshow folder
+            
+            ITranslationManager(slideshow).add_translation(TARGET_LANGUAGE)
+            translated_slideshow = ITranslationManager(slideshow).get_translation(TARGET_LANGUAGE)
+            plone.api.content.transition(obj=translated_slideshow, to_state="published")
+            
+            # translate all iamges that the original slideshow folder contains
+            for simg in slideshow:
+                if getattr(slideshow[simg], 'portal_type', None) in ALLOWED_SLIDESHOW_CONTENT_TYES:
+                    ITranslationManager(slideshow[simg]).add_translation(TARGET_LANGUAGE)
+                    translated_image = ITranslationManager(slideshow[simg]).get_translation(TARGET_LANGUAGE)
+                    translated_image.image = slideshow[simg].image
+
+            # commit changes
+            transaction.get().commit()
+            
+            # reindex
+            original_object.reindexObject()
+            target_object.reindexObject()
+
+        else:
+            # Action is not needed. There is no slideshow.
+            return None
     else:
-        # invalid object
-        pass
-
-    return
+        # Content type is not supported
+        return None
 
 

@@ -9,7 +9,9 @@
 <body tal:omit-tag="">
 
 <tal:def tal:define="data python:view.data; excludes view/excludes;
-                     is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context);">
+                     is_past python: context.restrictedTraverse('@@context_tools').isEventPast(context);
+		     total_occ view/num_more_occurrences;
+		     next_occs view/next_occurrences_today;">
   
   <ul class="event summary details is_past" tal:condition="is_past">
     <li class="event-date is_past"><strong i18n:domain="plonetheme.centraalmuseum" i18n:translate="event_past_text">Past Exhibition</strong></li>
@@ -37,7 +39,7 @@
     >
 
       <li class="event-date" tal:attributes="class python: 'event-date past' if is_past else 'event-date'">
-        <strong i18n:translate="event_when" class="event-date-title">When</strong>
+        <strong i18n:translate="event_when" class="event-date-title" tal:condition="python:len(next_occs) > 1 or total_occ > 1">When</strong>
         <span tal:define="start_tzname data/timezone;
                       start_utcdelta python:data.start.tzinfo.utcoffset(data.start);
                       start_utcoffset python:(start_utcdelta.days*86400+start_utcdelta.seconds)*100/60/60;">

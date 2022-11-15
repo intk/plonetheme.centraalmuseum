@@ -1,4 +1,4 @@
-<div class="search-item row"
+<div class="search-item col-xs-12 col-sm-12 col-md-12 col-lg-6"
   tal:define="portal python:context.restrictedTraverse('@@plone_portal_state').portal();
               portal_type context/portal_type|string:;
               useViewTypes context/portal_properties/site_properties/typesUseViewActionInListings|python:[];
@@ -12,7 +12,7 @@
               image_scale portal/@@image_scale;
               ">
 
-  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding-left">
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-12 no-padding-left">
 
     <tal:leadmedia tal:condition="leadmedia">
       <a href="#"
@@ -22,7 +22,7 @@
     </tal:leadmedia>
   </div>
 
-  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 search-item-right">
+  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-12 search-item-right">
     <a href="#" tal:attributes="href view_url;">
       <h4 class="item-title" tal:content="title"></h4>
     </a>

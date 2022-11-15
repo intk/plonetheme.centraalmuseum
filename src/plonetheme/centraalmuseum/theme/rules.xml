@@ -305,17 +305,42 @@
       <replace css:theme-children="footer .container" css:content-children="#portal-footer-wrapper" />
       
       <replace css:content="#form-widgets-email" css:if-content="body.site-nl">
-        <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres"/>
+        <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Mijn e-mail"/>
       </replace>
       <replace css:content="#form-widgets-email" css:if-content="body.site-en">
         <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Email"/>
       </replace>
 
-      <replace css:content="#parent-fieldname-text iframe">
+	<replace css:content="body.site-en #parent-fieldname-text iframe[src*='youtube']">
+        <div class="iframe-wrapper">
+          <div class="video-embed__cookie-consent cookieconsent-optout-marketing">
+            <div class="video-embed__cookie-consent-inner">
+              <p>Please <a href="javascript:Cookiebot.renew()">accept marketing cookies</a> to view this video.</p>
+            </div>
+          </div>
+
+          <xsl:copy-of select="."/>
+        </div>
+      </replace>
+
+      <replace css:content="body.site-nl #parent-fieldname-text iframe[src*='youtube']">
+        <div class="iframe-wrapper">
+          <div class="video-embed__cookie-consent cookieconsent-optout-marketing">
+            <div class="video-embed__cookie-consent-inner">
+              <p><a href="javascript:Cookiebot.renew()">Accepteer marketing cookies</a> om deze video te bekijken.</p>
+            </div>
+          </div>
+
+          <xsl:copy-of select="."/>
+        </div>
+      </replace>
+
+      <replace css:content="#parent-fieldname-text iframe[src*='soundcloud']">
         <div class="iframe-wrapper">
           <xsl:copy-of select="."/>
         </div>
       </replace>
+
 
       <replace css:content="#parent-fieldname-text img.image-left">
         <div class="img-wrapper">
@@ -323,12 +348,31 @@
         </div>
       </replace>
 
-      <xsl:template match="//script[contains(@src, 'centraalmuseum-bundle')]">
+      <!--<xsl:template match="//script[contains(@src, 'centraalmuseum-bundle')]">
+        <xsl:if test="not(/html/body[contains(@class, 'template-facetednavigation_view')])">
+          <xsl:copy>
+            <xsl:copy-of select="@*" />
+            <xsl:attribute name="defer">defer</xsl:attribute>
+            <xsl:apply-templates />
+          </xsl:copy>
+        </xsl:if>
+        <xsl:if test="/html/body[contains(@class, 'template-facetednavigation_view')]">
+          <xsl:copy>
+            <xsl:copy-of select="@*" />
+            <xsl:apply-templates />
+          </xsl:copy>
+        </xsl:if>
+      </xsl:template>-->
+
+      <!-- <xsl:template match="//link[contains(@rel, 'stylesheet')]">
         <xsl:copy>
-          <xsl:attribute name="async">true</xsl:attribute>
           <xsl:copy-of select="@*" />
+          <xsl:attribute name="rel">preload</xsl:attribute>
+          <xsl:attribute name="as">style</xsl:attribute>
+          <xsl:attribute name="onload">this.onload=null;this.rel='stylesheet'</xsl:attribute>
+          <xsl:attribute name="onerror">this.rel='stylesheet'</xsl:attribute>
           <xsl:apply-templates />
         </xsl:copy>
-      </xsl:template>
+      </xsl:template> -->
 
 </rules>

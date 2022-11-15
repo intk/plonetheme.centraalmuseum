@@ -25,9 +25,11 @@
       <tal:listing condition="batch">
         <div class="entries" metal:define-slot="entries">
           <tal:repeat repeat="item batch" metal:define-macro="entries">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 listing-item" tal:define="
+<tal:checkobj tal:on-error="nothing">            
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 listing-item" tal:define="
                 item_url item/getURL;
                 item_id item/getId;
+                item_obj item/getObject;
                 item_title item/Title;
                 item_description python:context_tools.trimText(item.Description(), 160);
                 item_objects_count item/objects_count|nothing;
@@ -140,6 +142,8 @@
                         <tal:clearfixmd condition="python: number % 2 == 0" tal:define="number repeat/item/number">
                           <div class="clearfix visible-sm"></div>
                         </tal:clearfixmd>
+
+</tal:checkobj>
           </tal:repeat>
         </div>
 

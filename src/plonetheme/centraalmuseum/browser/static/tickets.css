@@ -1,7 +1,18 @@
 /* Tickets styles */
+/* CM */
+
+
+h1, h2, h1 span, h2 span, .syx_pageHeading {
+	font-size: 35px !important;
+}
+
+.syx_pageHeading {
+	text-transform: none !important;
+}
 
 .gp_gridRow .syx_productDetail {
 	border: 0px !important;
+	display: none !important;
 }
 
 .gp_gridRow .infoContainer {
@@ -31,7 +42,7 @@
 }
 
 .gp_heading3 {
-	font-size: 1.3em !important;
+	font-size: 1.8em !important;
 }
 
 ul#MainContent_expositionRegister1_ExpositionsDateTimePicker_rblTime {
@@ -285,7 +296,7 @@ h1.syx_pageHeading span {
 	}
 
 	.gp_header .syx_loginLang {
-		top: 12px;
+		top: 10px;
 		right: 110px !important;
 	}
 
@@ -324,7 +335,7 @@ h1.syx_pageHeading span {
 
 	.priceCol.fullPrice span.price {
 		width: auto !important;
-	    top: 30px !important;
+	    top: 43px !important;
 	    left: 0 !important;
    	}
 
@@ -432,7 +443,7 @@ h1.syx_pageHeading span {
 
 
 #cookiebanner {
-	display: none !important;
+	
 }
 
 
@@ -511,7 +522,7 @@ h1.syx_pageHeading span {
 
 
 #ctlAccountAndLanguage_panNotLoggedIn {
-	display: none;
+	/*display: none;*/
 }
 
 .syx_articleItemList .thumb {
@@ -523,4 +534,179 @@ h1.syx_pageHeading span {
 	width: 100% !important;
 }
 
+@media screen and (max-width: 699px) {
+	.gp_heading1, .gp_heading2, .gp_heading3, .gp_heading4, .gp_heading5, .gp_heading6 {
+	    margin: 0 0 0.45em;
+	}
+}
 
+#MasterPageBody .RadCalendar_syx_datePicker_multi1 .rcMain a {
+	width: 35px;
+    height: 35px;
+    line-height: 35px;
+}
+
+#MasterPageBody .RadCalendar_syx_datePicker_multi1 .rcMain .rcValidDate a {
+	width: 35px;
+    height: 35px;
+    line-height: 35px;
+}
+
+#MasterPageBody .RadCalendar_syx_datePicker_multi1 .rcMain .rcRow>* {
+	padding: 0.1em 0.3em 0.20em 0.2em !important;
+}
+
+.syx_radioButtonList .label {
+	display: inline-block;
+    width: auto;
+}
+
+@media screen and (max-width: 455px) {
+	.syx_radioButtonList .syx_availability { 
+		display: inline-block;
+	}
+}
+
+ul#MainContent_expositionRegister1_ExpositionsDateTimePicker_rblTime li {
+	margin-bottom: 10px;
+}
+
+.gp_header .syx_basket {
+	background: #f2f2f2;
+	color: #282931;
+}
+
+#ctlBasketWidget_lblShoppingBasket {
+	color: #282931;
+}
+
+.gp_header .syx_basket .syx_basketheaderlink {
+	color: #282931;
+}
+
+@media screen and (max-width: 699px) {
+	.gp_content .RadGrid .rgRow .infoCol table .infoCol {
+	    width: 125px;
+	}
+}
+
+#ctl00_MainContent_ProductList_ctl00__0 table tr td {
+	vertical-align: middle;
+}
+
+.syx_articleItemList .totalPrice td, .syx_articleItemList .productPrice {
+	font: 15px/1.5 "FranklinBook",sans-serif;
+}
+
+
+.syx_articleItemList .price .decimal {
+	width: 24px;
+}
+
+.syx_articleItemList .priceColTotal {
+	width: 86px;
+}
+
+.MarginLeftRight10Px {
+	margin: 0 0px;
+}
+
+.MarginLeftRight10Px h2 span {
+	text-transform: none !important;
+}
+
+#MainContent_updAuthenticate a.btn {
+	margin-bottom: 5px;
+}
+
+#MainContent_AnonymousNaw_panAnonymousRegistrationPage h2 span,
+#MainContent_divInformationAndDeliveryAnonymous h2 {
+	text-transform: none !important;
+}
+
+#MainContent_divInformationAndDeliveryAnonymous h2 {
+	padding-top: 20px;
+	font-size: 25px !important;
+}
+
+.gp_form fieldset input[type="text"], .gp_form fieldset input[type="email"], .gp_form fieldset input[type="url"], .gp_form fieldset input[type="search"], .gp_form fieldset input[type="password"] {
+	height: 40px;
+	line-height: 40px;
+	padding: 0px 10px !important
+}
+
+#MainContent_AnonymousNaw_panAnonymousRegistrationPage {
+	margin-bottom: 20px;
+}
+
+@media screen and (max-width: 699px) {
+	.divWithTableStructureLeft, .divWithTableStructureLeftSmall {
+		padding-top: 10px;
+	}
+}
+
+#ctl00_MainContent_ProductList_ctl00_ctl04_ticketDetails_rptTicketDetails_ctl00_rowPromoInfo {
+	display: none;
+}
+
+@media screen and (max-width: 699px) {
+	.gp_content .syx_articleItemList .priceCol {
+	    padding-right: 9px !important;
+	}
+}
+
+.syx_checkoutDetails .checkoutDetails .detailName {
+	width: 40%;
+}
+
+#basketPopup .syx_articleItemList, .gp_header .syx_basket .syx_basketimageclosed, .gp_header .syx_basket .syx_basketimageopened, .gp_header .syx_articles .syx_CancelIcons, .viewpay a {
+	color: #282931 !important;
+}
+
+.viewpay a {
+
+}
+
+#MainContent_updAuthenticate div.MarginLeftRight10Px h2 {
+	line-height: 1.1 !important;
+	margin-bottom: 20px;
+}
+
+#MainContent_updAuthenticate div.MarginLeftRight10Px h2 span {
+	font-family: 'FranklinBook', sans-serif;
+	font-size: 20px !important; 
+	line-height: 1.0 !important;
+}
+
+#MainContent_ctrlRegister_wizRegister_panStep2Individu {
+
+}
+
+#MainContent_ctrlRegister_wizRegister_panStep2Individu h2 span,
+#MainContent_lblUserData {
+	text-transform: none !important;
+}
+
+#MainContent_ctrlRegister_wizRegister_lblStep1DetailsHeader {
+	display: block;
+	padding-top: 30px;
+	text-transform: none !important;
+}
+
+#MainContent_ctrlRegister_wizRegister_lblUsername {
+	float: left;
+    display: block;
+    padding-top: 20px;
+}
+
+#MainContent_ctrlRegister_wizRegister_FinishNavigationTemplateContainerID_FinishPreviousButton {
+	padding: 0px 23px !important;
+}
+
+#MainContent_ctrlRegister_wizRegister_FinishNavigationTemplateContainerID_FinishButton {
+	padding: 0px 23px !important;
+}
+
+#MainContent_updTotal {
+
+}

@@ -321,7 +321,7 @@ msgstr "Nu te zien"
 
 #: ../object.py
 msgid "search_only_images"
-msgstr "Alleen met beeld"
+msgstr "Met beeld"
 
 #: ../object.py
 msgid "only_in_the_website"

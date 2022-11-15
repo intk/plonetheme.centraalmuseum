@@ -129,11 +129,10 @@
         layer="..interfaces.IPlonethemeModernBaseLayer"
         />
 
-  <subscriber
+    <subscriber
         for="plone.dexterity.interfaces.IDexterityContainer
-        zope.lifecycleevent.interfaces.IObjectMovedEvent"
+        plone.app.multilingual.events.IObjectTranslatedEvent"
         handler=".views.objectTranslated" />
-
 
 
 </configure>

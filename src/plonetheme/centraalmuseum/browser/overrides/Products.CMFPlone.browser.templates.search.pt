@@ -97,7 +97,7 @@
                     <div class="onViewOptionsToggle">
                       <input type="checkbox" onchange="" name="only_images_toggle" value="#" id="only_images_toggle" class="noborder" checked="checked"
                              tal:attributes="checked python:all_checked and 'checked' or '';" />
-                      <label for="only_images_toggle" i18n:translate="search_only_images" i18n:domain="plonetheme.centraalmuseum">Only images</label>
+                      <label for="only_images_toggle" i18n:translate="search_only_images" i18n:domain="plonetheme.centraalmuseum">With image</label>
                     </div>
                     
                     <div class="only-images-options" style="display: none !important;"
@@ -108,7 +108,7 @@
                                              checked python:((request.get('hasMedia', None) == True)) and 'checked' or '';
                                              value python: True if is_checked else False"/>
 
-                        <label for="only-images-options">Only images</label>
+                        <label for="only-images-options">With image</label>
                       </div>
                     </div>
                   </div>

@@ -14,8 +14,9 @@
     <dd class="portletItem odd">
       <form tal:attributes="action view/endpoint_url|nothing;" id="newsletter-subscriber-form" method="get">
         <div id="formfield-form-widgets-email">
-          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Uw mailadres" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"/>
-          <input id="form-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Email" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'"/>
+          <input id="form-widgets-email" name="EMAIL" aria-labelledby="label-for-forms-widgets-email" class="text-widget required textline-field" value="" type="text" placeholder="Mijn e-mail" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"/>
+          <input id="form-widgets-email" aria-labelledby="label-for-forms-widgets-email" name="EMAIL" class="text-widget required textline-field" value="" type="text" placeholder="Email" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'" />
+          <label for="form-widgets-email" id="label-for-forms-widgets-email">Mijn e-mail</label>
         </div>
 
         <input type="hidden" value="c04600e3ceefae8c502cbabec" name="u" tal:attributes="value view/user_id|nothing"/>
@@ -28,7 +29,7 @@
         </div>
 
         <div id="privacy-statement-wrapper" style="margin-top: 10px;" tal:condition="view/privacy_statement|nothing">
-          <a href="https://www.centraalmuseum.nl/nl/over-het-museum/voorwaarden/privacy/privacyreglement_stichting_centraal_museum.pdf" target="_blank" tal:attributes="href view/privacy_statement" i18n:domain="plonetheme.centraalmuseum" i18n:translate="privacy_statement">Privacy statement</a>
+          <a href="https://www.centraalmuseum.nl/nl/over-het-museum/voorwaarden/privacy/privacyreglement_stichting_centraal_museum.pdf" target="_blank" i18n:translate="privacy_statement">Privacy statement</a>
         </div>
 
         <div id="subscribe-result">
@@ -36,7 +37,7 @@
           <p class="error-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Aanmelden op nieuwsbrief mislukt.</p>
           
           <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') != 'nl'">We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you.</p>
-          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bedankt voor uw aanmelding. U ontvangt een e-mail waarin uw inschrijving wordt bevestigd.</p>
+          <p class="success-msg" style="display:none;" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'">Bedankt voor je aanmelding. Je ontvangt een e-mail die je inschrijving bevestigt.</p>
         </div>
       </form>
     </dd>
